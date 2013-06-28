@@ -1,0 +1,45 @@
+﻿@model EditBarOpenHours
+@{
+  ViewBag.Title = "Edit - Open Hours";
+
+  string[] Days = new string[] { "Mon", "Tues", "Wed", "Thurs", "Fri", "Sat", "Sun" };
+}
+
+<div class="step step-three opening">
+  <h1>Step 3</h1>
+  <h2>Your bar &raquo; <span>@ViewBag.EditingContainer.Name</span></h2>
+  @Html.Partial("Progress", "opening")
+  <h3>Add your Opening Times</h3>
+  <p>
+    Obviously people need to know when they can come and visit, so enter your opening
+    hours in the form below. If you have two sets of opening times you can set these
+    individually or for one opening time simply leave the second slot blank.
+  </p>
+
+
+  @using (Html.BeginForm())
+  {
+    <div class="days">
+      @for (var i = 0; i < Model.Days.Count(); i++)
+      {
+        <div class="day">
+          @Html.LabelFor(model => model.Days[i].TimeFrames[0].Open, Days[i])
+          @for (var j = 0; j < Model.Days[i].TimeFrames.Count(); j++)
+          {
+            @Html.TextBoxFor(model => model.Days[i].TimeFrames[j].Open) <span>to</span> @Html.TextBoxFor(model => model.Days[i].TimeFrames[j].Close)
+            if (j < Model.Days[i].TimeFrames.Count() - 1)
+            {
+            <span>and</span>
+            }
+          }
+        </div>
+      }
+    </div>
+
+    <div class="navigation">
+      <button name="back" value="true">Back</button>
+      <input type="submit" value="Next" />
+    </div>
+  }
+  <div class="clear"></div>
+</div>

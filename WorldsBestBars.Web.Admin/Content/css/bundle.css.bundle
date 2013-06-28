@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle minify="true" runOnBuild="true">
+  <file>/Content/css/bootstrap.css</file>
+  <file>/Content/less/site.css</file>
+</bundle>

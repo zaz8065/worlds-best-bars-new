@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bundle minify="true" runOnBuild="true">
+  <file>/Content/js/jquery.js</file>
+  <file>/Content/js/bootstrap.js</file>
+  <file>/Content/js/handlebars.js</file>
+  <file>/Content/js/site.js</file>
+</bundle>

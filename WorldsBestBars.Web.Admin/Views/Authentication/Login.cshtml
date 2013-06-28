@@ -1,0 +1,19 @@
+﻿@model LoginModel
+
+<div class="container">
+  <h1>Login</h1>
+  @using (Html.BeginForm())
+  {
+    @Html.LabelFor(model => model.Email)
+    @Html.TextBoxFor(model => model.Email)
+    @Html.ValidationMessageFor(model => model.Email)
+    
+    @Html.LabelFor(model => model.Password)
+    @Html.PasswordFor(model => model.Password)
+    @Html.ValidationMessageFor(model => model.Password)
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Login</button>
+    </div>
+  }
+</div>

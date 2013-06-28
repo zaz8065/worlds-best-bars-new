@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3D46E94E-CFF3-40F0-A938-95D7BF1141F0}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WorldsBestBars.Services</RootNamespace>
+    <AssemblyName>WorldsBestBars.Services</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Advertising\UpdateSkyScraper.cs" />
+    <Compile Include="Advertising\ToggleActive.cs" />
+    <Compile Include="Advertising\Update.cs" />
+    <Compile Include="Advertising\Create.cs" />
+    <Compile Include="Advertising\Get.cs" />
+    <Compile Include="Advertising\GetAll.cs" />
+    <Compile Include="Bars\SetUrlKey.cs" />
+    <Compile Include="Bars\ToggleActive.cs" />
+    <Compile Include="Bars\Update.cs" />
+    <Compile Include="Bars\Create.cs" />
+    <Compile Include="Bars\Get.cs" />
+    <Compile Include="Bars\GetByLocation.cs" />
+    <Compile Include="Bars\GetAll.cs" />
+    <Compile Include="Bars\Shared.cs" />
+    <Compile Include="BaseService.cs" />
+    <Compile Include="Categories\Add.cs" />
+    <Compile Include="Categories\Create.cs" />
+    <Compile Include="Categories\Remove.cs" />
+    <Compile Include="Categories\Get.cs" />
+    <Compile Include="Categories\GetAll.cs" />
+    <Compile Include="Categories\Update.cs" />
+    <Compile Include="DefaultServiceResolver.cs" />
+    <Compile Include="DocumentService.cs" />
+    <Compile Include="Email\TrySendEmail.cs" />
+    <Compile Include="Experts\Delete.cs" />
+    <Compile Include="Experts\Create.cs" />
+    <Compile Include="Experts\ToggleActive.cs" />
+    <Compile Include="Locations\Delete.cs" />
+    <Compile Include="Locations\Get.cs" />
+    <Compile Include="Locations\Update.cs" />
+    <Compile Include="Media\Helper.cs" />
+    <Compile Include="Experts\Update.cs" />
+    <Compile Include="Experts\Get.cs" />
+    <Compile Include="Experts\GetAll.cs" />
+    <Compile Include="IServiceResolver.cs" />
+    <Compile Include="LocationService.cs" />
+    <Compile Include="Media\UploadMedia.cs" />
+    <Compile Include="Models\Advert.cs" />
+    <Compile Include="Models\BarCreateSubmission.cs" />
+    <Compile Include="Models\BarSummary.cs" />
+    <Compile Include="Models\BarUpdateSubmission.cs" />
+    <Compile Include="Models\CategorySummary.cs" />
+    <Compile Include="Models\CategoryDetail.cs" />
+    <Compile Include="Models\LocationDetail.cs" />
+    <Compile Include="Models\UpdateCategory.cs" />
+    <Compile Include="Models\CreateCategory.cs" />
+    <Compile Include="Models\Entity.cs" />
+    <Compile Include="Models\NamedEntity.cs" />
+    <Compile Include="Models\ExpertDetail.cs" />
+    <Compile Include="Models\ExpertSummary.cs" />
+    <Compile Include="Models\Document.cs" />
+    <Compile Include="Models\CreateLocation.cs" />
+    <Compile Include="Models\Geo.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Review.cs" />
+    <Compile Include="Models\UpdateAdvert.cs" />
+    <Compile Include="Models\UpdateBar.cs" />
+    <Compile Include="Models\UpdateDocument.cs" />
+    <Compile Include="Models\UserSummary.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Models\BarDetail.cs" />
+    <Compile Include="ReviewService.cs" />
+    <Compile Include="Reviews\UpdateExpert.cs" />
+    <Compile Include="Reviews\DeleteExpert.cs" />
+    <Compile Include="Reviews\CreateExpert.cs" />
+    <Compile Include="Shared.cs" />
+    <Compile Include="SqlMapper.cs" />
+    <Compile Include="SubmissionService.cs" />
+    <Compile Include="TryInvalidateCache.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="Users\LostPasswordRequest.cs" />
+    <Compile Include="Users\Helper.cs" />
+    <Compile Include="Users\IsEmailInUse.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WorldsBestBars.Data\WorldsBestBars.Data.csproj">
+      <Project>{c6cbfde1-196b-4821-92a3-0e32934c4920}</Project>
+      <Name>WorldsBestBars.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

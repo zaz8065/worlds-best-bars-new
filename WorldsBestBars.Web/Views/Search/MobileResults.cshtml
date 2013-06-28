@@ -1,0 +1,32 @@
+﻿@model IEnumerable<WorldsBestBars.Model.SearchResult>
+<div id="search_results">
+    <div id="panel-4">
+        <div class="secondary-content">
+            <div id="search_results_list">
+                @if (Model == null || !Model.Any(r => r.Type == "Bar" || r.Type == "Location"))
+                {
+                    <h4>
+                        No results</h4>
+                    <p>
+                        Regrettably your search has returned no results, please try searching again.</p>
+                }
+                else
+                {
+                    foreach (var result in Model.Where(r => r.Type == "Bar" || r.Type == "Location"))
+                    {
+                        Html.RenderPartial("MobileResult" + result.Type, result);
+                    }
+                }
+            </div>
+            <div id="search_results_pagination" class="pagination">
+                <a id="prev" href="#">Prev</a>&nbsp;|&nbsp;<span class="pages"></span><a id="next"
+                    href="#">Next</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="@("/content/js/pages/search.js")"></script>
+<script type="text/javascript" src="@("/content/js/pagination.js")"></script>
+<script type="text/javascript">
+    var controller = new SearchPage();
+</script>

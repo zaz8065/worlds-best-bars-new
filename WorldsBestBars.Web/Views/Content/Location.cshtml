@@ -1,0 +1,66 @@
+﻿@model WorldsBestBars.Model.Location
+@{
+  ViewBag.Title = "Cocktail Bars in " + Model.Name;
+}
+@section MetaTags
+{
+    <meta name="description" content="Find the best bars, cocktail lounges and clubs in @Model.Name. Plan your nightlife in @Model.Name with maps and reviews of the top venues." />
+}
+<div id="breadcrumb-zone">
+  @{Html.RenderPartial("Breadcrumbs", Model.Id);}
+</div>
+<div id="cities_page">
+  <div id="panel-1" class="wb">
+    <div class="header_box">
+      <img src="@Url.GetFirstMedia(Model.Id, "245x165.orig")" width="245" height="165" alt="@Model.Name" />
+      <h2>
+        World's Best Bars in @Model.Name</h2>
+      <p>
+        @Model.Synopsis</p>
+    </div>
+    <hr class="map_gap" />
+    <div class="map_box">
+      <h3>
+        City Guide Map for @Model.Name</h3>
+      <div id="map">
+        <img src="@("/Content/img/spinning-globe.gif")" alt="loading..." height="50" width="50" style="position: relative; top:50%;left:50%;margin-left:-25px;margin-top:-25px" />
+      </div>
+    </div>
+  </div>
+  <hr class="hr10" />
+  <div id="panel-4">
+    <div class="secondary-content">
+      <hr class="exp" />
+      <div id="bar_list_container">
+      @foreach (var bar in ViewBag.Bars)
+      {
+        <div class="panel" data-id="@bar.Id" data-filter-hidden="false">
+          <a href="@("/" + bar.Url)" title="@bar.Name">
+            <img src="@Url.GetFirstMedia((Guid)bar.Id, "245x165.orig")" alt="@bar.Name" /></a>
+          <h4>
+            <a href="@("/" + bar.Url)">@bar.Name</a></h4>
+          @if (bar.Parent != null)
+          {
+            <h5>
+              <a href="@("/" + bar.Url)">@bar.Name</a></h5>
+          }
+          <p>
+            @bar.Intro</p>
+          <hr class="exp" />
+        </div>
+      }
+      </div>
+      <div id="bar_list_pagination" class="pagination">
+        <a id="prev" href="#">Prev</a>&nbsp;|&nbsp;<span class="pages"></span><a id="next" href="#">Next</a>
+      </div>
+    </div>
+    @{Html.RenderPartial("Related", Model.Id);}
+  </div>
+</div>
+
+<script type="text/javascript" src="@("/content/js/jquery.scrollTo-1.4.2-min.js")"></script>
+<script type="text/javascript" src="@("/content/js/pages/location.js")"></script>
+<script type="text/javascript" src="@("/content/js/pagination.js")"></script>
+<script type="text/javascript">
+  var controller = new LocationPage('@Model.Id');
+</script>

@@ -1,0 +1,11 @@
+* {
+    font-family: 'Arial' , 'Helvetica' , Sans-Serif !important;
+    color: Black !important;
+}
+#header, #search, #top-nav, #panel-2, #footer, .bar-sharing, .bar-sub-nav, #show_on_map, hr, #write-reviews {
+    display: none !important;
+}
+
+#read-reviews {
+    border: none;
+}

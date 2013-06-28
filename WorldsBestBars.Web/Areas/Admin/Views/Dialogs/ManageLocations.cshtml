@@ -1,0 +1,83 @@
+﻿<div class="action-dialog manage-locations">
+  <div class="left">
+    <div class="scrollable" style="overflow: auto; width: 250px; height: 506px">
+      <div class="tree scrollable">
+        <ul>
+          <li><a href="#" class="bold">Incomplete bars</a><ul>
+            <li><a href="#" data-type="orphaned">Orphans</a></li>
+            <li><a href="#" data-type="no-geo">No Geographic Coordinates</a></li>
+            <li><a href="#" data-type="no-images">No Images</a></li>
+          </ul>
+          </li>
+          @foreach (var location in WorldsBestBars.Web.Cache.Locations.Instance.GetAll().Where(l => l.Parent == null).OrderBy(l => l.Name))
+          {
+            Html.RenderPartial("TreeLocationPartial", location);
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <ul>
+      <li class="tab-head"><a href="#manage-locations-right-map">Map</a></li>
+      <li class="tab-head"><a href="#manage-locations-right-information">Information</a></li>
+      <li class="tab-head"><a href="#manage-locations-right-bars">Bars</a></li>
+      <li class="tab-head"><a href="#manage-locations-right-media">Media</a></li>
+      <li class="tab-head"><a href="#manage-locations-right-related">Related</a></li>
+    </ul>
+    <div class="manage-locations-right-map">
+      <div class="map">
+      </div>
+    </div>
+    <div class="manage-locations-right-information">
+      <form>
+      <label for="intro">
+        Short introduction</label>
+      <textarea id="intro" name="intro" class="text ui-widget-content ui-corner-all"></textarea>
+      <label for="synopsis">
+        Synopsis</label>
+      <textarea id="synopsis" name="synopsis" class="text ui-widget-content ui-corner-all"></textarea>
+      <label for="urlkey">
+        Url Key</label>
+      <input type="text" name="urlkey" id="urlkey" class="text ui-widget-content ui-corner-all" />
+      <a href="#" class="button">Save</a>
+      </form>
+    </div>
+    <div class="manage-locations-right-bars">
+      <div class="bars-table">
+      </div>
+    </div>
+    <div class="manage-locations-right-media">
+      <div class="media-list">
+      </div>
+      <div class="media-upload">
+        <form class="upload-form" enctype="multipart/form-data" action="/admin/process/uploadmedia"
+        method="post">
+        <div>
+          <input name="file" type="file" /></div>
+        <div>
+          <input type="submit" value="Upload" /></div>
+        </form>
+      </div>
+    </div>
+    <div class="manage-locations-right-related">
+      <div class="related">
+        <div class="existing">
+          <label>
+            Existing (click to remove)</label>
+          <div class="search-results">
+          </div>
+        </div>
+        <div class="add">
+          <div class="search">
+            <label for="search">
+              Search (click to add)</label>
+            <input type="text" id="search" name="search" class="text ui-widget-content ui-corner-all" />
+          </div>
+          <div class="search-results">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

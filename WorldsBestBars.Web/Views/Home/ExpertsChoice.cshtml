@@ -1,0 +1,35 @@
+﻿@model IEnumerable<WorldsBestBars.Model.User>
+@{
+  ViewBag.Title = "Expert's Choice";
+}
+@section MetaTags
+{
+    <meta name="description" content="Experts in the bar and drinks industry from around the world give us their selection of the very best of the World's Best Bars." />
+}
+<div id="experts_choice" class="wb">
+  <div class="header_box">
+    <h2>Expert's Choice</h2>
+    <p>In this section a range of experts from the drinks industry give us their selections of the top bars in the world. They are leaders, entrepreneurs and influencers in the drinks industry with the most discerning palettes so know a good bar when they see one. 
+</p>
+  </div>
+  <hr class="exp" />
+  <div class="main_box">
+    @foreach (var expert in Model)
+    {
+        
+      <div class='expert'>
+        <a href="@("/" + expert.Url)">
+          <img src="@Url.GetFirstMedia((Guid)expert.Id, "245x165.sep")" alt="@expert.Name" class="float_left expert-image" />
+          <h3>@expert.Name</h3>
+        </a>
+        <p>@expert.Title</p>
+        <p>
+          <a href="@("/" + expert.Url)">Read More...</a></p>
+      </div>          
+    }
+  </div>
+</div>
+<script type="text/javascript" src="@("/content/js/pages/experts-choice.js")"></script>
+<script type="text/javascript">
+  var controller = new ExpertsChoicePage();
+</script>

@@ -1,0 +1,34 @@
+﻿@model WorldsBestBars.Model.SearchResult
+@{
+  var bar = WorldsBestBars.Web.Cache.Bars.Instance.GetById(Model.Id);
+}
+<div class="results bar">
+  <a href="@("/" + bar.Url)">
+    <img src="@Url.GetFirstMedia(bar.Id, "245x165.orig")" width="245" height="165" alt="@bar.Name" /></a>
+  <h3>
+    <a href="@("/" + bar.Url)">@bar.Name</a></h3>
+  @if (bar.Parent != null)
+  {
+    <h5>
+      <a href="@("/" + bar.Parent.Url)">@bar.Parent.Name</a></h5>
+  }
+  @if (Model.Distance != null)
+  {
+    if (Model.Distance == 1)
+    {
+      <strong>1 mile</strong>
+    }
+    else if (Model.Distance > 10)
+    {
+      <strong>@Model.Distance.Value.ToString("#,##0") miles</strong>
+    }
+    else
+    {
+    <strong>@Model.Distance.Value.ToString("#,##0.00") miles</strong>
+    }
+  }
+  <div>
+    <p>@bar.Intro</p>
+    <a href="@("/" + bar.Url)">Read More</a>
+  </div>
+</div>

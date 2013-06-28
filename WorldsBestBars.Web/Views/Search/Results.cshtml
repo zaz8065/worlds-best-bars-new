@@ -1,0 +1,42 @@
+﻿@model IEnumerable<WorldsBestBars.Model.SearchResult>
+@{
+  ViewBag.Title = "Search Results";
+}
+<div id="search_results">
+  <div id="panel-4">
+    <div class="secondary-content">
+      <div id="results_filter">
+        <a href="#" class="filter" data-filter="bar" id="bar_filter">Just Bars</a> <a href="#"
+          class="filter" data-filter="location" id="city_filter">Just Cities</a> <a href="#"
+            class="filter" data-filter="document" id="feature_filter">Just Features</a>
+        <a href="#" class="filter" data-filter="all" id="no_filter" class="active">Everything</a>
+      </div>
+      <div id="search_results_list">
+        @if (Model == null || !Model.Any())
+        {
+          <h4>
+            No results</h4>
+          <p>
+            Regrettably your search has returned no results, please try searching again.</p>
+        }
+        else
+        {
+          foreach (var result in Model)
+          {
+            Html.RenderPartial("Result" + result.Type, result);
+          }
+        }
+      </div>
+      <div id="search_results_pagination" class="pagination">
+        <a id="prev" href="#">Prev</a>&nbsp;|&nbsp;<span class="pages"></span><a id="next"
+          href="#">Next</a>
+      </div>
+    </div>
+    @{Html.RenderPartial("Related", Guid.Empty);}
+  </div>
+</div>
+<script type="text/javascript" src="@("/content/js/pages/search.js")"></script>
+<script type="text/javascript" src="@("/content/js/pagination.js")"></script>
+<script type="text/javascript">
+  var controller = new SearchPage();
+</script>

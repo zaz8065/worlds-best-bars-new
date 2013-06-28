@@ -1,0 +1,63 @@
+﻿@model EditBarTypeOfBar
+@{
+  ViewBag.Title = "Edit - Type of Bar";
+  var index = 0;
+}
+<div class="step step-three type">
+  <h1>Step 3</h1>
+  <h2>Your bar &raquo; <span>@ViewBag.EditingContainer.Name</span></h2>
+  @Html.Partial("Progress", "type")
+  <h3>What type of bar are you?</h3>
+  <p>Tick the relevant categories for your bar.</p>
+
+  @using (Html.BeginForm())
+  {
+    <h4>Style</h4>
+    <ul class="style">
+      @foreach (var style in BarType.Types.Where(t => t.Category == BarTypeCategory.Style))
+      {
+        index++;
+        <li>
+          <label for="check-@index">@style.Name</label>
+          <input type="checkbox" id="check-@index" name="style" value="@style.Name" @(Model.Styles.Contains(style.Name) ? "checked=checked" : string.Empty) />
+          <span>@style.Description</span>
+          <div class="clear"></div>
+        </li>
+      }
+    </ul>
+
+    <h4>Good for</h4>
+    <ul class="style">
+      @foreach (var style in BarType.Types.Where(t => t.Category == BarTypeCategory.GoodFor))
+      {
+        index++;
+        <li>
+          <label for="check-@index">@style.Name</label>
+          <input type="checkbox" id="check-@index" name="speciality" value="@style.Name" @(Model.Specialities.Contains(style.Name) ? "checked=checked" : string.Empty) />
+          <span>@style.Description</span>
+          <div class="clear"></div>
+        </li>
+      }
+    </ul>
+
+    <h4>Atmosphere</h4>
+    <ul class="style">
+      @foreach (var atmosphere in BarType.Types.Where(t => t.Category == BarTypeCategory.Atmosphere))
+      {
+        index++;
+        <li>
+          <label for="check-@index">@atmosphere.Name</label>
+          <input type="checkbox" id="check-@index" name="atmosphere" value="@atmosphere.Name" @(Model.Atmosphere.Contains(atmosphere.Name) ? "checked=checked" : string.Empty) />
+          <span>@atmosphere.Description</span>
+          <div class="clear"></div>
+        </li>
+      }
+    </ul>
+
+    <div class="navigation">
+      <button name="back" value="true">Back</button>
+      <button name="next" value="true">Next</button>
+    </div>
+  }
+  <div class="clear"></div>
+</div>

@@ -1,0 +1,212 @@
+﻿@model BarDetail
+<div class="container">
+  <h1>@Model.Name <a class="btn btn-small" href="/bar/@Model.Id/update">Edit</a></h1>
+  <div class="row">
+    <div class="span6">
+      <dl>
+        <dt>Url Key</dt>
+        <dd>@Model.UrlKey</dd>
+
+        @if (Model.Location.HasValue)
+        {
+          <dt>Location</dt>
+          <dd><a href="/locations/@Model.Location">@Model.LocationName</a></dd>
+        }
+
+        <dt>Intro</dt>
+        <dd>@Model.Intro</dd>
+
+        <dt>Description</dt>
+        <dd>@Model.Description</dd>
+
+        @if (!string.IsNullOrEmpty(Model.Website))
+        {
+          <dt>Website</dt>
+          <dd><a href="@Model.Website" target="_blank">@Model.Website</a></dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Address))
+        {
+          <dt>Address</dt>
+          <dd>@Html.Raw(Model.Address)</dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Email))
+        {
+          <dt>Email</dt>
+          <dd><a href="mailto:@Model.Email">@Model.Email</a></dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Phone))
+        {
+          <dt>Phone</dt>
+          <dd>@Model.Phone</dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Fax))
+        {
+          <dt>Fax</dt>
+          <dd>@Model.Fax</dd>
+        }
+
+        <dt>Is Active</dt>
+        <dd>@Model.IsActive</dd>
+
+        @if (!string.IsNullOrEmpty(Model.MenuUrl))
+        {
+          <dt>Menu Url</dt>
+          <dd>@Model.MenuUrl</dd>
+        }
+
+        <dt>Created</dt>
+        <dd>@Model.Created</dd>
+
+        <dt>Last Modified</dt>
+        <dd>@Model.Modified</dd>
+      </dl>
+    </div>
+    <div class="span6">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#map" data-toggle="tab">Map</a></li>
+        @if (Model.Images.Any())
+        {
+          <li><a href="#media" data-toggle="tab">Media</a></li>
+        }
+        @if (Model.Features.Any())
+        {
+          <li><a href="#features" data-toggle="tab">Features</a></li>
+        }
+        @if (Model.OpenHours.Any())
+        {
+          <li><a href="#opening-times" data-toggle="tab">Opening Times</a></li>
+        }
+        <li><a href="#categories" data-toggle="tab">Lists</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="map">
+          <div id="map-canvas"></div>
+        </div>
+        @if (Model.Images.Any())
+        {
+          <div class="tab-pane" id="media">
+            <div class="carousel slide" data-interval="2000">
+              <div class="carousel-inner">
+                @{{
+                    var first = true;
+                    foreach (var image in Model.Images)
+                    {
+                  <div class="item@(first ? " active" : string.Empty)">
+                    <img src="@image" />
+                  </div>
+                  
+                      first = false;
+                    }
+                  }}
+              </div>
+            </div>
+          </div>
+        }
+        @if (Model.Features.Any())
+        {
+          <div class="tab-pane" id="features">
+            @foreach (var feature in Model.Features)
+            {
+              <div>
+                <h2>@feature.Name</h2>
+                <div class="row">
+                  <div class="span2"><strong>Type:</strong> @feature.Type</div>
+                  <div class="span2"><strong>Active:</strong> @(feature.IsActive ? "Yes" : "No")</div>
+                  @if (!string.IsNullOrEmpty(feature.Sponsor))
+                  {
+                    <div class="span2"><strong>Sponsor:</strong> @feature.Sponsor</div>
+                  }
+                </div>
+                <div class="carousel slide" data-interval="2000">
+                  <div class="carousel-inner">
+                    @{{
+                        var first = true;
+                        foreach (var image in feature.Images)
+                        {
+                      <div class="item@(first ? " active" : string.Empty)">
+                        <img src="@image" />
+                      </div>
+                  
+                          first = false;
+                        }
+                      }}
+                  </div>
+                </div>
+                <div class="row">
+                  @Html.Markdown(feature.Details)
+                  @if (!string.IsNullOrEmpty(feature.Extra))
+                  {
+                    <hr />
+                    @Html.Markdown(feature.Extra)
+                  }
+                </div>
+              </div>
+            }
+          </div>
+        }
+        @if (Model.OpenHours.Any())
+        {          
+          <div class="tab-pane" id="opening-times">
+            <dl>
+              @foreach (var day in Model.OpenHours.GroupBy(p => p.Day))
+              {
+                <dt>@day.Key</dt>
+                <dd>@string.Join(", ", day.Select(d => string.Format("{0:h':'mm} - {1:h':'mm}", d.Open, d.Close)))</dd>
+              }
+            </dl>
+          </div>
+        }
+        <div class="tab-pane" id="categories">
+          <form action="/bar/@Model.Id/add-to-category" method="post">
+            <span class="input-append">
+              <input type="text" data-type="list-search" data-target="category" />
+              <button class="btn">Clear</button>
+              <button type="submit" class="btn">Add</button>
+            </span>
+            <input type="hidden" name="category" id="category" />
+          </form>
+          <ul>
+            @foreach (var category in Model.Categories)
+            {
+              <li><a href="/lists/@category.Id">@category.Name</a></li>
+            }
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script>
+@if (Model != null && Model.Geo != null)
+{<text>
+  var map, marker;
+  function initialize() {
+    var mapOptions = {
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    var markerOptions;
+
+    mapOptions.center = new google.maps.LatLng(@Model.Geo.Lat, @Model.Geo.Long);
+    mapOptions.zoom = 16;
+
+    map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+
+    markerOptions = {
+      position: mapOptions.center,
+      map: map
+    };
+
+    marker = new google.maps.Marker(markerOptions);
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+  </text>}
+</script>

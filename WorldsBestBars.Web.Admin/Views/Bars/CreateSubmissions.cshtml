@@ -1,0 +1,35 @@
+﻿@model IEnumerable<BarCreateSubmission>
+
+<div class="container">
+  <h1>Submitted</h1>
+  @if (Model.Any())
+  {
+    foreach (var entity in Model)
+    {
+    <div class="span9">
+      <h2>@entity.Name <small>@entity.Created.ToString("MMMM d, yyyy")</small></h2>
+      <div class="row">
+        <div class="span1">
+          <a href="#" class="btn btn-block btn-small" data-rel="popover" data-original-title="Confirm" data-content="<p>Are you sure you wish to purge this submission from the system?</p><a href='/bars/submissions/@entity.Id/purge' class='btn btn-danger btn-block'>Yes, purge it.</button>">Purge</a>
+        </div>
+        <dl class="span2">
+          <dt>Location</dt>
+          <dd>@entity.Location</dd>
+        </dl>
+        <dl class="span2">
+          <dt>Contact</dt>
+          <dd><a href="mailto:@entity.ContactEmail">@entity.ContactName</a></dd>
+        </dl>
+        <dl class="span4">
+          <dt>Reasoning</dt>
+          <dd>@entity.Reasoning</dd>
+        </dl>
+      </div>
+    </div>
+    }
+  }
+  else
+  {
+    <p>There's no pending bar submissions at the moment.</p>
+  }
+</div>

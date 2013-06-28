@@ -1,0 +1,110 @@
+﻿@model BarUpdateSubmission
+
+<div class="container">
+  <h1>Update <small><a href="/bar/@Model.BarId">See the original bar &raquo;</a></small></h1>
+
+  <div class="row">
+    <div class="span6">
+      <dl class="dl-horizontal">
+        @if (!string.IsNullOrEmpty(Model.Updates.Contact.Website))
+        {
+          <dt>Website</dt>
+          <dd>@Model.Updates.Contact.Website</dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Updates.Contact.Email))
+        {
+          <dt>Email</dt>
+          <dd>@Model.Updates.Contact.Email</dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Updates.Contact.Address))
+        {
+          <dt>Address</dt>
+          <dd>@Model.Updates.Contact.Address</dd>
+        }
+
+        @if (!string.IsNullOrEmpty(Model.Updates.Contact.Phone))
+        {
+          <dt>Phone</dt>
+          <dd>@Model.Updates.Contact.Phone</dd>
+        }
+
+        @if (Model.Updates.TypeOfBar.Styles.Any())
+        {
+          <dt>Styles</dt>
+          <dd>@string.Join(", ", Model.Updates.TypeOfBar.Styles)</dd>
+        }
+
+        @if (Model.Updates.TypeOfBar.Atmosphere.Any())
+        {
+          <dt>Atmosphere</dt>
+          <dd>@string.Join(", ", Model.Updates.TypeOfBar.Atmosphere)</dd>
+        }
+
+        @if (Model.Updates.TypeOfBar.Specialities.Any())
+        {
+          <dt>Good for</dt>
+          <dd>@string.Join(", ", Model.Updates.TypeOfBar.Specialities)</dd>
+        }
+      </dl>
+      <div class="form-actions">
+        <a href="#" class="btn" data-rel="popover" data-original-title="Confirm" data-content="<p>Are you sure you wish to purge this submission from the system?</p><a href='/bars/submissions/@Model.Id/purge' class='btn btn-danger btn-block'>Yes, purge it.</button>">Purge</a>
+      </div>
+    </div>
+
+    <div class="span6">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#map" data-toggle="tab">Map</a></li>
+        <li><a href="#media" data-toggle="tab">Media</a></li>
+        <li><a href="#features" data-toggle="tab">Features</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="map">
+          @if (!string.IsNullOrEmpty(Model.Updates.Contact.Geo))
+          {
+            <iframe style="width:100%" width="425" height="350" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.ca/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=@Model.Updates.Contact.Geo&amp;aq=&amp;sll=@Model.Updates.Contact.Geo&amp;sspn=0.833587,1.149445&amp;ie=UTF8&amp;t=m&amp;z=14&amp;ll=@Model.Updates.Contact.Geo&amp;output=embed"></iframe>
+          }
+        </div>
+
+
+        <div class="tab-pane" id="media">
+          @if (Model.Updates.Pictures.Pending.Any())
+          {
+            foreach (var image in Model.Updates.Pictures.Pending)
+            {
+              var url = string.Format("{0}/{1}/pictures/{2}", ConfigurationManager.AppSettings["path:media:relative"] + "/_bar-resource", Model.Id, image);
+            <a href="@url" target="_blank">
+              <img class="span2 img-polaroid" src="@url" /></a>
+            }
+          }
+          else
+          {
+            <p>No images were submitted with this update.</p>
+          }
+        </div>
+        <div class="tab-pane" id="features">
+          @if (Model.Updates.Features.List.Any())
+          {
+            foreach (var feature in Model.Updates.Features.List)
+            {
+              var imageUrl = string.Format("{0}/{1}/features/{2}", ConfigurationManager.AppSettings["path:media:relative"] + "/_bar-resource", Model.Id, feature.Image.Split('/').Last());
+            <div>
+              <h3>@feature.Title</h3>
+              <p>@feature.Description</p>
+              <a href="@imageUrl" target="_blank">
+                <img class="span2 img-polaroid" src="@imageUrl" /></a>
+              <div class="clearfix"></div>
+            </div>
+            <hr />
+            }
+          }
+          else
+          {
+            <p>No features were specified in this submission.</p>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

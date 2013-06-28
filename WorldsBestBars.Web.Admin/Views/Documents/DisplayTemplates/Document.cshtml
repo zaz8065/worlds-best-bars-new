@@ -1,0 +1,27 @@
+﻿@model Document
+
+<div class="span8">
+  <h2><a href="/document/@Model.Id">@Model.Name</a></h2>
+  <blockquote>
+    @if (Model.RedirectId.HasValue)
+    {
+      <p>Redirect to @Model.RedirectId</p>
+    }
+    else
+    {
+      @Html.Markdown(Model.Synopsis)
+    }
+  </blockquote>
+  <div class="row">
+    <div class="span4">
+      <strong>Url</strong> /@Model.Url
+    </div>
+    <div class="span2">
+      <strong>Created</strong> @Model.Created.ToString("MMMM d, yyyy")
+    </div>
+    <div class="span2">
+      <strong>@(Model.IsActive ? "Active" : "Not active")</strong>
+    </div>
+  </div>
+  <hr />
+</div>

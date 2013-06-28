@@ -1,0 +1,43 @@
+﻿@model EditBarMenus
+@{
+  ViewBag.Title = "Edit - Menus";
+}
+
+<div class="step step-three menus">
+  <h1>Step 3</h1>
+  <h2>Your bar &raquo; <span>@ViewBag.EditingContainer.Name</span></h2>
+  @Html.Partial("Progress", "menus")
+  <div class="left">
+    <h3>Add your sample menu</h3>
+    <p>
+      Upload a PDF of your current menu or alternatively supply us with a link.
+    </p>
+
+    @using (Html.BeginForm("EditMenus", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+      @Html.ValidationSummary(true)
+
+      <label for="file">Choose a file (PDF) to upload</label>
+      <ul>
+        <li>
+          <input id="file" type="file" name="file" /></li>
+      </ul>
+      @Html.LabelFor(model => model.MenuUrl, "Alternatively, supply a link to your online menu")
+      @Html.TextBoxFor(model => model.MenuUrl)
+      <input type="submit" value="Submit" />
+    }
+  </div>
+  <div class="right">
+    <h4>Current menu</h4>
+  </div>
+
+  <div class="clear"></div>
+  @using (Html.BeginForm())
+  {
+    <div class="navigation">
+      <button name="back" value="true">Back</button>
+      <button name="next" value="true">Next</button>
+    </div>
+  }
+  <div class="clear"></div>
+</div>

@@ -1,0 +1,14 @@
+﻿@model WorldsBestBars.Model.SearchResult
+@{
+  var document = WorldsBestBars.Web.Cache.Documents.Instance.GetById(Model.Id);
+}
+<div class="results document">
+  <a href="@("/" + document.Url)">
+    <img src="@Url.GetFirstMedia(document.Id, "245x165.orig")" width="245" height="165" alt="@document.Name" /></a>
+  <h3>
+    <a href="@("/" + document.Url)">@document.Name</a></h3>
+  <div>
+    <p>@document.Synopsis</p>
+    ...<a href="@("/" + document.Url)">Read More</a>
+  </div>
+</div>

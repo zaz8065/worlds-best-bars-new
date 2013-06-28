@@ -1,0 +1,29 @@
+﻿@{
+  var advert = WorldsBestBars.Logic.Adverts.GetRandomAdvert(Session);
+}
+@if (advert != null)
+{
+  <div id="advert">
+    @if (advert.Type == "image")
+    {
+      <a href="/ad/out/@advert.Id" target="_blank">
+        <img src="@Url.Content("~" + advert.Skyscraper)" alt="" width="160" height="600" /></a>
+    }
+    else if (advert.Type == "flash")
+    {
+      <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="160" height="600">
+        <param name="movie" value="@Url.Content("~/content/flash/flashloader.swf")" />
+        <param name="flashvars" value="clickTARGET=_blank&clickTAG=http://@Request.Url.Host/ad/out/@advert.Id&swfPATH=@Url.Content("~" + advert.Skyscraper)" />
+        <param name="wmode" value="opaque">
+        <!--[if !IE]>-->
+        <object type="application/x-shockwave-flash" data="@Url.Content("~/content/flash/flashloader.swf")" width="160" height="600">
+          <!--<![endif]-->
+          <param name="flashvars" value="clickTARGET=_blank&clickTAG=/ad/out/@advert.Id&swfPATH=@Url.Content("~" + advert.Skyscraper)" />
+          <param name="wmode" value="opaque">
+          <!--[if !IE]>-->
+        </object>
+        <!--<![endif]-->
+      </object>
+    }
+  </div>
+}

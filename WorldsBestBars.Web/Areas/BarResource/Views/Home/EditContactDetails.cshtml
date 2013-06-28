@@ -1,0 +1,92 @@
+﻿@model EditBarContact
+@{
+  ViewBag.Title = "Edit - Contact";
+}
+<div class="step step-three contact">
+  <h1>Step 3</h1>
+  <h2>Your bar &raquo; <span>@ViewBag.EditingContainer.Name</span></h2>
+  @Html.Partial("Progress", "contact")
+  <h3>Customer contacts</h3>
+  <p>
+    To let our readers know how best to get in touch with you, fill out the form below. This is the email address that will be shown on your bar page
+  </p>
+
+  @using (Html.BeginForm())
+  {
+    @Html.ValidationSummary(true)
+
+    <div>
+      @Html.LabelFor(model => model.Website, "Website link")
+      @Html.TextBoxFor(model => model.Website, new { type = "url" })
+      @Html.ValidationMessageFor(model => model.Website)
+      @if (!string.IsNullOrEmpty(Model.Website))
+      {
+        <p>Currently: @Model.Website</p>
+      }
+    </div>
+
+    <div>
+      @Html.LabelFor(model => model.Email, "Email address")
+      @Html.TextBoxFor(model => model.Email, new { type = "email" })
+      @Html.ValidationMessageFor(model => model.Email)
+      @if (!string.IsNullOrEmpty(Model.Email))
+      {
+        <p>Currently: @Model.Email</p>
+      }
+    </div>
+
+    <div>
+      @Html.LabelFor(model => model.Address, "Address")
+      @Html.TextBoxFor(model => model.Address)
+      @Html.ValidationMessageFor(model => model.Address)
+      @if (Model.Address != null)
+      {
+        <p>Currently: @Model.Address</p>
+      }
+    </div>
+    
+    <div>
+      @Html.LabelFor(model => model.Phone, "Phone number")
+      @Html.TextBoxFor(model => model.Phone, new { type = "tel" })
+      @Html.ValidationMessageFor(model => model.Phone)
+      @if (!string.IsNullOrEmpty(Model.Phone))
+      {
+        <p>Currently: @Model.Phone</p>
+      }
+    </div>
+    
+    <div id="map"></div>
+    <input id="geo" type="hidden" name="Geo" value="@Model.Geo" />
+    
+    <div class="clear"></div>
+    <div class="navigation">
+      <button name="back" value="true">Back</button>
+      <button name="next" value="true">Next</button>
+    </div>
+  }
+  <div class="clear"></div>
+</div>
+@section Scripts {
+  <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+  <script type="text/javascript">
+    (function () {
+      var centre = new google.maps.LatLng(@Model.Geo);
+      var options = {
+        zoom: 15,
+        mapTypeId: google.maps.MapTypeId.ROADMAP,
+        center: centre
+      };
+
+      var map = new google.maps.Map(document.getElementById('map'), options);
+      var marker = new google.maps.Marker({
+        position: centre, 
+        map: map, 
+        draggable: true
+      });
+
+      google.maps.event.addDomListener(marker, 'dragend', function(e) {
+        $('#geo').val(e.latLng.lat() + ', '+ e.latLng.lng());
+      });
+    })();
+  </script>
+}

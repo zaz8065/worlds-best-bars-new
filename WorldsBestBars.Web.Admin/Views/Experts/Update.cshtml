@@ -1,0 +1,82 @@
+﻿@model ExpertDetail
+<div class="container">
+  @if (Request.RequestContext.RouteData.Values["id"] == null)
+  {
+    <h1>Create a new expert</h1>
+  }
+  else
+  {
+    <h1>@Model.Name</h1>
+  }
+  <form action="@Request.RawUrl" method="post" class="form-horizontal" enctype="multipart/form-data">
+    <div class="row">
+      <div class="span6">
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="control-group">
+          @Html.LabelFor(model => model.Name, new { @class = "control-label" })
+          <div class="controls">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+          </div>
+        </div>
+
+        <div class="control-group">
+          @Html.LabelFor(model => model.UrlKey, new { @class = "control-label" })
+          <div class="controls">
+            @Html.EditorFor(model => model.UrlKey)
+            @Html.ValidationMessageFor(model => model.UrlKey)
+          </div>
+        </div>
+
+        <div class="control-group">
+          @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+          <div class="controls">
+            @Html.EditorFor(model => model.Title)
+            @Html.ValidationMessageFor(model => model.Title)
+          </div>
+        </div>
+
+        <div class="control-group">
+          @Html.LabelFor(model => model.Website, new { @class = "control-label" })
+          <div class="controls">
+            @Html.EditorFor(model => model.Website)
+            @Html.ValidationMessageFor(model => model.Website)
+          </div>
+        </div>
+
+        <div class="control-group">
+          @Html.LabelFor(model => model.Biography, new { @class = "control-label" })
+          <div class="controls">
+            @Html.TextAreaFor(model => model.Biography, new { rows = 5, @class = "span4" })
+            @Html.ValidationMessageFor(model => model.Biography)
+          </div>
+        </div>
+      </div>
+
+      <div class="span6">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#media" data-toggle="tab">Media</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="media">
+            <h5>Upload new media</h5>
+            <input type="file" name="images_" id="images" multiple="multiple" />
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <div class="form-actions">
+      <input type="submit" class="btn btn-primary" value="Save" />
+      <a href="/experts/@Model.Id" class="btn">Cancel</a>
+
+      <a href="/experts/@Model.Id/delete" class="btn btn-danger pull-right">Delete</a>
+    </div>
+  </form>
+</div>

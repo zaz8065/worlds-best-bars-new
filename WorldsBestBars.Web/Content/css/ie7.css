@@ -1,0 +1,170 @@
+@charset "UTF-8";
+/* CSS Document */
+div.thirty-three a img, div.bar-sharing a img
+{
+    border:none;
+}
+
+#bar-panel 
+{
+    min-height:300px;}
+#bar-panel p 
+{
+    width: 395px;
+}
+#bar-panel h4, #bar-panel h3 {
+    float: left;
+    width: 295px;
+}
+
+ul.bar-sub-nav li,ul.bar-sub-nav li a {
+width:auto;
+display:inline-block;}
+
+ul.bar-sub-nav 
+{
+    display:inline-block;
+    width:399px;background-color:white;
+ 
+}
+
+.bar-sharing 
+{
+    display:inline-block;
+	background-color:white;
+}
+
+
+div#footer {display:inline-block;}
+
+
+
+
+div#footer span.copyright {display:inline-block; }
+
+
+div#footer hr {display:inline-block;float:left;clear:both}
+
+
+a.whitelink {float:left;display:inline-block;}
+
+
+#overlay {
+	background-image:none;
+	height:100%;
+	position:relative;
+	z-index:999;
+	}
+
+div#write-reviews div.rateit {
+	display:inline-block;
+	clear:both;
+	margin-top:10px;
+	}
+div#write-reviews form.rating span.ratings_title, div#write-reviews form.rating span.ratings_title, div#write-reviews form.rating span.ratings_title {
+	width:120px;	
+	display:inline-block;
+ 	}
+
+
+div#write-reviews form .submit_btn {
+	clear:both;
+	display:inline-block;
+
+}
+
+#show_on_map {
+	margin-top:10px;
+	float:right;}
+
+#header {
+	display:inline-block;
+	}
+
+
+#header hr.hr {
+	margin-top:13px;
+	display:inline-block;
+	height:8px;
+	}
+#soc_net_holder {
+	display:inline-block;
+	}
+
+#search #submit {
+	display:inline-block;
+	text-transform:uppercase;
+	top:-16px;
+	position:relative;
+	}
+
+#age_gate form input.sub_btn {
+	text-transform:uppercase;
+	}
+
+div#articles div.main_box {
+    width: 770px;
+    margin: 0 10px 10px 10px;
+    overflow: hidden;
+    float: left;
+    background:none;
+}
+
+div.popup {
+    opacity:1;
+	z-index:10000;
+	}
+
+
+
+
+/* bar pages */
+
+div.user-review-heading h4 {
+	display:inline;
+}
+.secondary-content .panel {
+	display:inline-block;
+	width: 585px;
+	}
+
+#experts_choice hr.exp, #most-talked-about hr.exp, #top100 hr.exp, #cities_page hr.exp {
+	display:inline-block;
+	float:left;
+	clear:both;
+}
+
+hr.hr10 {
+	display:inline-block;
+	float:left;
+	clear:both}
+
+
+/* ... */
+
+div.pagination {
+	display:inline-block;
+	float:right;
+	 clear:both;}
+
+span.learnmore a 
+{
+    margin-top:-10px;
+    display:inline-block;
+}
+
+div.popup input#user_receive_email 
+{
+    display:inline-block;
+}
+
+div.popup span 
+{
+    display:inline-block;
+    margin-top:-20px;
+    position:relative;
+}
+
+div#article_content div.box {
+	display:inline-block;
+ 	}

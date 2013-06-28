@@ -1,0 +1,101 @@
+﻿@model Advert
+
+<div class="container">
+  <h1>@Model.Title</h1>
+  <div class="row">
+    <div class="span6">
+      <dl>
+        <dt>
+          @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd>
+          @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <dt>
+          @Html.DisplayNameFor(model => model.SkyscraperUrl)
+        </dt>
+        <dd>
+          <a href="@(ConfigurationManager.AppSettings["path:media:relative"] + "/../.." + Model.SkyscraperUrl)" target="_blank">@Model.SkyscraperUrl</a><br />
+        </dd>
+
+        @if (Model.Start.HasValue)
+        {
+          <dt>
+            @Html.DisplayNameFor(model => model.Start)
+          </dt>
+          <dd>
+            @Html.DisplayFor(model => model.Start)
+          </dd>
+        }
+
+        @if (Model.Finish.HasValue)
+        {
+          <dt>
+            @Html.DisplayNameFor(model => model.Finish)
+          </dt>
+          <dd>
+            @Html.DisplayFor(model => model.Finish)
+          </dd>
+        }
+
+        <dt>
+          @Html.DisplayNameFor(model => model.Weight)
+        </dt>
+        <dd>
+          @Html.DisplayFor(model => model.Weight)
+        </dd>
+
+        <dt>
+          @Html.DisplayNameFor(model => model.Type)
+        </dt>
+        <dd>
+          @Html.DisplayFor(model => model.Type)
+        </dd>
+
+        <dt>
+          @Html.DisplayNameFor(model => model.DestinationUrl)
+        </dt>
+        <dd>
+          @Html.DisplayFor(model => model.DestinationUrl)
+        </dd>
+      </dl>
+      <div class="form-actions">
+        <a class="btn btn-primary" href="/advertising/@Model.Id/update">Update</a>
+        @if (Model.IsActive)
+        {
+          <a class="btn" href="/advertising/@Model.Id/deactivate">Deactivate</a>
+        }
+        else
+        {
+          if (!string.IsNullOrEmpty(Model.SkyscraperUrl))
+          {        
+          <a class="btn" href="/advertising/@Model.Id/activate">Activate</a>
+          }
+        }
+      </div>
+    </div>
+    <div class="span6">
+      <h3>Statistics</h3>
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Period</th>
+            <th class="span1">Clicks</th>
+            <th class="span1">Impressions</th>
+          </tr>
+        </thead>
+        <tbody>
+          @foreach (var stat in Model.Stats)
+          {
+            <tr>
+              <td>@stat.Period.ToString("yyyy-MM-dd HH:mm")</td>
+              <td>@stat.Clicks.ToString("N0")</td>
+              <td>@stat.Impressions.ToString("N0")</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

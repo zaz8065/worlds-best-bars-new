@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Review>
+<div class="container">
+  <h1>Reviews Pending Moderation</h1>
+  @if (Model.Any())
+  {
+    <div class="row">
+      @Html.DisplayForModel()
+    </div>
+    @Html.Partial("_Pagination")
+  }
+  else
+  {
+    <p>There are no reviews pending moderation at this time.  Check out the <a href="/reviews">latest reviews here</a>.</p>
+  }
+</div>

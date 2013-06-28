@@ -1,0 +1,5 @@
+﻿User-agent: *
+
+Disallow: /admin/
+Disallow: /age-check/
+Disallow: /search?

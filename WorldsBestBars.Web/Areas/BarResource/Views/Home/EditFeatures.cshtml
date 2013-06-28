@@ -1,0 +1,76 @@
+﻿@model EditBarFeatures
+@{
+  ViewBag.Title = "Edit - Features";
+}
+<div class="step step-three features">
+  <h1>Step 3</h1>
+  <h2>Your bar &raquo; <span>@ViewBag.EditingContainer.Name</span></h2>
+  @Html.Partial("Progress", "features")
+  <div class="left">
+    <h3>Add your feature</h3>
+    <p>
+      If there is something special about your bar that you would like to tell your customers
+      about on your bar page you can add it here. This could be anything from your signature
+      cocktail to your jazz night or if you have a great bar tender you can do a feature
+      about them.  All you need to do is upload a picture and write a description of your
+      feature.
+    </p>
+
+    <form action="@Url.Action("EditFeatures")" method="post" enctype="multipart/form-data">
+      <label for="title">What is this feature called?</label>
+      <input type="text" id="title" name="title" value="@ViewBag.ModelTitle" />
+      @Html.ValidationMessage("Title")
+
+      <label for="file">
+        Choose a photo (jpeg) to upload
+      </label>
+      <ul>
+        <li>
+          <input type="file" name="file" id="file" /></li>
+      </ul>
+      @Html.ValidationMessage("File")
+
+      <label for="description">Add a description</label>
+      <textarea id="description" name="description">@ViewBag.ModelDescription</textarea>
+      @Html.ValidationMessage("Description")
+
+      <input type="hidden" name="action" value="add" />
+      <input type="submit" />
+    </form>
+  </div>
+  <div class="right">
+    <h4>Current features</h4>
+    @if (Model.List.Any())
+    {
+    <ul>
+      @foreach (var feature in Model.List)
+      {
+        using (Html.BeginForm())
+        {
+        <li>
+          <input type="hidden" name="action" value="remove" />
+          <input type="hidden" name="removeId" value="@feature.Id" />
+          <h5>@feature.Title</h5>
+          <img src="@Url.Content(feature.Image)" />
+          <p>@feature.Description</p>
+          <input type="submit" value="Remove" />
+        </li>
+        }
+      }
+    </ul>
+    }
+    else
+    {
+      <p>Looks like you don't have any features at the moment, why not add some?</p>
+    }
+  </div>
+  <div class="clear"></div>
+  @using (Html.BeginForm())
+  {
+    <div class="navigation">
+      <button name="back" value="true">Back</button>
+      <button name="next" value="true">Next</button>
+    </div>
+  }
+  <div class="clear"></div>
+</div>

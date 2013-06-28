@@ -1,0 +1,8 @@
+﻿@model BarDetail.Opening
+
+<div>
+  @Html.DropDownListFor(model => model.Day, ((DayOfWeek[])Enum.GetValues(typeof(DayOfWeek))).Select(e => new SelectListItem { Text = e.ToString(), Value = (e).ToString() }))
+  @Html.TextBoxFor(model => model.Open, new { type = "time", @class = "input-small" })
+  @Html.TextBoxFor(model => model.Close, new { type = "time", @class = "input-small" })
+  <a href="#" class="btn remove"><i class="icon-minus"></i></a>
+</div>

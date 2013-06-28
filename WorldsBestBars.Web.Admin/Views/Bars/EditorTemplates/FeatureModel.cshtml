@@ -1,0 +1,28 @@
+﻿@model FeatureModel
+
+<div>
+  <a href="#" class="btn remove pull-right"><i class="icon-minus"></i></a>
+
+  @Html.HiddenFor(model => model.Id)
+
+  @Html.LabelFor(model => model.Name)
+  @Html.TextBoxFor(model => model.Name)
+
+  @Html.LabelFor(model => model.Details)
+  @Html.TextAreaFor(model => model.Details, new { @class = "input-block-level", rows = 5 })
+
+  @Html.LabelFor(model => model.Extra)
+  @Html.TextAreaFor(model => model.Extra, new { @class = "input-block-level", rows = 3 })
+
+  @Html.LabelFor(model => model.Type)
+  @Html.DropDownListFor(model => model.Type, ConfigurationManager.AppSettings["list:feature:types"].Split(',').Select(e => new SelectListItem { Text = e, Value = e.ToLower().Replace(' ', '-') }))
+
+  @Html.LabelFor(model => model.Sponsor)
+  @Html.DropDownListFor(model => model.Sponsor, ConfigurationManager.AppSettings["list:feature:sponsors"].Split(',').Select(e => new SelectListItem { Text = e, Value = e.ToLower().Replace(' ', '-') }), "Select...")
+
+  @Html.LabelFor(model => model.IsActive)
+  @Html.CheckBoxFor(model => model.IsActive)
+
+  @Html.EditorFor(model => model.File)
+  <hr />
+</div>

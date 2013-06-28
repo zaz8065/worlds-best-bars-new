@@ -1,0 +1,93 @@
+﻿@model EditBarPictures
+@{
+  ViewBag.Title = "Edit - Pictures";
+}
+
+<div class="step step-three pictures">
+  <h1>Step 3</h1>
+  <h2>Your bar &raquo; <span>@ViewBag.EditingContainer.Name</span></h2>
+  @Html.Partial("Progress", "pictures")
+  <div class="left">
+    <h3>Upload Pictures of your bar</h3>
+    <p>
+      <strong>Want to show off your bar at its best?</strong> Add an up to date photo.
+      Try to avoid pictures with too many people in them &ndash; we want to see
+      what your bar looks like. Steer clear of overt branding too. Please
+      make sure you have read our terms and conditions and, once you have added all
+      your images, hit submit.   
+    </p>
+
+    @using (Html.BeginForm("EditPictures", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+      @Html.ValidationSummary(true)
+
+      <div class="files">
+        <label for="file">Choose a photo (jpeg) to upload</label>
+        <ul>
+          <li>
+            <input type="file" name="files[]" multiple />
+            <a href="#">
+              <img src="/content/img/elements/bar-resource/cross-10px-30.png" /></a></li>
+        </ul>
+        <p>+ <a href="#" class="add">click</a> to add more pictures</p>
+      </div>
+      <input type="submit" value="Upload" />
+    }
+  </div>
+  <div class="right">
+    <h4>Current pictures</h4>
+    @if (Model.Existing.Any())
+    {
+      <ul>
+        @foreach (var filename in Model.Existing)
+        {
+          <li>
+            <img src="@filename" />
+          </li>
+        }
+      </ul>
+    }
+    else
+    {
+      <p>
+        There are no pictures associated with this bar, yet. Upload some for approval using
+        the form on the left.
+      </p>
+    }
+    @if (Model.Pending.Any())
+    {
+      <div class="clear"></div>
+      <h4>Pending pictures</h4>
+      <ul>
+        @foreach (var filename in Model.Pending)
+        {
+          <li>
+            <img src="@Url.Content("~/content/media/_bar-resource/" + ViewBag.EditingContainer.Id.ToString() + "/pictures/" + filename)" onclick="window.open($(this).attr('src'), '_newtab')" />
+          </li>
+        }
+      </ul>
+      
+    }
+  </div>
+  <div class="clear"></div>
+
+  <div class="navigation">
+    @using (Html.BeginForm("EditPictures", "Home", FormMethod.Post))
+    {
+      <button name="back" value="true">Back</button>
+      <button name="next" value="true">Next</button>
+    }
+  </div>
+  <div class="clear"></div>
+</div>
+<script type="text/javascript">
+  $('.files ul').on('click', 'a', function (e) {
+    e.preventDefault();
+    $(this).parent().remove();
+  });
+
+  $('.add').click(function (e) {
+    e.preventDefault();
+    $('.files ul').append('<li><input type="file" name="files[]" multiple /> <a href="#"><img src="/content/img/elements/bar-resource/cross-10px-30.png" /></a></li>');
+  });
+</script>

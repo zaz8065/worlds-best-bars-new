@@ -1,0 +1,95 @@
+﻿<div class="action-dialog manage-experts">
+  <div class="left ui-widget ui-widget-content ui-corner-left">
+    <div class="scrollable" style="overflow: auto; width: 250px; height: 553px">
+      <div class="list">
+      </div>
+    </div>
+  </div>
+  <div class="right ui-corner-right">
+    <ul>
+      <li class="tab-head"><a href="#manage-experts-right-information">Information</a></li>
+      <li class="tab-head"><a href="#manage-experts-right-media">Media</a></li>
+      <li class="tab-head"><a href="#manage-experts-right-reviews">Reviews</a></li>
+      <li class="tab-head"><a href="#manage-experts-right-related">Related</a></li>
+    </ul>
+    <div class="manage-experts-right-information">
+      <form>
+      <label for="name">
+        Name</label>
+      <input type="text" name="name" id="name" class="text ui-widget-content ui-corner-all" />
+      <label for="title">
+        Title</label>
+      <input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
+      <label for="biography">
+        Biography</label>
+      <textarea id="biography" name="biography" class="text ui-widget-content ui-corner-all"></textarea>
+      <label for="urlkey">
+        Website</label>
+      <input type="text" name="website" id="website" class="text ui-widget-content ui-corner-all" />
+      <label for="urlkey">
+        Url Key</label>
+      <input type="text" name="urlkey" id="urlkey" class="text ui-widget-content ui-corner-all" />
+      <button class="save">
+        Save</button>
+      <button class="delete">
+        Delete</button>
+      <button class="activate">
+        Deactivate</button>
+      <button class="view">
+        View</button>
+      <div class="clearfix">
+      </div>
+      <button class="create">
+        Create new...</button>
+      </form>
+    </div>
+    <div class="manage-experts-right-media">
+      <div class="media-list">
+      </div>
+      <div class="media-upload">
+        <form class="upload-form" enctype="multipart/form-data" action="/admin/process/uploadmedia"
+        method="post">
+        <div>
+          <input name="file" type="file" /></div>
+        <div>
+          <input type="submit" value="Upload" /></div>
+        </form>
+      </div>
+    </div>
+    <div class="manage-experts-right-reviews">
+      <div class="review_container">
+        <div class="add-review clearfix">
+          <label>
+            Bar</label>
+          <input type="text" name="bar" class="text ui-widget-content ui-corner-all" />
+          <label>
+            Review</label>
+          <textarea name="review" class="text ui-widget-content ui-corner-all"></textarea>
+          <button>
+            Add</button>
+        </div>
+        <div class="reviews">
+        </div>
+      </div>
+    </div>
+    <div class="manage-experts-right-related">
+      <div class="related">
+        <div class="existing">
+          <label>
+            Existing (click to remove)</label>
+          <div class="search-results">
+          </div>
+        </div>
+        <div class="add">
+          <div class="search">
+            <label for="search">
+              Search (click to add)</label>
+            <input type="text" id="search" name="search" class="text ui-widget-content ui-corner-all" />
+          </div>
+          <div class="search-results">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

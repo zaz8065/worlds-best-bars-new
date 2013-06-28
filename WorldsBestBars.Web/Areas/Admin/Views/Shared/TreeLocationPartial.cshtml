@@ -1,0 +1,15 @@
+﻿@model WorldsBestBars.Model.Location
+<li><a href="#" data-type="location" data-id="@Model.Id">@Model.Name</a><div class="data ui-helper-hidden" data-container-for="@Model.Id">
+  <div data-id="synopsis">@Model.Synopsis</div>
+  <div data-id="urlkey">@Model.UrlKey</div>
+  <div data-id="intro">@Model.Intro</div>
+  </div>
+  @if (WorldsBestBars.Web.Cache.Locations.Instance.GetAll().Any(l => l.Parent == Model.Id))
+  {
+    <ul>
+      @foreach (var location in WorldsBestBars.Web.Cache.Locations.Instance.GetAll().Where(l => l.Parent == Model.Id).OrderBy(l => l.Name))
+      {
+        Html.RenderPartial("TreeLocationPartial", location);
+      }
+    </ul>
+  }</li>

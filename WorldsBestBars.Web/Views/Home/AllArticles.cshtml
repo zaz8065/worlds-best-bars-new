@@ -1,0 +1,15 @@
+﻿@model IEnumerable<WorldsBestBars.Model.Document>
+@{
+  ViewBag.Title = "All News";
+}
+<div id="generic" class="wb">
+    <div class="lists" >
+    <h2>All News</h2>
+    <p>
+      @foreach (var document in Model)
+      {
+        <a href="@("/" + document.Url)">@document.Name</a> <em>(@document.Created.ToString("MMM, yyyy"))</em>
+      }
+    </p>
+    </div>
+</div>

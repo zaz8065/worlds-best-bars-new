@@ -1,0 +1,65 @@
+﻿<div class="action-dialog manage-adverts">
+  <div class="left ui-widget ui-widget-content ui-corner-left">
+    <div class="scrollable" style="overflow: auto; width: 250px; height: 553px">
+      <div class="list">
+      </div>
+    </div>
+  </div>
+  <div class="right ui-corner-right">
+    <ul>
+      <li class="tab-head"><a href="#manage-adverts-right-information">Information</a></li>
+      <li class="tab-head"><a href="#manage-adverts-right-stats">Statistics</a></li>
+    </ul>
+    <div class="manage-adverts-right-information">
+      <form>
+      <label for="title">
+        Title</label>
+      <input type="text" name="title" id="title" class="text ui-widget-content ui-corner-all" />
+      <label for="body">
+        Body</label>
+      <textarea id="body" name="body" class="text ui-widget-content ui-corner-all"></textarea>
+      <label for="url">
+        Destination Url</label>
+      <input type="text" name="url" id="url" class="text ui-widget-content ui-corner-all" />
+      <label for="type">
+        Type</label>
+      <select name="type" class="text ui-widget-content ui-corner-all">
+        <option value="image">image</option>
+        <option value="flash">flash</option>
+      </select>
+      <label for="skyscraper">
+        Skyscaper</label>
+      <input type="text" name="skyscraper" id="skyscraper" class="text ui-widget-content ui-corner-all" />
+      <label for="video">
+        Video</label>
+      <input type="text" name="video" id="video" class="text ui-widget-content ui-corner-all" />
+      <label for="start">
+        Active period (leave blank for unlimited)</label>
+      <input type="date" name="start" id="start" class="date ui-widget-content ui-corner-all" />
+      <span>to</span>
+      <input type="date" name="finish" id="finish" class="date ui-widget-content ui-corner-all" />
+      <label for="weight">
+        Weight</label>
+      <input type="number" name="weight" id="weight" min="0" max="255" class="text ui-widget-content ui-corner-all" />
+      <div class="clearfix">
+      </div>
+      <button class="save">
+        Save</button>
+      <button class="delete">
+        Delete</button>
+      <button class="activate">
+        Deactivate</button>
+      <button class="view">
+        View</button>
+      <div class="clearfix">
+      </div>
+      <button class="create">
+        Create new...</button>
+      </form>
+    </div>
+    <div class="manage-adverts-right-stats">
+      <div class="stats">
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{CB2CF371-0740-46A2-ADAE-138CAC1B04EC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WorldsBestBars.Web.Cache</RootNamespace>
+    <AssemblyName>WorldsBestBars.Web.Cache</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Base.cs" />
+    <Compile Include="Bars.cs" />
+    <Compile Include="Lists.cs" />
+    <Compile Include="Relations.cs" />
+    <Compile Include="Reviews.cs" />
+    <Compile Include="Users.cs" />
+    <Compile Include="Adverts.cs" />
+    <Compile Include="Documents.cs" />
+    <Compile Include="Locations.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UrlMap.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WorldsBestBars.Data\WorldsBestBars.Data.csproj">
+      <Project>{C6CBFDE1-196B-4821-92A3-0E32934C4920}</Project>
+      <Name>WorldsBestBars.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldsBestBars.Model\WorldsBestBars.Model.csproj">
+      <Project>{A8494A8C-7C33-41C6-9226-C0565D05FA9F}</Project>
+      <Name>WorldsBestBars.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldsBestBars.Web.Mvc\WorldsBestBars.Web.Mvc.csproj">
+      <Project>{0960AE40-AECB-4F9B-8576-AAA750546EB1}</Project>
+      <Name>WorldsBestBars.Web.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldsBestBars.Web.Search\WorldsBestBars.Web.Search.csproj">
+      <Project>{D6029D6A-32C6-4887-B330-AB0AC44458DA}</Project>
+      <Name>WorldsBestBars.Web.Search</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

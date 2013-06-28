@@ -1,0 +1,45 @@
+﻿@model Guid
+@{
+  var relations = WorldsBestBars.Web.Cache.Relations.Instance.GetById(Model).OrderBy(_ => Guid.NewGuid()).Take(2);
+  if (relations.Count() == 0)
+  {
+    relations = WorldsBestBars.Web.Cache.Relations.Instance.GetRandom(2);
+  }
+}
+@if (relations.Any())
+{<div class="tertiary-content">
+  <h3>
+    You may also like</h3>
+  <hr class="exp" />
+  @foreach (var relation in relations)
+  {
+    var entity = WorldsBestBars.Web.Cache.UrlMap.Instance.GetById(relation);
+    var synopsis = string.Empty;
+    switch (entity.Type)
+    {
+      case "Document":
+        synopsis = WorldsBestBars.Web.Cache.Documents.Instance.GetById(entity.Id).Synopsis;
+        break;
+      case "Bar":
+        synopsis = WorldsBestBars.Web.Cache.Bars.Instance.GetById(entity.Id).Intro;
+        break;
+      case "Location":
+        synopsis = WorldsBestBars.Web.Cache.Locations.Instance.GetById(entity.Id).Intro;
+        break;
+    }
+    <div class="panel">
+      <a href="@("/" + entity.Url)">
+        <img src="@Url.GetFirstMedia(relation, "155x105.orig")" alt="@entity.Name" height="105" width="155" /></a>
+      <h4>
+        <a href="@("/" + entity.Url)">@entity.Name</a></h4>
+      @if (!string.IsNullOrEmpty(synopsis))
+      {
+        <p>
+          @synopsis</p>
+      }
+      <a class="more" href="@("/" + entity.Url)">Discover</a>
+      <hr class="exp" />
+    </div>
+  }
+  </div>
+}

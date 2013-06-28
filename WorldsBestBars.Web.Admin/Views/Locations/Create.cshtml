@@ -1,0 +1,32 @@
+﻿@model CreateLocation
+
+<div class="container">
+  <h1>Create location</h1>
+  <div class="row">
+    @using (Html.BeginForm())
+    {
+      <div class="span6">
+        <dl>
+          <dt>@Html.LabelFor(model => model.Name)</dt>
+          <dd>@Html.TextBoxFor(model => model.Name)</dd>
+        </dl>
+        <dl>
+          <dt>@Html.LabelFor(model => model.ParentId)</dt>
+          <dd>
+            <span class="input-append">
+              <input type="text" data-type="location-search" data-target="ParentId" />
+              <button class="btn"><i class="icon-remove"></i></button>
+            </span>
+            @Html.HiddenFor(model => model.ParentId)
+          </dd>
+        </dl>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <button type="reset" class="btn">Reset</button>
+        </div>
+      </div>
+    }
+
+  </div>
+</div>

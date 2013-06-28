@@ -1,0 +1,365 @@
+﻿@charset "UTF-8";
+/* CSS Document */
+
+/* mobile css */
+
+/* generic stuff */
+
+/*{display:none}
+body.mobile.hide {display:none}
+div#containere {display:none}*/
+.pagination {float:left;padding:10px;}
+.pagination #prev,.pagination #next {display:none;}
+.pagination span.pages span {font-size:0px;color:white}
+.pagination span.pages span a {font-size:40px;line-height:50px;color: #969696;;margin-right:10px;}
+.pagination span.pages span a.active {color: #711B24;}
+#header {}
+#header a {display:block;}
+/* landing page specifix */
+div#container,div#page, div#search, div#header {width:640px;}
+div#ads, div#soc_net_holder, div#cocktails, div#footer {display:none}
+div#sidebar {float:left !important;width:640px !important;margin:0}
+div#signup {font-size:30px  !important;position:relative !important;margin:-50px 0px 40px 90px !important;text-align:left;float:left;padding:10px;background-color:white;border-radius:10px;color:black;height:auto;width:444px;text-align:center;}
+div#signup.changemargin {margin:80px 0px 40px 90px !important; }
+div#signup a {color:black;}
+div#search {background-color:#bababa;width:640px;}
+h1 {
+	/*background-image:url('/content/gfx/logo/mob_wbb_logo.jpg') !important;
+	width:640px !important;
+	margin-top:0px;
+	height:125px !important;*/
+	font-size:40px !important;
+	}
+	
+hr {display:none;}
+body {background-color:black;background-image:none;background-repeat:repeat-x;background-position:0px 125px}
+#container {margin:0 0;background: black 0 0  !important;}
+#panel-1, #panel-4 {width:640px;overflow:hidden;}
+.fifty-fifty { width:620px;}
+#ubersearch {	width:382px; 	height:42px;	padding:10px; 	font-size:34px;	background-image:url(/content/gfx/buttons/searchbox.jpg);		margin:30px 0 30px 90px;}
+select#filter {display:none}
+#submit  {    background-image: url(/content/gfx/buttons/search_btn.png)  ;    background-position: right top;    border: 0 none;    cursor: pointer;    display: inline-block;    height: 62px;   text-indent: -9000px;    text-transform: uppercase;    width: 61px;	padding:0;	margin:0;	position:relative;	top: -6px; left:-1px;	margin-left:-3px;	 	border-radius:0;	 -moz-border-radius: 0px;}
+#submit:hover {	background-image:url(/content/gfx/buttons/search_btn.png);	background-position:0 -62px;}
+#panel-1, #panel-2, #panel-3, #panel-4 {}
+#top-nav {border:none;height:100%;padding:20px 0px 60px 80px}
+#top-nav ul li {float:none;height:100%;padding:0;margin:0}
+#top-nav ul li a {border:none}
+div#page {float:none}
+#top-nav ul li#tab-4 {display:none}
+
+#top-nav ul li  a {
+	margin:0 auto;
+	text-indent:-9000px;
+	width:484px;
+	height:87px;
+	padding:0;
+	margin:0;
+}
+#top-nav ul li#tab-1 a {
+ 	background-image:url('/content/gfx/buttons/experts_choice_sprite.png');
+
+}
+#top-nav ul li#tab-1 a:hover {
+	background-position:0 -87px;
+}
+#top-nav ul li#tab-1 a:active {
+	background-position:0 -174px;
+}
+#top-nav ul li#tab-2 a {
+	margin-top:10px;
+	background-image: url('/content/gfx/buttons/readers_top_100_sprite.png');
+
+}
+#top-nav ul li#tab-2 a:hover {
+	background-position:0 -87px;
+} 
+#top-nav ul li#tab-2 a:active {
+	background-position:0 -174px;
+}
+#top-nav ul li#tab-3 a {
+	margin-top:10px;
+	background-image: url('/content/gfx/buttons/most_talked_sprite.png');
+'
+}
+#top-nav ul li#tab-3 a:hover {
+	background-position:0 -87px;
+}
+#top-nav ul li#tab-3 a:active {
+	background-position:0 -174px;
+}
+
+
+#top-nav ul li#tab-5 a {
+ 	background-image:url('/content/gfx/buttons/bars_near_me_sprite.png');
+	margin-bottom:10px;
+}
+#top-nav ul li#tab-5 a:hover {
+	background-position:0 -87px;
+}
+#top-nav ul li#tab-5 a:active {
+	background-position:0 -174px;
+}
+
+
+.location  {
+	margin-top:80px;
+    background-color: #BABABA;
+    margin-left: -70px;
+    position: relative;
+    width: 640px;
+}
+
+#age_gate {border:none;padding-top:24px;}
+
+#age_gate div.location label {font-size:24px;position:absolute;left:240px;top:-40px;font-family:Georgia, "Times New Roman", Times, serif;font-weight:normal;}
+
+#age_gate  .location select#location  {font-size:38px; line-height:44px;height:100%;margin:10px 0 10px 0}
+
+#age_gate form input.sub_btn {
+	border:0;
+	outline:0;
+	width:295px;
+	height:93px;
+	background-image:url(/content/gfx/buttons/submit_up.png);}
+#age_gate form input.sub_btn:hover {
+	background-image:url(/content/gfx/buttons/submit_over.png);}	
+#age_gate form input.sub_btn:active {
+	background-image:url(/content/gfx/buttons/submit_dn.png);}	
+
+
+/* experts choice */
+#experts_choice  .expert.exp_ow  {background-color:white;width:580px !important;margin:10px 10px 10px 20px;font-size:20px !important;padding:15px 0;height:160px;min-height:0px !important;border-radius:10px;}
+#experts_choice  .expert, #bar_reviews_list div.panel {position:relative;}
+#experts_choice  .expert.exp_ow h3 {font-size:30px !important;line-height:40px;width:550px;  }
+#experts_choice  .expert.exp_ow p {font-size:28px !important;line-height:30px;width:550px;   }
+#experts_choice  .expert.exp_ow img,#bar_reviews_list div.panel.exp_ow img  {padding:0 10px !important;margin:0;}
+#experts_choice  .expert.exp_ow p a {z-index:100;text-indent:-9000px;position:absolute;background-image:url(/content/gfx/buttons/panel_next_up.png);background-repeat:no-repeat; background-position:0 0;
+height:200px;top:-3px;right:-60px;}
+#experts_choice  .header_box.hb_ow   {background-image:none !important;background-color:black  !important;width:640px  !important;margin:0 !important;padding:0 !important;height:80px}
+#experts_choice .header_box.hb_ow p {display:none;}
+#experts_choice .hb_ow_h2 {color:white !important;background-color:black  !important;padding:0 !important;background-image:none !important; text-align:center !important;font-size:40px !important;padding:30px 0 30px 0 !important;}
+
+/* subpage */
+#bar_reviews_list div.panel.exp_ow h4 a {z-index:100;text-indent:-345px;font-size:28px;word-wrap:break-word;display:block;	position:absolute;background-image:url(/content/gfx/buttons/panel_next_up.png);background-repeat:no-repeat;background-position:0 0;width:620px;height:200px;top:0px;left:610px;}
+
+#bar_reviews_list div.panel.exp_ow h5 {margin-top:20px;}
+#bar_reviews_list div.panel.exp_ow h3 {font-size:32px !important;line-height:40px;}
+#bar_reviews_list div.panel.exp_ow p{font-size:18px !important;line-height:24px;overflow:hidden;height:120px;}
+#bar_reviews_list div.panel.exp_ow {background-color:white !important; width:640px !important;margin:10px 0px;font-size:20px !important;
+padding:15px 0;border-radius:10px;overflow:hidden;height:170px;}
+#experts_choice  .full_width.hb_ow  {background-image:none !important;background-color:white  !important;
+width:640px  !important;margin:0 0 10px 0 !important;padding:0 0 10px 0  !important;
+border-radius:10px;height:100%  !important;float:left;position:relative !important;}
+
+#experts_choice #panel-4 div.secondary-content {background-color:black !important;margin:0 !important;padding:0 !important;}
+#experts_choice #panel-4 div.secondary-content h3 {display:none}
+
+#experts_choice  .full_width #bar-image img {width:620px;height:458px; margin-bottom:10px;display:block; }
+#experts_choice  .full_width #bar-panel {  width:640px;}
+#experts_choice  .full_width #bar-panel h3 {  font-size:24px !important;  margin-bottom:10px;}
+#experts_choice  .full_width #bar-image { width:620px; padding:10px; height:443px; display:block; float:left !important; clear:none !important;}
+#experts_choice #panel-1 {position:relative;}
+#experts_choice #panel-1 .full_width #bar-panel h2 {	background-color:white !important;	padding:10px 0 0 0  !important;	margin:0 !important;	color:#711B24 !important;	text-align:left !important;}
+#experts_choice  .full_width #bar-panel p {	
+/*margin:00px 0 20px -240px !important;	 */
+font-size:24px !important;	
+line-height:28px !important;	
+width:600px;
+float:none !important;
+clear:both !important;
+display:block;
+position:relative;
+ }
+
+#experts_choice  #panel-4 div.secondary-content #bar_reviews_list div.panel h4 a {width:580px !important;display:block;word-wrap:break-word;font-size:24px;}
+#experts_choice #panel-4 div.secondary-content #bar_reviews_pagination {margin:10px 0;padding:10px;background-color:white;border-radius:10px; color:black}
+#breadcrumb-zone.exp_det ul li,#breadcrumb-zone.bar_det ul li,#breadcrumb-zone.loc_det ul li {display:none !important;}
+#breadcrumb-zone.exp_det ul li.first,#breadcrumb-zone.exp_det ul li.first a,#breadcrumb-zone.loc_det ul li.last   {
+display:block !important;
+background-color:black  !important;
+padding:0 !important;background-image:none !important; text-align:center !important;font-size:40px !important;padding:20px 0 20px 80px !important;
+font-family:Georgia;
+color:white !important;
+font-weight:normal !important; 
+margin:0 auto !important;
+}
+
+#breadcrumb-zone.loc_det ul li.last   {
+	padding:20px 0px !important; 
+	margin:0 auto 40px 0 !important; 
+	width:630px !important;
+	line-height:60px !important;
+	display:block !important;
+ 	text-align:center !important;
+}
+
+#experts_choice #panel-1 .full_width {width:640px !important;}
+ /* bar detail*/
+
+#panel-1 div.full_width.hb_ow, #panel-2, #panel-3 {width:620px !important;border-radius:10px;position:relative !important;}
+#panel-1 div.full_width.hb_ow {margin-bottom:10px}
+#panel-2, #panel-3 {margin-bottom:10px}
+
+#panel-1  div#bar-image div.bar-image-scroller img, div.bar-image-scroller {width:620px !important; height:458px !important;}
+#panel-1  #bar-image {width:620px !important;float:left}
+#panel-1 #bar-panel {float:left;margin:0 0 0 10px !important;width:100%;}
+#bar-panel h3 {font-size:40px !important;width:100%;}
+#bar-panel div.rateit {float:left !important;margin-top:0px;display:block }
+#bar-panel h4 {font-size:30px;width:100%;}
+#bar-panel p {font-size:21px;line-height:25px;}
+ul.bar-sub-nav  {display:none;}
+/*div.bar-sharing {width:220px !important;position:absolute;top:180px;left:10px;border:none;}*/
+div.bar-sharing {width:220px !important;position:relative;border:none;}
+
+div.bar-sharing a.pinterest,div.bar-sharing a.share {display:none !important}
+div#___plusone_0 {display:none !important}
+#write-reviews {float:left;width:620px;margin-left:0px}
+#read-reviews {float:right;width:620px;margin-bottom:10px;min-height:10px}
+#read-reviews h3, div#write-reviews h3 {font-size:28px !important;}
+#read-reviews h4 {font-size:28px !important;}
+div.user-review, div.user-review p {width:100%}
+div.user-review-heading  {width:630px}
+.small_txt10 {    float: left;    font-size: 20px;}
+div#write-reviews form .submit_btn {clear:both;margin-left:0px}
+div#write-reviews form input, div#write-reviews form textarea {font-size:30px;}
+div.new_title {margin:0 auto;}
+div.new_title h2 {color:white;text-align:center !important;font-size:40px !important;padding:20px 0 !important;}
+div#bar-rating span.small_txt10 {float:left;display:block;width:100%;}
+div#search_results .secondary-content  {background-color:black !important;}
+div#search_results div.results {background-image:none !important;padding:10px;width:600px;background-color:white !important;border-radius:10px;margin-bottom:10px;height:180px}
+div#search_results_list div.results  {position:relative !important}
+div#search_results_list div.results div a {z-index:100;text-indent:-9000px;position:absolute;
+background-image:url(/content/gfx/buttons/panel_next_up.png);background-repeat:no-repeat; background-position:0 0;
+height:200px;top:0px;right:2px;}
+div#search_results div.results h3, div#search_results div.results h5 {display:block !important;width:560px !important; }
+div#search_results div.results h3 a {font-size:25px;}
+div#search_results div.results h5 a {font-size:20px}
+div#search_results div.results strong {font-family:Georgia, "Times New Roman", Times;font-size:20px}
+div#search_results div.results.document {display:none  !important;}
+div#search_results div.results p {font-size:16px;line-height:18px;width:320px !important}
+div#search_results_pagination, div#bar_results_pagination   {background-color:white !important;border-radius:10px;}
+div#search_results div.results.location {;margin:0 0 10px 0;background-color:#AD9961 !important;color:white;}
+
+div#search_results_list h4 {background-color:white;padding:20px border-radius:10px;font-size:30px}
+div#bar-info_overlay div.details-box {display:none;}
+
+div#bar-info_overlay { 	left:10px !important; 	top:25px !important;	width:600px;}
+
+#show_on_map {  background-image: url("/content/gfx/buttons/show_on_map2.png");	background-position:center center;	background-repeat:no-repeat;    clear: both;    display: block;    height: 80px;    margin-bottom: 0px;    text-indent: -9000px;    width: 640px;	float:left; }
+
+#panel-3 div.expert_reviews div.panel p {clear:none !important;width:620px !important;font-size:24px !important;line-height:28px !important}
+#panel-3 div.expert_reviews div.panel h4, #panel-3 div.expert_reviews div.panel h5 {font-size:24px !important;line-height:28px !important}
+ 
+div#bar-image img,div.bar-image-scroller {width:620px !important;height:458px !important}
+
+.navi {width:620px !important;margin-top:-10px;margin-bottom:10px;}
+div#bar-panel, div#bar-panel p {width:600px;font-size:28px !important;line-height:32px !important}
+div#bar-info_overlay #map_canvas {width:600px;}
+div#panel-1	div.bar-sharing {float:left;}
+
+div#panel-1	div.bar-sharing a {	width:55px !important;	height:45px !important;	display:block; }
+
+div#panel-1 div.full_width div.bar-sharing a.fb  {  	background: url(/content/gfx/buttons/facebook.png) !important;	width:55px !important;	height:45px !important;}
+div#panel-1 div.full_width div.bar-sharing a.twit {	background: url(/content/gfx/buttons/twitter.png) !important;	width:55px !important;	height:45px !important;}
+.bar-sharing a.share {	background-image: url(/content/gfx/buttons/share.png) !important;		width:55px !important;	height:45px !important;}
+
+
+div.reply-area {width:100%}
+div.popup {position:relative;top:0px; left:10px;width:600px !important}
+div.popup.changemargin {top:-100px !important;}
+
+
+div.inner {width:520px !important;overflow:hidden !important;}
+
+#write-reviews, #write-reviews span, div.user-review p, div.user-ratings span, div.user-review-heading h4, div#bar-rating span   {font-size:20px !important;line-height:24px !important;}
+div.user-ratings,div#bar-rating span {height:40px}
+div.review-reply-area {margin-top:40px !important;}
+
+/*.popup.login_popup div.inner {width:500px !important;}*/
+
+div.popup div.sign_up_form form#signup_form input {margin-right:0px !important}
+.popup.review_popup {left:0px !important;}
+
+/* location pages */
+
+#cities_page hr.map_gap {display:none;}
+#cities_page hr.map_gap {display:none;}
+#cities_page div.header_box, #generic div.header_box {display:none}
+#cities_page div.map_box .map_box {display:none}
+#cities_page div#map {width:620px}
+#location_switch {width:640px;display:block;padding:0px;margin:0 auto;background-color:black;height:40px;float:left;padding-bottom:60px;margin-left:30px;}
+
+#location_switch a {display:block;text-indent:-9000px;width:297px;height:93px;float:left}
+#location_switch a#map_btn {background-image:url(/content/gfx/buttons/map_sprite.png);}
+#location_switch a#map_btn:hover {background-position:0px -86px;}
+#location_switch a#map_btn:active {background-position:0px -176px;}
+
+#location_switch a#list_btn {background-image:url(/content/gfx/buttons/list_sprite.png);}
+#location_switch a#list_btn:hover {background-position:0px -86px;}
+#location_switch a#list_btn:active {background-position:0px -176px;}
+
+
+#cities_page  #panel-4 .secondary-content .panel.hb_ow {position:relative !important; background-image:none !important;
+padding:10px;width:600px;background-color:white !important;border-radius:10px;margin-bottom:10px;height:180px}
+#cities_page  #panel-4 .secondary-content .panel.hb_ow h4 a{text-indent:0px;font-size:30px !important;line-height:40px;width:550px;  }
+#cities_page  #panel-4 .secondary-content .panel.hb_ow h5 {}
+#cities_page  #panel-4 .secondary-content .panel.hb_ow p {font-size:20px !important;line-height:24px;width:550px;   }
+#cities_page  #panel-4 .secondary-content .panel.hb_ow img,#bar_reviews_list div.panel.hb_ow img  {padding:0 10px !important;margin:0;}
+#cities_page  #panel-4 .secondary-content .panel.hb_ow h5 a {z-index:100;text-indent:-9000px;position:absolute;background-image:url(/content/gfx/buttons/panel_next_up.png);background-repeat:no-repeat; background-position:0 0;
+height:200px;top:1px;right:-15px;}
+
+#cities_page  #panel-4 .secondary-content .panel {background-color:white;}
+#cities_page .secondary-content {background-color:black;width:620px !important;}
+#cities_page div#map  {margin-top:10px;height:450px !important;}
+/*#cities_page #panel-4 {display:none;}*/
+#cities_page #panel-4 div.secondary-content #bar_list_pagination {margin:10px 0;padding:10px;background-color:white;border-radius:10px; color:black}
+
+/*top100*/
+div#top100 #panel-4 div.secondary-content #bar_list_pagination {margin:10px 0;padding:10px;background-color:white;border-radius:10px; color:black}
+
+div#top100 .secondary-content  {background-color:black !important;width:640px;margin-right:0px !important; padding:0px !important; }
+div#top100 div.panel {background-image:none !important;padding:10px;width:620px  !important;background-color:white !important;border-radius:10px;margin-bottom:10px;height:180px}
+div#top100 div.panel  {position:relative !important}
+div#top100 div.panel p a { position:absolute;text-indent:-9000px;
+background-image:url(/content/gfx/buttons/panel_next_up.png);background-repeat:no-repeat; background-position:top right;
+height:200px;top:0px;right:0px;width:640px !important;z-index:1;}
+div#top100 div.panel h3, div#search_results div.results h5 {display:block !important;width:560px !important; }
+div#top100 div.panel h4   {font-size:25px;}
+div#top100 div.panel h5 a {font-size:20px;position:relative;z-index:1000}
+div#top100 div.panel h6 {right:40px;posiiton:relative;}
+div#top100 div.panel p {font-size:16px;line-height:18px;width:260px !important;}
+#top100 div.panel.winner {left:0px;width:620px !important}
+#top100 div.panel.winner  h6 {right:30px;positon:relative;}
+div.filter_options {background-color:#bababa;width:640px;float:left;}
+div.filter_options h4 {text-indent:-9000px}
+div.filter_options select {font-size:30px;margin:20px auto;}
+
+div#top100 #panel-4 div.secondary-content #bar_list_pagination, div#most-talked-about  #bar_list_pagination {margin:10px 0;padding:10px;background-color:white;border-radius:10px; color:black}
+
+
+/*most talked about */
+div#most-talked-about .secondary-content  {background-color:black !important;width:640px;margin-right:0px !important; padding:0px !important; }
+div#most-talked-about div.panel {background-image:none !important;padding:10px;width:620px  !important;background-color:white !important;border-radius:10px;margin-bottom:10px;height:180px}
+div#most-talked-about div.panel  {position:relative !important}
+div#most-talked-about div.panel p a {z-index:1; position:absolute;text-indent:-9000px;
+background-image:url(/content/gfx/buttons/panel_next_up.png);background-repeat:no-repeat; background-position:top right;
+height:200px;top:0px;right:0px;width:640px !important;}
+div#most-talked-about div.panel h3, div#search_results div.results h5 {display:block !important;width:560px !important; }
+div#most-talked-about div.panel h4   {font-size:25px;}
+div#most-talked-about div.panel h5 a {font-size:20px;position:relative;z-index:100}
+div#most-talked-about div.panel p {font-size:16px;line-height:18px;width:340px !important;}
+div.filter_options {background-color:#bababa;width:640px;float:left;}
+div.filter_options h4 {text-indent:-9000px}
+div.filter_options select {position:relative;font-size:40px;margin:20px 0 20px 30px;width:500px;display:block}
+#most-talked-about div.header_box, #top100 div.header_box {background:none;width:640px;height:auto !important;}
+#most-talked-about  h2, #top100 h2 {color:white;	background-image:none;	padding:20px 0px !important; 	margin:0 auto 0px 0 !important; 	width:630px !important;	line-height:60px !important;	display:block !important;	font-size:40px !important; 	text-align:center !important;}
+#most-talked-about div.header_box p, #top100 div.header_box p {display:none !important;}
+#content .mobile_ad {display:block;position:relative;padding:20px 0;width:640px;float:left}
+#content .mobile_ad img {text-align:center; position:relative;margin:0 auto 50px auto;width:609px;display:block}
+
+.fifty-fifty.darken {color:black !important;background-color:black !important;border:black !important; }
+.fifty-fifty.darken img {display:none !important;}
+.fifty-fifty.darken h2 {display:none !important;}
+.fifty-fifty.darken h3 a {display:none !important;}
+
+div#bar_list_container div.panel h5 a {    display: block;    height: 0;  left:590px;  position: absolute;    text-indent: -9000px;}

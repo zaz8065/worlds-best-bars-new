@@ -1,0 +1,572 @@
+﻿@model WorldsBestBars.Model.Bar
+@{
+  var expertReviews = WorldsBestBars.Web.Cache.Reviews.Instance.GetExpertByBar(Model.Id);
+  var reviews = (IEnumerable<WorldsBestBars.Model.Review>)ViewBag.Reviews;
+  var categories = WorldsBestBars.Web.Cache.Lists.Instance.GetByBar(Model.Id).Where(g => g.Group != null).GroupBy(g => g.Group).Select(g => new { Group = g.Key, Entries = g.Select(e => e.Name).OrderBy(e => e) });
+
+  double? rating = null;
+  int ratingCount = 0;
+  var validRatings = reviews.Where(r => r.Rating != null && r.Rating.Overall2 != null).Select(r => r.Rating.Overall2);
+  if (validRatings.Any())
+  {
+    rating = validRatings.Average();
+    ratingCount = validRatings.Count();
+  }
+  var reviewCount = reviews.Count();
+
+
+  ViewBag.Title = Model.Name;
+  var area = string.Empty;
+
+  if (Model.Parent != null)
+  {
+    var _parent = WorldsBestBars.Web.Cache.Locations.Instance.GetById(Model.Parent.Id);
+    if (_parent.Parent != null)
+    {
+      var _parentParent = WorldsBestBars.Web.Cache.Locations.Instance.GetById((Guid)_parent.Parent);
+      if (_parentParent.Parent != null)
+      {
+        if (ViewBag.Title.EndsWith(_parentParent.Name))
+        {
+          ViewBag.Title = Model.Name + " | " + _parent.Name;
+          area = _parent.Name;
+        }
+        else
+        {
+          ViewBag.Title = Model.Name + " " + _parentParent.Name + " | " + _parent.Name;
+          area = _parentParent.Name;
+        }
+      }
+      else
+      {
+        if (!ViewBag.Title.EndsWith(Model.Parent.Name))
+        {
+          ViewBag.Title += " " + Model.Parent.Name;
+        }
+        area = Model.Parent.Name;
+      }
+    }
+    else
+    {
+      if (!ViewBag.Title.EndsWith(Model.Parent.Name))
+      {
+        ViewBag.Title += " " + Model.Parent.Name;
+      }
+      area = Model.Parent.Name;
+    }
+  }
+}
+@section MetaTags
+{
+  @{ 
+    var metaName = Model.Name;
+    var metaCity = string.IsNullOrEmpty(Model.Address.City) ? string.Empty : Model.Address.City;
+
+    if (metaName.EndsWith(" in " + metaCity))
+    {
+      metaName = metaName.Substring(0, metaName.Length - 4 - metaCity.Length);
+    }
+
+    if (metaName.EndsWith(" bar"))
+    {
+      metaName = metaName.Substring(0, metaName.Length - 4);
+    }
+  }
+  @if (string.IsNullOrEmpty(Model.Address.City))
+  {
+    <meta name="description" content="@string.Format("Find out more about {0} bar with maps and further details. Read and post reviews and share this World's Best Bar with your friends.", metaName)" />
+  }
+  else
+  {
+    <meta name="description" content="@string.Format("Find out more about {0} bar in {1} with maps and further details. Read and post reviews and share this World's Best Bar with your friends.", metaName, Model.Address.City)" />
+  }
+}
+<div id="breadcrumb-zone">
+  @{Html.RenderPartial("Breadcrumbs", Model.Id);}
+</div>
+<div itemscope itemtype="http://schema.org/BarOrPub">
+  <!-- panel 1 -->
+  <div id="panel-1">
+    <div class="full_width whitebox">
+      <div id="bar-image">
+        @if (Model.IsTop100 || Model.IsExpertsChoice)
+        {
+          <div id="bar-header">
+            @if (Model.IsExpertsChoice)
+            {
+              <span id="experts-choice">Expert's Choice</span>
+            }
+            @if (Model.IsTop100)
+            {
+              <span id="top-100">Top 100 Bar</span>
+            }
+          </div>
+        }
+        <div class="bar-image-scroller">
+          <div class="items">
+            @foreach (var image in Url.GetMedia(Model.Id, "365x270.orig"))
+            {
+              <div>
+                <img src="@image" width="365" height="270" alt="@Model.Name">
+              </div>
+            }
+          </div>
+        </div>
+        <div class="navi">
+        </div>
+      </div>
+      <div id="bar-panel">
+        <h1>@Model.Name</h1>
+        @if (rating != null)
+        {
+          <div class="rateit" data-rateit-value="@rating.Value.ToString("0.0")" data-rateit-ispreset="true" data-rateit-readonly="true"></div>
+          <div itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+            <meta itemprop="worstRating" content="1" />
+            <meta itemprop="bestRating" content="5" />
+            <meta itemprop="ratingValue" content="@rating.Value.ToString("0.0")" />
+            <meta itemprop="ratingCount" content="@ratingCount"/>
+            <meta itemprop="reviewCount" content="@reviewCount"/>
+          </div>
+        }
+        <h4>@Model.Address</h4>
+        <a href="#" id="show_on_map">[ Show on Map ] </a>
+        @Html.Markdown(Model.Description)
+      </div>
+      <div class="bar-sharing">
+        <a class="fb" href="#">Facebook</a> <a class="twit" href="#">Twitter</a>
+        <a target="_blank" href="http://pinterest.com/pin/create/button/?url=http://staging.worldsbestbars.com/@Model.Url&media=http://staging.worldsbestbars.com/content/media/@Model.Url/365x270.orig.00.jpg&description=@Model.Description" class="pin-it-button pinterest" count-layout="none" >
+          <img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+
+
+        <!-- Place this tag where you want the +1 button to render -->
+
+        <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="120"
+          style="width: 35px !important; overflow: hidden; margin-left: 5px">
+        </div>
+
+        <!-- Place this render call where appropriate -->
+        <script type="text/javascript">
+          window.___gcfg = { lang: 'en-GB' };
+
+          (function () {
+            var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+            po.src = 'https://apis.google.com/js/plusone.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+          })();
+        </script>
+        <a class="share" href="#">Share</a>
+        <div class="share_hover">
+          <h4>Share this bar <span class="close">x</span></h4>
+          <a href="#" class="del">Delicious</a> <a href="#" class="digg">Digg</a> <a href="#"
+            class="reddit">Reddit</a> <a href="#" class="stumble">StumbleUpon</a> <a href="#"
+              class="print">Print</a> <a href="#" class="email">Email</a>
+        </div>
+      </div>
+      <ul class="bar-sub-nav">
+        <li><a class="bar-info" href="#">Info</a></li>
+        <li><a class="read-review" href="#read-reviews">Add / Read<br />
+          Reviews</a></li>
+        @if (Model.Features.Any(f => f.IsActive && f.Type != "signature-cocktail"))
+        {
+          <li><a class="features" href="#features">Features</a></li>
+        }
+        @if (Model.SignatureCocktail != null)
+        {
+          <li><a class="signature-drink" href="#signature-drink">Signature Drink</a></li>
+        }
+        @if (!string.IsNullOrEmpty(Model.MenuUrl))
+        {
+          <li><a class="menu" href="@Model.MenuUrl" target="_blank">Menu</a></li>
+        }
+      </ul>
+    </div>
+  </div>
+  <!-- end of panel 1 -->
+  <hr class="hr10" />
+  <!-- panel 2 -->
+  <div id="panel-2" class="whitebg">
+    <div class="full_width">
+      <h2>You may also be interested in...</h2>
+      @foreach (var entity in ViewBag.AltFeaturedArticles)
+      {
+        var _entity = WorldsBestBars.Web.Cache.Documents.Instance.GetById(entity.Id);
+        <div class="thirty-three br">
+          <a href="@("/" + _entity.Url)">
+            <img alt="@_entity.Name" src="@Url.GetFirstMedia((Guid)entity.Id, "245x165.orig")" width="245" height="165" /></a>
+          <h4>
+            <a href="@("/" + _entity.Url)">@_entity.Name</a></h4>
+          <span>@_entity.Synopsis</span> <a href="@("/" + _entity.Url)">more</a>
+        </div>
+      }
+    </div>
+  </div>
+  <hr class="hr10" />
+  <!-- end of panel 2 -->
+  @if (expertReviews.Any())
+  {
+    <!-- panel 3 -->
+    <div id="panel-3" class="whitebg">
+      <div class="full_width expert_reviews">
+        <h2>Expert reviews of @Model.Name</h2>
+        <hr class="exp">
+        @foreach (var review in expertReviews)
+        {
+          var expert = WorldsBestBars.Web.Cache.Users.Instance.GetById(review.User.Id);
+          <div class="panel">
+            <a href="@("/" + expert.Url)">
+              <img alt="@expert.Name" src="@Url.GetFirstMedia(expert.Id, "245x165.sep")" width="245" height="165" /></a>
+            <h4>
+              <a href="@("/" + expert.Url)">@expert.Name</a></h4>
+            <h5>
+              @expert.Title</h5>
+            <p>
+              @review.Comment
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+    <hr class="hr10" />
+    <!-- end of panel 3 -->
+  }
+  <div id="panel-4">
+    <div id="read-reviews" class="whitebox lightgreyoutline">
+      <h3>Reader's Reviews</h3>
+      @if (reviews.Any(r => r.Rating != null))
+      {
+        <div id="bar-rating">
+          @if (rating != null)
+          {
+            <span>Average User Rating:</span> <text>@rating.Value.ToString("0.0") stars </text>
+          }
+          <span class="small_txt10">
+            @reviews.Count(r => r.Parent == null) review@(reviews.Count(r => r.Parent == null) != 1 ? "s" : string.Empty)</span>
+        </div>
+        <div id="bar_reviews_container">
+          @foreach (var review in reviews.Where(r => r.Rating != null && r.Parent == null))
+          {
+            <div class="user-review" itemprop="review" itemscope itemtype="http://schema.org/Review">
+              <div class="user-review-heading">
+                <h4 itemprop="name">
+                  @(string.IsNullOrEmpty(review.Name) ? string.Empty : review.Name)</h4>
+                @if (review.Rating.Overall2 != null)
+                {                                
+                  <div class="rateit" data-rateit-value="@review.Rating.Overall2.Value.ToString("0")" data-rateit-ispreset="true" data-rateit-readonly="true">
+                  </div>
+                }
+              </div>
+              <p itemprop="description">
+                @review.Comment
+              </p>
+              <span>
+                @if (review.User.Id != Guid.Empty)
+                {
+                  <text>by: <strong itemprop="author">@review.User.Name</strong></text>
+                }
+                <meta itemprop="datePublished" content="@review.Created.ToString("yyyy-MM-dd")" />
+                on: @review.Created.ToString("d-MMM-yyyy")</span>
+              @if (review.Rating != null)
+              {
+                if (review.Rating.Overall2 != null)
+                {
+                <div class="user-ratings">
+                  @if (review.Rating.Design != 0)
+                  {
+                    <span>Design:<strong>@(review.Rating.Design.ToString("0.0"))/5</strong></span>
+                  }
+                  @if (review.Rating.Service != 0)
+                  {
+                    <span>Service:<strong>@(review.Rating.Service.ToString("0.0"))/5</strong></span>
+                  }
+                  @if (review.Rating.Drinks != 0)
+                  {
+                    <span>Drinks:<strong>@(review.Rating.Drinks.ToString("0.0"))/5</strong></span>
+                  }
+                  <span>Overall:<strong>@(review.Rating.Overall.ToString("0.0"))/5</strong></span>
+                </div>
+                }
+                foreach (var reply in WorldsBestBars.Web.Cache.Reviews.Instance.GetByParent(review.Id))
+                {
+                <div class="reply">
+                  <p>@reply.Comment</p>
+                  <span>by: <strong>@reply.User.Name</strong> on: @reply.Created.ToString("d-MMM-yyyy")</span>
+                </div>  
+                }           
+                <div class="review-reply-area">
+                  <a href="#" class="reply_btn">Reply to this review</a>
+                  <div class="reply-area">
+                    @if (Session.CurrentUser() != null)
+                    {
+                      <form action="/process/submitreviewreply/@review.Id" method="post" class="review-reply">
+                        <h6>Write your reply here.</h6>
+                        <span>(400 characters left)</span>
+                        <textarea name="comment" cols="" rows="" maxlength="400" class="reply_text"></textarea>
+                        <input type="submit" value="Submit" class="submit_reply" />
+                      </form>
+                    }
+                    else
+                    { 
+                      <div>
+                        <h6>You must be logged in to reply to reviews.</h6>
+                      </div>
+                    }
+                  </div>
+                </div>
+  
+              }
+            </div>
+          }
+        </div>
+        <div id="bar_reviews_pagination" class="pagination">
+          <a id="prev" href="#">Prev</a>&nbsp;|&nbsp;<span class="pages"></span><a id="next"
+            href="#">Next</a>
+        </div>
+      }
+      else
+      {
+        <h4>No one has reviewed this bar yet, be the first!</h4>
+      }
+    </div>
+    <div id="write-reviews" class="whitebox">
+      <h3>Write a review</h3>
+      <span><strong>Been to this bar? Why not add a review</strong></span>
+      <form action="/process/submitreview/@Model.Id" method="post" class="rating">
+        <label>
+          Title of your review</label>
+        <span class="small_txt10 countdown_title">(40 characters left)</span>
+        <input type="text" name="title" id="review_title" maxlength="40" value="@TempData["submit_review:data:title"]" />
+        <label>
+          Write your review comments here.</label>
+        <span class="small_txt10 countdown_review">(400 characters left)</span>
+        <textarea id="review_comments" name="comment" cols="" rows="" maxlength="400">@TempData["submit_review:data:comment"]</textarea>
+        <label>
+          Give your star ratings.</label>
+        <span class="small_txt10">(An average overall rating will be calculated)</span>
+        <span class="ratings_title">Design</span>
+        <input name="design" type="range" min="0" max="5" value="@(TempData["submit_review:data:design"] ?? 0.0)" step="1.0" id="r1">
+        <div class="rateit" data-rateit-backingfld="#r1">
+        </div>
+        <span class="ratings_title">Drinks</span>
+        <input name="drinks" type="range" min="0" max="5" value="@(TempData["submit_review:data:drinks"] ?? 0.0)" step="1.0" id="r2">
+        <div class="rateit" data-rateit-backingfld="#r2">
+        </div>
+        <span class="ratings_title">Service</span>
+        <input name="service" type="range" min="0" max="5" value="@(TempData["submit_review:data:service"] ?? 0.0)" step="1.0" id="r3">
+        <div class="rateit" data-rateit-backingfld="#r3">
+        </div>
+        <input type="submit" value="Submit My Bar Review" class="submit_btn" />
+      </form>
+    </div>
+  </div>
+  <div id="bar-info_overlay">
+    <div id="bar_info_close">
+      Close
+    </div>
+    <h3 itemprop="name">
+      @Model.Name</h3>
+    <h4>
+      @Model.Address</h4>
+    <hr class="hr" />
+    <!-- google map goes here -->
+    <div id="map_canvas">
+    </div>
+    <hr class="hr" />
+    <div class="details-box">
+      <div class="bar-sharing">
+        <a class="fb" href="#">Facebook</a> <a class="twit" href="#">Twitter</a> <a class="pinterest"
+          target="_blank" href="http://pinterest.com/worldsbestbars/">
+          <img src="http://passets-cdn.pinterest.com/images/pinterest-button.png" width="60"
+            height="19" alt="Follow Me on Pinterest" /></a> <a class="share" href="#">Share</a>
+        <div class="share_hover">
+          <h4>Share this bar <span class="close">x</span></h4>
+          <a href="#" class="del">Delicious</a> <a href="#" class="digg">Digg</a> <a href="#"
+            class="reddit">Reddit</a> <a href="#" class="stumble">StumbleUpon</a> <a href="#"
+              class="print">Print</a> <a href="#" class="email">Email</a>
+        </div>
+      </div>
+      <ul class="bar-sub-nav">
+        <li><a class="read-review" href="#read-reviews">Read Reviews</a></li>
+        <li><a class="add-review" href="#write-reviews">Add A Review</a></li>
+      </ul>
+      <br class="cb" />
+      <h3>
+        @Model.Name</h3>
+      <div class="details">
+        <span class="title">Address : </span><span itemprop="address">@Model.Address</span>
+        @if (!string.IsNullOrEmpty(Model.Phone))
+        {
+          <span class="title">Telephone : </span><span itemprop="telephone">@Model.Phone</span>
+        }
+        @if (!string.IsNullOrEmpty(Model.Website))
+        {
+          <span class="title">Website : </span><span><a href="@(Model.Website.StartsWith("http:") ? Model.Website : "http://" + Model.Website)" target="_blank" itemprop="url">@Model.Website</a></span>
+        }
+
+        @if (Model.OpenHours.Any())
+        {
+          <span class="title">Open Hours:</span><span>@string.Join("; ", Model.OpenHours.GroupBy(p => p.Day).OrderBy(g => g.Key).Select(g => string.Format("{0} - {1}", g.Key, string.Join(", ", g.OrderBy(d => d.Open).Select(d => string.Format("{0:h':'mm} to {1:h':'mm}", d.Open, d.Close))))))</span>
+        }
+      </div>
+      <br class="cb" />
+      <div class="categories_area">
+        @if (categories.Any(c => c.Group == "Speciality"))
+        {
+          <div class="category">
+            <h4 class="speciality">Good for</h4>
+            @foreach (var category in categories.Single(c => c.Group == "Speciality").Entries)
+            {
+              <p>@category</p>
+            }
+          </div>
+        }
+        @if (categories.Any(c => c.Group == "Style"))
+        {
+          <div class="category">
+            <h4 class="style">Style</h4>
+            @foreach (var category in categories.Single(c => c.Group == "Style").Entries)
+            {
+              <p>@category</p>
+            }
+          </div>
+        }
+        @if (categories.Any(c => c.Group == "Recommended"))
+        {
+          <div class="category">
+            <h4 class="recommended">Recommended</h4>
+            @foreach (var category in categories.Single(c => c.Group == "Recommended").Entries)
+            {
+              <p>@category</p>
+            }
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  @if (Model.SignatureCocktail != null)
+  {
+    <div class="popup popup-cocktail" style="display: none">
+      <div class="inner">
+        <a href="#" class="close">Close</a>
+        <header>
+          @if (!string.IsNullOrWhiteSpace(Model.SignatureCocktail.Sponsor))
+          {
+            <h3><span>Signature cocktail sponsored by @Model.SignatureCocktail.Sponsor</span></h3>
+          }
+          <h1>@Model.Name</h1>
+          <h2>@Model.Address</h2>
+        </header>
+        <div class="body">
+          <div class="img">
+            <img src="@Url.GetFirstFeatureMedia(Model.SignatureCocktail.Id)" />
+          </div>
+          <div class="details">
+            <h3>@Model.SignatureCocktail.Name</h3>
+            <p>@Model.SignatureCocktail.Details</p>
+            <p class="method">@Model.SignatureCocktail.Extra</p>
+          </div>
+        </div>
+        @if (!string.IsNullOrEmpty(Model.SignatureCocktail.Sponsor))
+        {
+          <div class="branding @(Model.SignatureCocktail.Sponsor.ToLower())"></div>
+        }
+      </div>
+    </div>
+  }
+  @if (Model.Features.Any(f => f.IsActive && f.Type != "signature-cocktail"))
+  {
+    <div class="popup popup-features hidden" style="display: none">
+      <div class="inner">
+        <a href="#" class="close">Close</a>
+        <header>
+          <h1>@Model.Name</h1>
+          <h2>@Model.Address</h2>
+        </header>
+        <div class="body">
+          @foreach (var feature in Model.Features.Where(f => f.IsActive && f.Type != "signature-cocktail"))
+          {
+            <div class="feature">
+              <div class="img">
+                <img src="@Url.GetFirstFeatureMedia(feature.Id)" />
+              </div>
+              <div class="details">
+                <h3>@feature.Name</h3>
+                <p>@feature.Details</p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  }
+  <!-- email popup html --->
+  <div class="popup email_popup">
+    <div class="inner">
+      <a href="#" class="close">Close</a>
+      <div class="pop_up_form">
+        <form id="email_form" method="post" action="/process/share/@Model.Id">
+          <h3>Email this page</h3>
+          <label>
+            Recipient email
+          </label>
+          <input type="text" maxlength="50" name="recipient">
+          <label>
+            Your email address
+          </label>
+          <input type="text" maxlength="50" name="sender" size="20">
+          <label>
+            Message</label>
+          <textarea name="message" rows="3"></textarea>
+          <input type="submit" id="email_submit" name="email_submit" value="Send">
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!--- end --->
+@if (TempData["submit_review:success"] != null && ((bool)TempData["submit_review:success"]))
+{
+  <div class="popup review_popup">
+    <div class="inner">
+      <a href="#" class="close">Close</a>
+      <h3>Thank you for reviewing @Model.Name.</h3>
+      <h4>Would you like to share your review?</h4>
+      <div class="bar-sharing">
+        <a class="fb" href="#">Facebook</a> <a class="twit" href="#">Twitter</a> <a class="pinterest"
+          target="_blank" href="http://pinterest.com/worldsbestbars/">
+          <img src="http://passets-cdn.pinterest.com/images/pinterest-button.png" width="60"
+            height="19" alt="Follow Me on Pinterest" /></a>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $('.review_popup').show();
+  </script>
+}
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+<script type="text/javascript" src="@("/Content/js/jquery.rateit.min.js")"></script>
+<script type="text/javascript" src="@("/content/js/pagination.js")"></script>
+<script type="text/javascript" src="@("/content/js/pages/bar.js")"></script>
+<script type="text/javascript">
+@{
+  if (Model.Geo != null)
+  {
+        <text>var centre = new google.maps.LatLng(@Model.Geo.Lat, @Model.Geo.Long);</text>
+  }
+  else
+  {
+        <text>var centre = false;</text>
+  }
+}
+@if (TempData["submit_review:errors"] != null)
+{
+        <text>alert('We couldn\'t submit your review because @Html.Raw(((string)TempData["submit_review:errors"]).Replace("'", "\\'")).');</text>
+}@if (TempData["submit_review_reply:errors"] != null)
+ {
+        <text>alert('We couldn\'t submit your review reply because @Html.Raw(((string)TempData["submit_review:errors"]).Replace("'", "\\'")).');</text>
+ }
+@if (TempData["share_email:errors"] != null)
+{
+        <text>alert('We couldn\'t share this bar via email because @Html.Raw(((string)TempData["share_email:errors"]).Replace("'", "\\'")).');</text>
+}
+  var controller = new BarPage('@Model.Id', '@Model.Name', '@Model.Url', centre, '@area');
+</script>

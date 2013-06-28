@@ -1,0 +1,55 @@
+﻿@model EditSignatureCocktail
+@{
+  ViewBag.Title = "Edit - Signature Cocktail";
+}
+<div class="step step-three features">
+  <h1>Step 3</h1>
+  <h2>Your bar &raquo; <span>@ViewBag.EditingContainer.Name</span></h2>
+  @Html.Partial("Progress", "signature-cocktail")
+  <div class="left">
+    <h3>Signature Cocktail</h3>
+    <p>
+      Do you have a signature drink? A cocktail that you want the world to know about?
+      Tell us. Upload the recipe and see it featured on World’s Best Bars. As we work
+      in partnership with Pernod Ricard, drinks that showcase their brands – Beefeater,
+      Chivas, Havana Club, Vodka or Jameson – are of particular appeal, but all cocktails
+      will be considered. Please include a photo along with the recipe so people can see
+      your drinks in their best light.
+    </p>
+
+    @using (Html.BeginForm("EditSignatureCocktail", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+      <label for="file">
+        Choose a photo (jpeg) to upload
+      </label>
+      <ul>
+        <li>
+          <input type="file" name="file" id="file" /></li>
+      </ul> 
+
+      @Html.LabelFor(model => model.Name, "What's the name of this cocktail?")
+      @Html.TextBoxFor(model => model.Name)
+
+      @Html.LabelFor(model => model.Description, "Tell us about it")     
+      @Html.TextAreaFor(model => model.Description)
+
+      @Html.LabelFor(model => model.Ingredients, "What's in this cocktail?")     
+      @Html.TextAreaFor(model => model.Ingredients)
+
+      <input type="submit" value="Submit" />
+    }
+  </div>
+  <div class="right">
+    <h4>Current signature cocktail</h4>
+    <p>...</p>
+  </div>
+  <div class="clear"></div>
+  @using (Html.BeginForm())
+  {
+    <div class="navigation">
+      <button name="back" value="true">Back</button>
+      <button name="next" value="true">Submit</button>
+    </div>
+  }
+  <div class="clear"></div>
+</div>

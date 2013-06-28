@@ -1,0 +1,49 @@
+﻿@model Review
+
+<div class="span8">
+  <h2><a href="/bar/@Model.BarId">@Model.BarName</a>
+    <small>by
+      @if (Model.UserId.HasValue)
+      {
+        <a href="/user/@Model.UserId">@Model.UserName</a>
+      }
+      else
+      {
+        <span>Anonymous</span>
+      }
+    </small>
+
+  </h2>
+  @if (!string.IsNullOrEmpty(Model.Title))
+  {
+    <h3>@Model.Title</h3>
+  }
+  <blockquote>
+    @Html.Markdown(Model.Comment)
+  </blockquote>
+
+  <div class="row">
+    <div class="span2"><strong>Created</strong> @Model.Created.ToString("MMMM d, yyyy")</div>
+    <div class="span2"><strong>User IP</strong> @Model.UserIP</div>
+    <div class="span2">@(Model.IsActive ? "Active" : "Not active") </div>
+    <div class="span2">
+      @if (!Model.IsModerated)
+      {
+        <a class="btn btn-small" href="/reviews/@Model.Id/moderate/true"><i class="icon-ok"></i>&nbsp;Approve</a>
+        <a class="btn btn-small" href="/reviews/@Model.Id/moderate/false"><i class="icon-remove"></i>&nbsp;Decline</a>
+      }
+      else
+      {
+        if (Model.IsActive)
+        {
+        <a class="btn btn-small" href="/reviews/@Model.Id/moderate/false"><i class="icon-remove"></i>&nbsp;Decline</a>
+        }
+        else
+        {
+        <a class="btn btn-small" href="/reviews/@Model.Id/moderate/true"><i class="icon-ok"></i>&nbsp;Approve</a>
+        }
+      }
+    </div>
+  </div>
+  <hr />
+</div>

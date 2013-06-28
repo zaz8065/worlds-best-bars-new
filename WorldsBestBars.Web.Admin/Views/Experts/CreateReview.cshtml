@@ -1,0 +1,24 @@
+﻿@model CreateExpertReviewModel
+
+
+@using (Html.BeginForm("CreateReview", "Experts", FormMethod.Post, new { @class = "ajax" }))
+{  
+  <div class="modal-body">
+    <label for="bar-search">Bar</label>
+    <span class="input-append">
+      <input id="bar-search" type="text" data-type="bar-search" data-target="Bar" />
+      <button class="btn"><i class="icon-remove"></i></button>
+    </span>
+    @Html.ValidationMessageFor(m => m.Bar)
+    @Html.HiddenFor(m => m.Bar)
+
+    @Html.LabelFor(m => m.Comment)
+    @Html.TextAreaFor(m => m.Comment, new { @class = "span4", rows = 5 })
+    @Html.ValidationMessageFor(m => m.Comment)
+  </div>
+  
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+}

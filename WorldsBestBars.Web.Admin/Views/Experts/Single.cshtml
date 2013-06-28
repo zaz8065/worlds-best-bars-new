@@ -1,0 +1,91 @@
+﻿@model ExpertDetail
+<div class="container">
+  <h1>@Model.Name</h1>
+
+  <div class="row">
+    <dl class="span6">
+      <dt>Name</dt>
+      <dd>@Model.Name</dd>
+
+      <dt>Title</dt>
+      <dd>@Model.Title</dd>
+
+      @if (!string.IsNullOrEmpty(Model.Website))
+      {
+        <dt>Website</dt>
+        <dd><a href="@Model.Website" target="_blank">@Model.Website</a></dd>
+      }
+
+      <dt>Biography</dt>
+      <dd>@Html.Markdown(Model.Biography)</dd>
+    </dl>
+    <div class="span6">
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#reviews" data-toggle="tab">Reviews</a></li>
+        @if (Model.Images.Any())
+        {
+          <li><a href="#media" data-toggle="tab">Media</a></li>
+        }
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane active" id="reviews">
+          <h2>Existing Reviews <a href="#create-dialog" role="button" class="btn" data-toggle="modal">New review</a></h2>
+
+          @if (Model.Reviews.Any())
+          {
+            foreach (var review in Model.Reviews)
+            {
+            <blockquote>
+              <a href="/experts/@Model.Id/delete-review/@review.Id" class="btn btn-danger pull-right btn-mini">Delete</a>
+              @Html.Markdown(review.Comment)
+
+              <small><a href="/bar/@review.BarId">@review.BarName</a> <cite>@review.Created.ToString("MMMM d, yyyy")</cite></small>
+            </blockquote>
+            }
+          }
+        </div>
+        @if (Model.Images.Any())
+        {
+          <div class="tab-pane" id="media">
+            <div class="carousel slide" data-interval="2000">
+              <div class="carousel-inner">
+                @{{
+                    var first = true;
+                    foreach (var image in Model.Images)
+                    {
+                  <div class="item@(first ? " active" : string.Empty)">
+                    <img src="@image" />
+                  </div>
+                  
+                      first = false;
+                    }
+                  }}
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+  <div class="form-actions">
+    <a class="btn btn-primary" href="/experts/@Model.Id/update">Update</a>
+    @if (Model.IsActive)
+    {
+      <a class="btn" href="/experts/@Model.Id/deactivate">Deactivate</a>
+    }
+    else
+    {
+      <a class="btn" href="/experts/@Model.Id/activate">Activate</a>
+    }
+  </div>
+</div>
+
+<!-- Modal -->
+<div id="create-dialog" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="dialog-title" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="dialog-title">Create a new expert review for @Model.Name</h3>
+  </div>
+
+  @Html.Action("CreateReview")
+</div>

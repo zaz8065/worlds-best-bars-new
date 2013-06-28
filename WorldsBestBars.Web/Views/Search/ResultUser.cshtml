@@ -1,0 +1,14 @@
+﻿@model WorldsBestBars.Model.SearchResult
+@{
+  var expert = WorldsBestBars.Web.Cache.Users.Instance.GetById(Model.Id);
+}
+<div class="results expert">
+  <a href="@("/" + expert.Url)">
+    <img src="@Url.GetFirstMedia(expert.Id, "245x165.orig")" width="245" height="165" alt="@expert.Name" /></a>
+  <h3>
+    <a href="@("/" + expert.Url)">@expert.Name</a></h3>
+  <div>
+    <p>@expert.Biography</p>
+    ...<a href="@("/" + expert.Url)">Read More</a>
+  </div>
+</div>

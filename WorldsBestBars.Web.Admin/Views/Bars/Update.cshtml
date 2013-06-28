@@ -1,0 +1,339 @@
+﻿@model UpdateBarModel
+<div class="container update bar">
+  @if (ViewBag.IsNew)
+  {
+    <h1>Create</h1>
+  }
+  else
+  {
+    <h1>Update</h1>
+  }
+  <form action="@Request.Url.AbsolutePath" method="post" enctype="multipart/form-data">
+    <div class="row">
+      <div class="span6">
+        <dl>
+          <dt>Name</dt>
+          <dd>@Html.TextBoxFor(model => model.Name, new { @class = "input-block-level" })</dd>
+
+          <dt>Url Key</dt>
+          <dd>@Html.TextBoxFor(model => model.UrlKey, new { @class = "input-block-level" })</dd>
+
+          <dt>@Html.LabelFor(model => model.Location)</dt>
+          <dd>
+            <span class="input-append">
+              <input type="text" data-type="location-search" data-target="Location" value="@ViewBag.LocationName" />
+              <button class="btn"><i class="icon-remove"></i></button>
+            </span>
+            @Html.HiddenFor(model => model.Location)
+          </dd>
+
+          <dt>Intro</dt>
+          <dd>@Html.TextAreaFor(model => model.Intro, new { @class = "input-block-level", rows = 5 })</dd>
+
+          <dt>Description</dt>
+          <dd>@Html.TextAreaFor(model => model.Description, new { @class = "input-block-level", rows = 10 })</dd>
+
+          <dt>Email</dt>
+          <dd>@Html.TextBoxFor(model => model.Email, new { type = "email", @class = "input-block-level" })</dd>
+
+          <dt>Website</dt>
+          <dd>@Html.TextBoxFor(model => model.Website, new { type = "url", @class = "input-block-level" })</dd>
+
+          <dt>Phone</dt>
+          <dd>@Html.TextBoxFor(model => model.Phone, new { type = "tel", @class = "input-block-level" })</dd>
+
+          <dt>Fax</dt>
+          <dd>@Html.TextBoxFor(model => model.Fax, new { type = "tel", @class = "input-block-level" })</dd>
+
+          <dt>Menu Url</dt>
+          <dd>@Html.TextBoxFor(model => model.MenuUrl, new { type = "url", @class = "input-block-level" })</dd>
+        </dl>
+      </div>
+      <div class="span6">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#map" data-toggle="tab">Map</a></li>
+          <li><a href="#media" data-toggle="tab">Media</a></li>
+          @if (!ViewBag.IsNew)
+          {
+            <li><a href="#reviews" data-toggle="tab">Reviews</a></li>
+          }
+          <li><a href="#related" data-toggle="tab">Related</a></li>
+          <li><a href="#features" data-toggle="tab">Features</a></li>
+          <li><a href="#opening-times" data-toggle="tab">Opening Times</a></li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="map">
+            @Html.HiddenFor(model => model.Geo)
+            <div id="map-canvas"></div>
+            <div>
+              <dl class="dl-horizontal">
+                <dt>@Html.LabelFor(model => model.AddressLine1, "Address")</dt>
+                <dd>@Html.TextBoxFor(model => model.AddressLine1)</dd>
+
+                <dt>@Html.LabelFor(model => model.AddressLine2, "")</dt>
+                <dd>@Html.TextBoxFor(model => model.AddressLine2)</dd>
+
+                <dt>@Html.LabelFor(model => model.AddressCity, "City")</dt>
+                <dd>@Html.TextBoxFor(model => model.AddressCity)</dd>
+
+                <dt>@Html.LabelFor(model => model.AddressPostcode, "Postcode")</dt>
+                <dd>@Html.TextBoxFor(model => model.AddressPostcode)</dd>
+
+                <dt>@Html.LabelFor(model => model.AddressCountry, "Country")</dt>
+                <dd>@Html.TextBoxFor(model => model.AddressCountry)</dd>
+
+                <dt>&nbsp;</dt>
+                <dd>
+                  <button onclick="lookupAddress();return false;" class="btn">Lookup</button></dd>
+              </dl>
+            </div>
+          </div>
+          <div class="tab-pane" id="media">
+            @if (Model != null && Model.Images != null && Model.Images.Any())
+            {
+              foreach (var image in Model.Images)
+              {
+              <div class="image">
+                <img src="@image" />
+                <input type="hidden" name="Images" value="@image" />
+                <label>
+                  <input type="checkbox" />
+                  Delete?</label>
+              </div>
+              }
+            }
+            <input type="file" name="MediaUpload" id="MediaUpload" multiple="multiple" />
+          </div>
+          @if (!ViewBag.IsNew)
+          {
+            <div class="tab-pane" id="reviews">reviews</div>
+          }
+          <div class="tab-pane" id="related">related</div>
+          <div class="tab-pane" id="features">
+            <div class="list">
+              @Html.EditorFor(model => model.Features)
+            </div>
+
+            <p><a href="#" class="btn btn-small add"><i class="icon-plus"></i></a></p>
+          </div>
+          <script type="text/x-handlebars-template" id="add-feature-tpl">
+            <div>
+              <a href="#" class="btn remove pull-right"><i class="icon-minus"></i></a>
+
+              <input id="Features_0__Id" name="Features[0].Id" type="hidden" value="00000000-0000-0000-0000-000000000000" />
+
+              <label for="Features_0__Name">Name</label>
+              <input id="Features_0__Name" name="Features[0].Name" type="text" value="" />
+
+              <label for="Features_0__Details">Details</label>
+              <textarea class="input-block-level" cols="20" id="Features_0__Details" name="Features[0].Details" rows="5"></textarea>
+
+              <label for="Features_0__Extra">Extra</label>
+              <textarea class="input-block-level" cols="20" id="Features_0__Extra" name="Features[0].Extra" rows="3"></textarea>
+
+              <label for="Features_0__Type">Type</label>
+              <select id="Features_0__Type" name="Features[0].Type">
+                <option value="signature-cocktail">Signature Cocktail</option>
+                <option selected="selected" value="regular-feature">Regular Feature</option>
+              </select>
+
+              <label for="Features_0__Sponsor">Sponsor</label>
+              <select id="Features_0__Sponsor" name="Features[0].Sponsor">
+                <option value="">Select...</option>
+                <option value="absolut">Absolut</option>
+                <option value="beefeater">Beefeater</option>
+                <option value="chivas">Chivas</option>
+                <option value="havana-club">Havana Club</option>
+                <option value="jameson">Jameson</option>
+              </select>
+
+              <label for="Features_0__IsActive">IsActive</label>
+              <input id="Features_0__IsActive" name="Features[0].IsActive" type="checkbox" value="true" /><input name="Features[0].IsActive" type="hidden" value="false" />
+
+              <label for="Features_0__File">File</label>
+              <input id="Features_0__File" name="Features[0].File" type="file" />
+              <hr />
+            </div>
+          </script>
+          <div class="tab-pane" id="opening-times">
+            <div class="list">
+              @Html.EditorFor(model => model.OpenHours)
+            </div>
+
+            <p><a href="#" class="btn btn-small add"><i class="icon-plus"></i></a></p>
+          </div>
+          <script type="text/x-handlebars-template" id="add-open-hour-tpl">
+            <div>
+              <select id="OpenHours_XX__Day" name="OpenHours[XX].Day">
+                <option value="0">Sunday</option>
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thursday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+              </select>
+              <input class="input-small" id="OpenHours_XX__Open" name="OpenHours[XX].Open" type="time" value="">
+              <input class="input-small" id="OpenHours_XX__Close" name="OpenHours[XX].Close" type="time" value="">
+              <a href="#" class="btn remove"><i class="icon-minus"></i></a>
+            </div>
+          </script>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="reset" class="btn">Reset</button>
+        @if (!ViewBag.IsNew)
+        {
+          if (Model.IsActive)
+          {
+          <a href="/bars/@Request.RequestContext.RouteData.Values["id"]/activate/false" class="btn btn-warning">Deactivate</a>
+          }
+          else
+          {
+          <a href="/bars/@Request.RequestContext.RouteData.Values["id"]/activate/true" class="btn btn-warning">Activate</a>
+          }
+        }
+      </div>
+    </div>
+  </form>
+</div>
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script>
+  var map, marker;
+  var geocoder = new google.maps.Geocoder();
+  
+  var markerOptions;
+
+  var dropMarker = function() {
+    markerOptions.map = map;
+    marker = new google.maps.Marker(markerOptions);
+
+    google.maps.event.addListener(marker, 'dragend', function(e) {
+      updatePosition(e.latLng);
+    });
+  };
+
+  var updatePosition = function(ll) {
+    $('#Geo').val([ll.lat(), ll.lng()].join(','));
+  };
+
+  function initialize() {
+    var mapOptions = {
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+
+    @if (Model != null && Model.Geo != null)
+    {<text>
+    mapOptions.center = new google.maps.LatLng(@Model.Geo.Lat, @Model.Geo.Long);
+    mapOptions.zoom = 16;
+
+    markerOptions = {
+      position: mapOptions.center,
+      draggable: true
+    };
+    </text>}
+    else
+    {<text>
+    mapOptions.center = new google.maps.LatLng(0, 0);
+    mapOptions.zoom = 1;
+    </text>}
+
+    map = new google.maps.Map(document.getElementById('map-canvas'),
+        mapOptions);
+
+    if (markerOptions) {
+      markerOptions.map = map;
+
+      dropMarker();
+    }
+    else {
+      google.maps.event.addListener(map, 'click', function(e) {        
+        if (!marker) {
+          var markerOptions = { 
+            map: map,
+            position: e.latLng,
+            draggable: true
+          };
+
+          dropMarker();
+
+          updatePosition(e.latLng);
+        }
+      });
+    }
+  }
+
+  var markerHints = [];
+
+  var clearMarkerHints = function () {
+    if (markerHints.length > 0) {
+      $(markerHints).each(function (index, element) {
+        element.setMap(null);
+      });
+    }
+
+    markerHints = [];
+  };
+
+  var selectMarkerHint = function(selection) {
+    var ll = selection.getPosition();
+    if (!marker) {
+      var markerOptions = { 
+        map: map,
+        position: ll,
+        draggable: true
+      };
+
+      dropMarker();
+    }
+    else {
+      marker.setPosition(ll);
+    }
+
+    updatePosition(ll);
+
+    clearMarkerHints();
+  };
+
+  var lookupAddress = function () {
+    var search = $('#AddressLine1').val() + ' ' + $('#AddressLine2').val() + ' ' + $('#AddressCity').val() + ' ' + $('#AddressCountry').val();
+    var request = { 'address': search };
+    geocoder.geocode(request, function (results, status) {
+      if (results.length > 0) {
+        var bounds = new google.maps.LatLngBounds();
+
+        clearMarkerHints();
+
+        $(results).each(function (index, element) {
+          var latlng = element.geometry.location;
+          bounds.extend(latlng);
+
+          var _marker = new google.maps.Marker({
+            position: latlng,
+            draggable: false,
+            map: map,
+            flat: true
+          });
+
+          google.maps.event.addListener(_marker, 'click', function (event) {
+            selectMarkerHint(_marker);
+          });
+
+          markerHints.push(_marker);
+        });
+
+        map.fitBounds(bounds);
+      }
+      else {
+        alert('Nothing was found for the specified address');
+      }
+    });
+  };
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>

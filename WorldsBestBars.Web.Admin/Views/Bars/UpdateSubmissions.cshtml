@@ -1,0 +1,19 @@
+﻿@model IEnumerable<BarUpdateSubmission>
+
+<div class="container">
+  <h1>Updates</h1>
+  @if (Model.Any())
+  {
+    foreach (var entity in Model)
+    {
+    <div class="span9">
+      <h2>@entity.Name <small>@entity.Created.ToString("MMMM d, yyyy")</small></h2>
+      <p><a href="/bars/submissions/update/@entity.Id" class="btn">More</a></p>
+    </div>
+    }
+  }
+  else
+  {
+    <p>There's no pending bar update submissions at the moment.</p>
+  }
+</div>

@@ -1,0 +1,18 @@
+﻿@model System.Guid
+@{
+  var crumbs = Helper.Breadcrumbs(Model);
+}
+<ul>
+  <li class="first"><a href="@("/")">Home</a></li>
+  @foreach (var crumb in crumbs)
+  {
+    if (crumbs.IndexOf(crumb) == crumbs.Count - 1)
+    {
+    <li class="last">@crumb.Name</li>
+    }
+    else
+    {
+    <li><a href="@("/" + crumb.Url)">@crumb.Name</a></li>
+    }
+  }
+</ul>

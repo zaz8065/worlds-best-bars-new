@@ -1,0 +1,11 @@
+﻿@model string
+<ul class="progress">
+  <li>@Html.ActionLink("Pictures", "EditPictures", new { }, new { @class = Model == "pictures" ? "active" : string.Empty })</li>
+  <li>@Html.ActionLink("Opening", "EditOpenHours", new { }, new { @class = Model == "opening" ? "active" : string.Empty })</li>
+  <li>@Html.ActionLink("Menus", "EditMenus", new { }, new { @class = Model == "menus" ? "active" : string.Empty })</li>
+  <li>@Html.ActionLink("Contact", "EditContactDetails", new { }, new { @class = Model == "contact" ? "active" : string.Empty })</li>
+  <li>@Html.ActionLink("Type of Bar", "EditType", new { }, new { @class = Model == "type" ? "active" : string.Empty })</li>
+  <li>@Html.ActionLink("Features", "EditFeatures", new { }, new { @class = Model == "features" ? "active" : string.Empty })</li>
+  <li>@Html.ActionLink("Signature Cocktail", "EditSignatureCocktail", new { }, new { @class = Model == "signature-cocktail" ? "active" : string.Empty })</li>
+  <li>@Html.ActionLink("Accreditations", "Accreditations", new { }, new { @class = Model == "accreditations" ? "active" : string.Empty })</li>
+</ul>

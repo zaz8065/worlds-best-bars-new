@@ -1,0 +1,15 @@
+﻿@model IEnumerable<WorldsBestBars.Model.Location>
+@{
+  ViewBag.Title = "All Cities";
+}
+<div id="generic" class="wb">
+    <div class="lists" >
+    <h2>All Cities</h2>
+    <p>
+      @foreach (var location in Model)
+      {
+        <a href="@("/" + location.Url)">@location.Name</a>
+      }
+    </p>
+    </div>
+</div>

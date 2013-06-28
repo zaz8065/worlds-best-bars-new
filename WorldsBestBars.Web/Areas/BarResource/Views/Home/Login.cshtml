@@ -1,0 +1,51 @@
+﻿@model Login
+<div class="step step-one">
+    <h1>Step 1</h1>
+    <h2>Login</h2>
+    <div class="left">
+        <p>
+            <strong>Welcome to the Resources Site of World's Best Bars. We try to keep our listings
+        as up to date as possible but there are a whole lot of bars out there and we could
+        use your help to make your page on the site look its best. Here you can ensure your
+        contact details are correct and show our readers the best your bar has to offer.
+        Our Features Section will allow you to keep us (and them) posted about any special
+        events or menu changes.</strong>
+        </p>
+        <p>
+            Obviously we need to remain impartial, so everything will need to be verified by
+      us, but we'll be happy to update your details. If you’ve made any changes to your
+      venue we should be aware of, then this is your chance to let us know.
+        </p>
+        <p>
+            To get started, log in below and search for your bar on the site. Alternatively,
+      if you're submitting a new bar, click on the button above.
+        </p>
+        <p>
+            Once you're happy with your listing you may want to link to us on your website or
+      Facebook page; we have links and logos available to embed in your site.
+        </p>
+    </div>
+    <div class="right">
+        <p>
+            <strong>Login below if you are already registered.</strong> If you need to register, please go to the main <a href="http://www.worldsbestbars.com">World's Best Bars site</a> and click on the regsiter button in the top right corner..
+        </p>
+        @using (Html.BeginForm())
+        {
+            @Html.LabelFor(model => model.Username)
+            @Html.EditorFor(model => model.Username)
+            @Html.ValidationMessageFor(model => model.Username)
+
+            @Html.LabelFor(model => model.Password)
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+
+            if (ViewBag.Redirect != null)
+            {
+            <input type="hidden" name="redirect" value="@ViewBag.Redirect" />
+            } 
+
+            <input type="submit" value="Login" />
+        }
+    </div>
+    <div class="clear"></div>
+</div>

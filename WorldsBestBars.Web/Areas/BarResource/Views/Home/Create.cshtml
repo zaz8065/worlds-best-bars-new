@@ -1,0 +1,40 @@
+﻿@model CreateBar
+@{
+  ViewBag.Title = "Create";
+}
+
+<div class="step-two create">
+  <div class="step">
+    <h1>Step 3</h1>
+    <h2>Submit your bar</h2>
+    @using (Html.BeginForm("Create", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+      <div class="form">
+        @Html.LabelFor(model => model.Name, "Let's start with the name of your bar...")
+        @Html.TextBoxFor(model => model.Name)
+        @Html.ValidationMessageFor(model => model.Name)
+        @Html.LabelFor(model => model.ContactName, "We'll need your name...")
+        @Html.TextBoxFor(model => model.ContactName)
+        @Html.ValidationMessageFor(model => model.ContactName)
+        @Html.LabelFor(model => model.ContactEmail, "... and your email address...")
+        @Html.TextBoxFor(model => model.ContactEmail)
+        @Html.ValidationMessageFor(model => model.ContactEmail)
+        @Html.LabelFor(model => model.Location, "Where is your bar?")
+        @Html.TextBoxFor(model => model.Location)
+        @Html.ValidationMessageFor(model => model.Location)
+        @Html.LabelFor(model => model.Reasoning, "Finally, tell us why you think your bar is one of the World's Best...")
+        @Html.TextAreaFor(model => model.Reasoning)
+        @Html.ValidationMessageFor(model => model.Reasoning)
+
+        <div class="upload">
+          <input type="file" name="files[]" multiple />
+        </div>
+        @Html.ValidationMessage("Upload")
+
+        <div class="controls">
+          <input type="submit" value="Create" />
+        </div>
+      </div>
+    }
+  </div>
+</div>

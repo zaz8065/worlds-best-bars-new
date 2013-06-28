@@ -1,0 +1,31 @@
+﻿@model IEnumerable<WorldsBestBars.Model.Bar>
+<table>
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var bar in Model)
+    {
+      if (bar.Geo != null)
+      {
+      <tr data-id="@bar.Id" data-name="@bar.Name" data-lat="@bar.Geo.Lat" data-lng="@bar.Geo.Long">
+        <td>
+          <a href="#" class="action" data-action="edit-bar" data-id="@bar.Id">@bar.Name</a>
+        </td>
+      </tr>
+      }
+      else
+      {
+      <tr data-id="@bar.Id" data-name="@bar.Name">
+        <td>
+          <a href="#" class="action" data-action="edit-bar" data-id="@bar.Id">@bar.Name</a>
+        </td>
+      </tr>
+      }
+    }
+  </tbody>
+</table>

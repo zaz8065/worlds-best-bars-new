@@ -1,0 +1,49 @@
+﻿@model UpdateCategory
+
+<div class="container">
+  @if (Request.RequestContext.RouteData.Values["id"] == null)
+  {
+    <h1>Create a new list</h1>
+  }
+  else
+  {
+    <h1>@Model.Name</h1>
+  }
+
+  <form action="@Request.Url.AbsolutePath" method="post" enctype="multipart/form-data">
+    @Html.ValidationSummary(true)
+
+    <dl>
+      <dt>
+        @Html.LabelFor(model => model.Name)
+      </dt>
+      <dd>
+        <div class="control-group @(ViewContext.ViewData.ModelState.ContainsKey("Key") ? "error" : null)">
+          @Html.EditorFor(model => model.Name)
+          @Html.ValidationMessageFor(model => model.Name, "Required", new { @class = "help-inline" })
+        </div>
+      </dd>
+
+      <dt>
+        @Html.LabelFor(model => model.Key)
+      </dt>
+      <dd>
+        <div class="control-group @(ViewContext.ViewData.ModelState.ContainsKey("Key") ? "error" : null)">
+          @Html.TextBoxFor(model => model.Key)
+          @Html.ValidationMessageFor(model => model.Key, "Required", new { @class = "help-inline" })
+        </div>
+      </dd>
+
+      <dt>
+        @Html.LabelFor(model => model.Group)
+      </dt>
+      <dd>
+        @Html.DropDownListFor(model => model.Group, (new string[] { "Style", "Speciality", "Good for" }).Select(e => new SelectListItem { Value = e, Text = e }), "Select...")
+      </dd>
+    </dl>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <button class="btn" type="reset">Reset</button>
+    </div>
+  </form>
+</div>

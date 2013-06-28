@@ -1,0 +1,793 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6D90241D-8878-470E-8A1A-D44588EAB2A9}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>WorldsBestBars.Web</RootNamespace>
+    <AssemblyName>WorldsBestBars.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\WebGrease.1.0.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.0.1\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Configuration">
+      <HintPath>..\packages\Autofac.3.0.1\lib\net40\Autofac.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Autofac.Integration.Mvc">
+      <HintPath>..\packages\Autofac.Mvc4.3.0.0\lib\net40\Autofac.Integration.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="BM.Common.Web">
+      <HintPath>..\packages\common-web.1.0.10.0\lib\net45\BM.Common.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet">
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core">
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Common">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Common.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer">
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty">
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0-rc\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="MarkdownDeep">
+      <HintPath>..\packages\MarkdownDeep.NET.1.5\lib\.NetFramework 3.5\MarkdownDeep.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.SqlServer.Types, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft SQL Server\110\SDK\Assemblies\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="RouteDebugger">
+      <HintPath>..\packages\routedebugger.2.1.3\lib\net40\RouteDebugger.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0-beta3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.20505.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.20505.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20505.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20505.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20505.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20505.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.0.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutofacConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AuthController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DialogsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HtmlController.cs" />
+    <Compile Include="Areas\Admin\Controllers\JSONController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProcessController.cs" />
+    <Compile Include="Areas\BarResource\BarResourceAreaRegistration.cs" />
+    <Compile Include="Areas\BarResource\Controllers\HomeController.cs" />
+    <Compile Include="Areas\BarResource\Models\CreateBar.cs" />
+    <Compile Include="Areas\BarResource\Models\EditBarContainer.cs" />
+    <Compile Include="Areas\BarResource\Models\Login.cs" />
+    <Compile Include="Controllers\AdController.cs" />
+    <Compile Include="Controllers\ContentController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\JSONController.cs" />
+    <Compile Include="Controllers\ProcessController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LostPasswordModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Content Include="apple-touch-icon.png" />
+    <Content Include="Areas\Admin\Content\css\jquery.jscrollpane.css" />
+    <Content Include="Areas\Admin\Content\css\jquery.ui.selectmenu.css" />
+    <Content Include="Areas\Admin\Content\css\jquery.ui.timepicker.css" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-bg_glass_15_5f391b_1x400.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-bg_gloss-wave_20_1c160d_500x100.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-bg_gloss-wave_25_453326_500x100.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-bg_gloss-wave_30_44372c_500x100.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-bg_highlight-soft_20_201913_1x100.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-bg_highlight-soft_20_619226_1x100.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-bg_inset-soft_10_201913_1x100.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-icons_222222_256x240.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-icons_9bcc60_256x240.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-icons_add978_256x240.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-icons_e3ddc9_256x240.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-icons_f1fd86_256x240.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Areas\Admin\Content\css\mint-choc\jquery-ui-1.8.17.css" />
+    <Content Include="Areas\Admin\Content\css\nyroModal.css" />
+    <Content Include="Areas\Admin\Content\css\style-jstree.css" />
+    <Content Include="Areas\Admin\Content\css\style.css" />
+    <Content Include="Areas\Admin\Content\css\ui.timepickr.css" />
+    <Content Include="Areas\Admin\Content\img\ajaxLoader.gif" />
+    <Content Include="Areas\Admin\Content\img\close.gif" />
+    <Content Include="Areas\Admin\Content\img\jstree\d.gif" />
+    <Content Include="Areas\Admin\Content\img\jstree\d.png" />
+    <Content Include="Areas\Admin\Content\img\jstree\file.png" />
+    <Content Include="Areas\Admin\Content\img\jstree\throbber.gif" />
+    <Content Include="Areas\Admin\Content\img\next.gif" />
+    <Content Include="Areas\Admin\Content\img\prev.gif" />
+    <Content Include="Areas\Admin\Content\js\actions\CreateBarAction.js" />
+    <Content Include="Areas\Admin\Content\js\actions\ManageAdvertsAction.js" />
+    <Content Include="Areas\Admin\Content\js\actions\ManageDocumentsAction.js" />
+    <Content Include="Areas\Admin\Content\js\actions\ManageExpertsAction.js" />
+    <Content Include="Areas\Admin\Content\js\actions\ManageListsAction.js" />
+    <Content Include="Areas\Admin\Content\js\actions\ManageLocationsAction.js" />
+    <Content Include="Areas\Admin\Content\js\actions\ModerateBarResourceSubmissions.js" />
+    <Content Include="Areas\Admin\Content\js\actions\ModerateReviewsAction.js" />
+    <Content Include="Areas\Admin\Content\js\libs\jquery-1.6.2.js" />
+    <Content Include="Areas\Admin\Content\js\libs\jquery-1.6.2.min.js">
+      <DependentUpon>jquery-1.6.2.js</DependentUpon>
+    </Content>
+    <Content Include="Areas\Admin\Content\js\libs\modernizr-2.0.6.min.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\.gitignore" />
+    <Content Include="Areas\Admin\Content\js\mylibs\beautify-html.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jcarousellite_1.0.1.min.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery-ui-1.8.17.min.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.anchorHandler.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.cookie.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.hotkeys.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.jcarousel.min.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.jscrollpane.min.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.jstree.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.mousewheel.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.nyroModal.custom.min.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.strings.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.ui.selectmenu.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.ui.timepicker.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.utils.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\jquery.utils.ui.min.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\markerclusterer.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\ui.timepickr.js" />
+    <Content Include="Areas\Admin\Content\js\mylibs\webtoolkit.aim.js" />
+    <Content Include="Areas\Admin\Content\js\plugins.js" />
+    <Content Include="Areas\Admin\Content\js\script.js" />
+    <Content Include="Areas\BarResource\Content\css\base.css" />
+    <Content Include="Areas\BarResource\Content\css\site.css" />
+    <Content Include="Areas\BarResource\Content\js\site.js" />
+    <Content Include="Content\css\global.css" />
+    <Content Include="Content\css\ie6.css" />
+    <Content Include="Content\css\ie7.css" />
+    <Content Include="Content\css\ie8.css" />
+    <Content Include="Content\css\ie9.css" />
+    <Content Include="Content\css\mobile.css" />
+    <Content Include="Content\css\print.css" />
+    <Content Include="Content\css\rateit.css" />
+    <Content Include="Content\flash\flashloader.swf" />
+    <Content Include="Content\gfx\ads\absolutvodka.png" />
+    <Content Include="Content\gfx\ads\ballantines.png" />
+    <Content Include="Content\gfx\ads\beefeater.png" />
+    <Content Include="Content\gfx\ads\havana.png" />
+    <Content Include="Content\gfx\ads\jameson.png" />
+    <Content Include="Content\gfx\background\mob_background.png" />
+    <Content Include="Content\gfx\buttons\bars_near_me_dn.png" />
+    <Content Include="Content\gfx\buttons\bars_near_me_over.png" />
+    <Content Include="Content\gfx\buttons\bars_near_me_sprite.png" />
+    <Content Include="Content\gfx\buttons\bars_near_me_up.png" />
+    <Content Include="Content\gfx\buttons\experts_choice_dn.png" />
+    <Content Include="Content\gfx\buttons\experts_choice_over.png" />
+    <Content Include="Content\gfx\buttons\experts_choice_sprite.png" />
+    <Content Include="Content\gfx\buttons\experts_choice_up.png" />
+    <Content Include="Content\gfx\buttons\facebook.png" />
+    <Content Include="Content\gfx\buttons\list_dn.png" />
+    <Content Include="Content\gfx\buttons\list_over.png" />
+    <Content Include="Content\gfx\buttons\list_sprite.png" />
+    <Content Include="Content\gfx\buttons\list_up.png" />
+    <Content Include="Content\gfx\buttons\map_dn.png" />
+    <Content Include="Content\gfx\buttons\map_over.png" />
+    <Content Include="Content\gfx\buttons\map_sprite.png" />
+    <Content Include="Content\gfx\buttons\map_up.png" />
+    <Content Include="Content\gfx\buttons\most_talked_dn-alt.png" />
+    <Content Include="Content\gfx\buttons\most_talked_dn.png" />
+    <Content Include="Content\gfx\buttons\most_talked_over-alt.png" />
+    <Content Include="Content\gfx\buttons\most_talked_over.png" />
+    <Content Include="Content\gfx\buttons\most_talked_sprite.png" />
+    <Content Include="Content\gfx\buttons\most_talked_up-alt.png" />
+    <Content Include="Content\gfx\buttons\most_talked_up.png" />
+    <Content Include="Content\gfx\buttons\panel_next_up.png" />
+    <Content Include="Content\gfx\buttons\post.png" />
+    <Content Include="Content\gfx\buttons\readers_top_100_dn.png" />
+    <Content Include="Content\gfx\buttons\readers_top_100_over.png" />
+    <Content Include="Content\gfx\buttons\readers_top_100_sprite.png" />
+    <Content Include="Content\gfx\buttons\readers_top_100_up.png" />
+    <Content Include="Content\gfx\buttons\searchbox.jpg" />
+    <Content Include="Content\gfx\buttons\searchbutton_over.jpg" />
+    <Content Include="Content\gfx\buttons\searchbutton_up.jpg" />
+    <Content Include="Content\gfx\buttons\search_btn.png" />
+    <Content Include="Content\gfx\buttons\share.png" />
+    <Content Include="Content\gfx\buttons\show_on_map.png" />
+    <Content Include="Content\gfx\buttons\show_on_map2.png" />
+    <Content Include="Content\gfx\buttons\submit_dn.png" />
+    <Content Include="Content\gfx\buttons\submit_over.png" />
+    <Content Include="Content\gfx\buttons\submit_sprite.png" />
+    <Content Include="Content\gfx\buttons\submit_up.png" />
+    <Content Include="Content\gfx\buttons\twitter.png" />
+    <Content Include="Content\gfx\buttons\where_is_everyone_dn.png" />
+    <Content Include="Content\gfx\buttons\where_is_everyone_over.png" />
+    <Content Include="Content\gfx\buttons\where_is_everyone_sprite.png" />
+    <Content Include="Content\gfx\buttons\where_is_everyone_up.png" />
+    <Content Include="Content\gfx\logo\mob_wbb_logo.jpg" />
+    <Content Include="Content\gfx\logo\search_results_title.png" />
+    <Content Include="Content\img\backgrounds\WBB_Home_followus_01.jpg" />
+    <Content Include="Content\img\backgrounds\WBB_Home_followus_01.png" />
+    <Content Include="Content\img\bar-detail\3stars.png" />
+    <Content Include="Content\img\bar-detail\4stars.png" />
+    <Content Include="Content\img\bar-detail\add-review-btn.png" />
+    <Content Include="Content\img\bar-detail\big-gold-star.jpg" />
+    <Content Include="Content\img\bar-detail\big-grey-star.jpg" />
+    <Content Include="Content\img\bar-detail\big_close_btn_03.png" />
+    <Content Include="Content\img\bar-detail\blk-bg-small_10.jpg" />
+    <Content Include="Content\img\bar-detail\blk-bg.jpg" />
+    <Content Include="Content\img\bar-detail\breadcrumbs_01.gif" />
+    <Content Include="Content\img\bar-detail\breadcrumbs_03.gif" />
+    <Content Include="Content\img\bar-detail\breadcrumbs_inner_02.gif" />
+    <Content Include="Content\img\bar-detail\breadcrumb_02.gif" />
+    <Content Include="Content\img\bar-detail\breadcrumb_04.gif" />
+    <Content Include="Content\img\bar-detail\categories_recommended.jpg" />
+    <Content Include="Content\img\bar-detail\categories_speciality.jpg" />
+    <Content Include="Content\img\bar-detail\categories_style.jpg" />
+    <Content Include="Content\img\bar-detail\delete.gif" />
+    <Content Include="Content\img\bar-detail\delicious-icon.gif" />
+    <Content Include="Content\img\bar-detail\digg-icon.gif" />
+    <Content Include="Content\img\bar-detail\email-icon.gif" />
+    <Content Include="Content\img\bar-detail\expertschoice-barheader.jpg" />
+    <Content Include="Content\img\bar-detail\facebook-btn.gif" />
+    <Content Include="Content\img\bar-detail\features.png" />
+    <Content Include="Content\img\bar-detail\icon-rateit-delete.gif" />
+    <Content Include="Content\img\bar-detail\icon-rateit-star.png" />
+    <Content Include="Content\img\bar-detail\info.png" />
+    <Content Include="Content\img\bar-detail\left-breadcrumb.gif" />
+    <Content Include="Content\img\bar-detail\menu.png" />
+    <Content Include="Content\img\bar-detail\print-icon.gif" />
+    <Content Include="Content\img\bar-detail\read-review.png" />
+    <Content Include="Content\img\bar-detail\reddit-icon.gif" />
+    <Content Include="Content\img\bar-detail\reply_btn.gif" />
+    <Content Include="Content\img\bar-detail\reply_btn_over.jpg" />
+    <Content Include="Content\img\bar-detail\reply_btn_submit.jpg" />
+    <Content Include="Content\img\bar-detail\right-breadcrumb.gif" />
+    <Content Include="Content\img\bar-detail\share-button.gif" />
+    <Content Include="Content\img\bar-detail\signature-drink.png" />
+    <Content Include="Content\img\bar-detail\small-gold-star.jpg" />
+    <Content Include="Content\img\bar-detail\small-grey-star.jpg" />
+    <Content Include="Content\img\bar-detail\star-black-bg.gif" />
+    <Content Include="Content\img\bar-detail\star.gif" />
+    <Content Include="Content\img\bar-detail\stumble-upon-icon.gif" />
+    <Content Include="Content\img\bar-detail\top-100-blk-bg.gif" />
+    <Content Include="Content\img\bar-detail\top100-barheader.jpg" />
+    <Content Include="Content\img\bar-detail\twitter-btn.gif" />
+    <Content Include="Content\img\bar-detail\white-bg_73.jpg" />
+    <Content Include="Content\img\branding\absolut.png" />
+    <Content Include="Content\img\branding\beefeater.png" />
+    <Content Include="Content\img\branding\chivas.png" />
+    <Content Include="Content\img\branding\havana-club.png" />
+    <Content Include="Content\img\branding\jameson.png" />
+    <Content Include="Content\img\elements\2pixl_50per.gif" />
+    <Content Include="Content\img\elements\age_form_select.jpg" />
+    <Content Include="Content\img\elements\age_form_select_bg.jpg" />
+    <Content Include="Content\img\elements\another-ex.jpg" />
+    <Content Include="Content\img\elements\bar-resource\cross-10px-30.png" />
+    <Content Include="Content\img\elements\bar-resource\facebook-certification.jpg" />
+    <Content Include="Content\img\elements\bar-resource\header-cut-off.png" />
+    <Content Include="Content\img\elements\bar-resource\horizontal-banner-1.jpg" />
+    <Content Include="Content\img\elements\bar-resource\horizontal-banner-2.jpg" />
+    <Content Include="Content\img\elements\bar-resource\placeholder.png" />
+    <Content Include="Content\img\elements\bar-resource\square-banner-1.jpg" />
+    <Content Include="Content\img\elements\bar-resource\square-banner-2.jpg" />
+    <Content Include="Content\img\elements\bg-divider-shim.gif" />
+    <Content Include="Content\img\elements\bg-facebook-alternative.jpg" />
+    <Content Include="Content\img\elements\bg_white_w_red_lines.jpg" />
+    <Content Include="Content\img\elements\btn_everything_dn.jpg" />
+    <Content Include="Content\img\elements\btn_everything_up.jpg" />
+    <Content Include="Content\img\elements\btn_just_bars_dn.jpg" />
+    <Content Include="Content\img\elements\btn_just_bars_up.jpg" />
+    <Content Include="Content\img\elements\btn_just_cities_dn.jpg" />
+    <Content Include="Content\img\elements\btn_just_cities_up.jpg" />
+    <Content Include="Content\img\elements\btn_just_features_dn.jpg" />
+    <Content Include="Content\img\elements\btn_just_features_up.jpg" />
+    <Content Include="Content\img\elements\cta_arrow.gif" />
+    <Content Include="Content\img\elements\dark_green_header_box_bg.jpg" />
+    <Content Include="Content\img\elements\email_msg.jpg" />
+    <Content Include="Content\img\elements\email_send.jpg" />
+    <Content Include="Content\img\elements\enter_site.jpg" />
+    <Content Include="Content\img\elements\exp_header_box_bg.jpg" />
+    <Content Include="Content\img\elements\facebook-button.gif" />
+    <Content Include="Content\img\elements\fb-but.jpg" />
+    <Content Include="Content\img\elements\gold-dot.jpg" />
+    <Content Include="Content\img\elements\gold_bg.jpg" />
+    <Content Include="Content\img\elements\green_header_box_bg.jpg" />
+    <Content Include="Content\img\elements\image-ex.gif" />
+    <Content Include="Content\img\elements\join_us_dn.jpg" />
+    <Content Include="Content\img\elements\join_us_up.jpg" />
+    <Content Include="Content\img\elements\login_btn_dn.jpg" />
+    <Content Include="Content\img\elements\login_btn_up.jpg" />
+    <Content Include="Content\img\elements\logo-facebook.jpg" />
+    <Content Include="Content\img\elements\red-arrow-right.gif" />
+    <Content Include="Content\img\elements\red-dot.png" />
+    <Content Include="Content\img\elements\red_header_box_bg.jpg" />
+    <Content Include="Content\img\elements\register_form_field.jpg" />
+    <Content Include="Content\img\elements\right-grey-arrow_03.gif" />
+    <Content Include="Content\img\elements\search-box.gif" />
+    <Content Include="Content\img\elements\search.jpg" />
+    <Content Include="Content\img\elements\search_icons_bars.jpg" />
+    <Content Include="Content\img\elements\search_icons_cities.jpg" />
+    <Content Include="Content\img\elements\search_icons_everything.jpg" />
+    <Content Include="Content\img\elements\search_icons_feature.jpg" />
+    <Content Include="Content\img\elements\search_list_icons_bar.jpg" />
+    <Content Include="Content\img\elements\search_list_icons_cities.jpg" />
+    <Content Include="Content\img\elements\search_list_icons_feature.jpg" />
+    <Content Include="Content\img\elements\test-ad.jpg" />
+    <Content Include="Content\img\elements\twit-but.jpg" />
+    <Content Include="Content\img\elements\twitter-button.gif" />
+    <Content Include="Content\img\elements\video-ex.jpg" />
+    <Content Include="Content\img\for-facebook.jpg" />
+    <Content Include="Content\img\logos\wbb-for-ie.jpg" />
+    <Content Include="Content\img\logos\wbb_logo.png" />
+    <Content Include="Content\img\logos\wbb_logo_black.png" />
+    <Content Include="Content\img\nav\big-but-nav-sprite.png" />
+    <Content Include="Content\img\nav\btn-slider-nav-sprite.gif" />
+    <Content Include="Content\img\nav\icon-key-sprite.gif" />
+    <Content Include="Content\img\nav\next.jpg" />
+    <Content Include="Content\img\nav\prev.jpg" />
+    <Content Include="Content\img\nav\small-but-nav-sprite.png" />
+    <Content Include="Content\img\spinning-globe.gif" />
+    <Content Include="Content\img\sponsor-headers\Berlin_headers.jpg" />
+    <Content Include="Content\img\sponsor-headers\bg-chicago.jpg" />
+    <Content Include="Content\img\sponsor-headers\bg-london.jpg" />
+    <Content Include="Content\img\sponsor-headers\bg-new-york.jpg" />
+    <Content Include="Content\img\sponsor-headers\bg-paris.jpg" />
+    <Content Include="Content\img\sponsor-headers\CityHeaders_plustype_Amsterdam.jpg" />
+    <Content Include="Content\img\sponsor-headers\CityHeaders_plustype_Berlin.jpg" />
+    <Content Include="Content\img\sponsor-headers\CityHeaders_plustype_Edinburgh.jpg" />
+    <Content Include="Content\img\sponsor-headers\CityHeaders_plustype_London.jpg" />
+    <Content Include="Content\img\sponsor-headers\CityHeaders_plustype_NYC.jpg" />
+    <Content Include="Content\img\sponsor-headers\CityHeaders_plustype_Paris.jpg" />
+    <Content Include="Content\img\sponsor-headers\header-absolut.jpg" />
+    <Content Include="Content\img\sponsor-headers\header-ballantines.jpg" />
+    <Content Include="Content\img\sponsor-headers\header-beefeater.jpg" />
+    <Content Include="Content\img\sponsor-headers\header-chivas.jpg" />
+    <Content Include="Content\img\sponsor-headers\header-havana.jpg" />
+    <Content Include="Content\img\sponsor-headers\header-jameson.jpg" />
+    <Content Include="Content\img\sponsor-headers\SanfranciscoHeader_plustype.jpg" />
+    <Content Include="Content\img\sponsor-headers\Seattle_Headerplustype.jpg" />
+    <Content Include="Content\img\sponsor-headers\Shanghai_Headerplustype.jpg" />
+    <Content Include="Content\js\global.js" />
+    <Content Include="Content\js\jquery.rateit.min.js" />
+    <Content Include="Content\js\jquery.scrollTo-1.4.2-min.js" />
+    <Content Include="Content\js\mobile.js" />
+    <Content Include="Content\js\modernizr-2.5.3.min.js" />
+    <Content Include="Content\js\pages\bar.js" />
+    <Content Include="Content\js\pages\document.js" />
+    <Content Include="Content\js\pages\expert.js" />
+    <Content Include="Content\js\pages\experts-choice.js" />
+    <Content Include="Content\js\pages\location-area.js" />
+    <Content Include="Content\js\pages\location.js" />
+    <Content Include="Content\js\pages\most-talked-about.js" />
+    <Content Include="Content\js\pages\search.js" />
+    <Content Include="Content\js\pages\top-100.js" />
+    <Content Include="Content\js\pagination.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="google050e1c5fda1d2c01.html" />
+    <Content Include="google73efdcdb9821818d.html" />
+    <Content Include="robots.txt" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Content\Bar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Content\Document.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Content\Expert.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Content\Location-Area.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Content\Location.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\IE6.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\NotFound.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Error\Problem.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\AboutUs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\AgeGate.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\AllBars.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\AllCities.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\CookiePolicy.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\ExpertsChoice.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\MostTalkedAbout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\PrivacyPolicy.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\TermsAndConditions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Top100.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\MobileResultBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\MobileResultLocation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\MobileResults.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\ResultBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\ResultDocument.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\ResultLocation.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\Results.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Search\ResultUser.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Advert.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Breadcrumbs.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\LoginRegister.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\Related.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\User\Unsubscribe.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WorldsBestBars.Data\WorldsBestBars.Data.csproj">
+      <Project>{c6cbfde1-196b-4821-92a3-0e32934c4920}</Project>
+      <Name>WorldsBestBars.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldsBestBars.Logic\WorldsBestBars.Logic.csproj">
+      <Project>{96a06e35-c095-43bc-a595-6542ae0db1d5}</Project>
+      <Name>WorldsBestBars.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldsBestBars.Model\WorldsBestBars.Model.csproj">
+      <Project>{a8494a8c-7c33-41c6-9226-c0565d05fa9f}</Project>
+      <Name>WorldsBestBars.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldsBestBars.Services\WorldsBestBars.Services.csproj">
+      <Project>{3d46e94e-cff3-40f0-a938-95d7bf1141f0}</Project>
+      <Name>WorldsBestBars.Services</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldsBestBars.Web.Cache\WorldsBestBars.Web.Cache.csproj">
+      <Project>{cb2cf371-0740-46a2-adae-138cac1b04ec}</Project>
+      <Name>WorldsBestBars.Web.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldsBestBars.Web.Mvc\WorldsBestBars.Web.Mvc.csproj">
+      <Project>{0960ae40-aecb-4f9b-8576-aaa750546eb1}</Project>
+      <Name>WorldsBestBars.Web.Mvc</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WorldsBestBars.Web.Search\WorldsBestBars.Web.Search.csproj">
+      <Project>{d6029d6a-32c6-4887-b330-ab0ac44458da}</Project>
+      <Name>WorldsBestBars.Web.Search</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Auth\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dialogs\EditBar.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dialogs\ManageAdverts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dialogs\ManageDocuments.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dialogs\ManageExperts.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dialogs\ManageLists.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dialogs\ManageLocations.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dialogs\Menu.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dialogs\ModerateReviews.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\TableBarPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\TreeBarPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\TreeDocumentPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Shared\TreeLocationPartial.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\Config\log4net.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\GeoIP.dat" />
+    <Content Include="App_Data\GeoLiteCity.dat" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Shared\_Layout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\_ViewStart.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\EditPictures.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\EditOpenHours.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\EditMenus.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\EditContactDetails.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\EditType.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\EditFeatures.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\Progress.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\Accreditations.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\Create.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Admin\Views\Dialogs\ManageBarResourceSubmissions.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\CreateThanks.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\BarResource\Views\Home\EditSignatureCocktail.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\Live.pubxml" />
+    <Content Include="Views\Home\AllArticles.cshtml" />
+    <None Include="Properties\PublishProfiles\Staging.pubxml" />
+    <Content Include="Views\Content\ClosedBar.cshtml" />
+    <Content Include="Views\User\LostPassword.cshtml" />
+    <Content Include="Views\User\LostPasswordSuccess.cshtml" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>14354</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:14100/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

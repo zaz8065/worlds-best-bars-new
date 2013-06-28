@@ -1,0 +1,16 @@
+﻿<div class="container">
+  <h1>Export</h1>
+  @using (Html.BeginForm())
+  {
+    <label for="filter">User filter</label>
+    <input type="text" name="filter" id="filter" />
+    
+    <label for="location-filter">Location filter</label>
+    <input type="text" name="locationFilter" id="location-filter" />
+    
+    <div class="form-actions">
+      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="reset" class="btn">Reset</button>
+    </div>
+  }
+</div>

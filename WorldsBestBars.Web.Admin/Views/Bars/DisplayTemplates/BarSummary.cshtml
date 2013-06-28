@@ -1,0 +1,6 @@
+﻿@model BarSummary
+<tr>
+  <td><a href="/bar/@Model.Id">@Model.Name</a></td>
+  <td>@Model.Reviews.ToString("N0")</td>
+  <td>@Model.Created.ToString("MMMM d, yyyy")</td>
+</tr>

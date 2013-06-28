@@ -1,0 +1,80 @@
+﻿@{    Layout = null;}
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+  <title>Login</title>
+  <style type="text/css">
+    * {
+      font-family: Consolas;
+      font-size: 20px;
+    }
+    
+    body {
+      background-color: Black;
+      color: Lime;
+    }
+    
+    input {
+      border: 1px solid Lime;
+      font-weight: bold;
+      background-color: Black;
+      color: Lime;
+    }
+    
+    #content {
+        margin: 40px 0 0 40px;
+    }
+    
+    label {
+        width: 250px;
+        display: block;
+        float: left;
+        line-height: 27px;
+        vertical-align:middle;
+    }
+    
+    input {
+        width: 400px;
+    }
+    
+    input[type=submit] {
+        float: left;
+        clear: right;
+        margin-left: 350px;
+        width: 200px;
+    }
+    
+    .error {
+        display: block;
+        clear: both;
+        color: Red;
+        width: 400px;
+        line-height: 1.5em;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">
+    <form action="@Url.RouteUrl("Admin_Login")" method="post">
+    <div>
+      <label for="user">
+        Username (email):</label>
+      <input id="user" name="user" type="text" />
+      <script>document.getElementById('user').focus()</script>
+    </div>
+    <div>
+      <label for="pass">
+        Password:</label>
+      <input id="pass" name="pass" type="password" /></div>
+    <div>
+      <input type="submit" value="Login" /></div>
+    </form>
+    @if (ViewBag.Error != null)
+    {
+      <div class="error">
+        Something went wrong. Probably an incorrect email address or password, idiot.</div>
+    }
+  </div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Bar>
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="step-two">
+    <div class="step">
+        <h1>Step 2</h1>
+        <h2>Find your bar</h2>
+        <div class="head">
+            <div class="left">
+                @using (Html.BeginForm())
+                {
+                    <label for="query">Use our search engine below</label>
+                    <input id="query" name="query" type="text" value="@ViewBag.Query" />
+                    <input type="submit" value="Search" />
+                }
+            </div>
+            <div class="right">
+                <p>
+                    If your bar is not currently on the site you can propose it for consideration here.
+                    <a role="button" href="@Url.Action("Create", "Home")">Submit bar</a>
+                </p>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
+    @if (Model != null)
+    {
+        <div class="results">
+            <h3>Search Results</h3>
+            @foreach (var bar in Model)
+            {
+                <div class="result">
+                    <a href="@bar.Url" target="_blank">
+                        <img src="@Url.GetFirstMedia(bar.Id, "365x270.orig")" /></a>
+                    <h4>@bar.Name</h4>
+                    <h5>@bar.Address.City</h5>
+                    <p>@bar.Description</p>
+                    <a href="@Url.Action("Edit", new { id = bar.Id })" role="button" class="red">Edit</a>
+                    <div class="clear"></div>
+                </div>
+            }
+        </div>
+    }
+</div>

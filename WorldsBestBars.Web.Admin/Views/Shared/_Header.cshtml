@@ -1,0 +1,107 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </a>
+      <a class="brand" href="/">Administration</a>
+      <div class="nav-collapse collapse">
+        @if (User.Identity.IsAuthenticated)
+        {
+          <ul class="nav">
+            <li><a href="http://www.worldsbestbars.com/"><i class="icon-home"></i>&nbsp;worldsbestbars.com</a></li>
+            <!-- Bars -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Bars <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="@(ViewBag.Page == "bars:create" ? "active" : null)"><a href="/bar/create">Create a new bar</a></li>
+                <li class="divider"></li>
+                <li class="@(ViewBag.Page == "bars:active" ? "active" : null)"><a href="/bars">Active bars</a></li>
+                <li class="@(ViewBag.Page == "bars:closed" ? "active" : null)"><a href="/bars/closed">Closed bars</a></li>
+                <li class="@(ViewBag.Page == "bars:submissions:create" ? "active" : null)"><a href="/bars/submissions/create">Submitted bars</a></li>
+                <li class="@(ViewBag.Page == "bars:submissions:update" ? "active" : null)"><a href="/bars/submissions/update">Updates</a></li>
+                <li class="@(ViewBag.Page == "bars:map" ? "active" : null)"><a href="/bars/map">Map</a></li>
+              </ul>
+            </li>
+            <!-- Locations -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Locations <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="@(ViewBag.Page == "locations:create" ? "active" : null)"><a href="/locations/create">Create a new location</a></li>
+                <li class="divider"></li>
+                <li class="@(ViewBag.Page == "locations:index" ? "active" : null)"><a href="/locations">Current locations</a></li>
+              </ul>
+            </li>
+            <!-- Experts -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Experts <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="@(ViewBag.Page == "experts:create" ? "active" : null)"><a href="/experts/create">Create</a></li>
+                <li class="divider"></li>
+                <li class="@(ViewBag.Page == "experts:index" ? "active" : null)"><a href="/experts">Listing</a></li>
+              </ul>
+            </li>
+            <!-- Reviews -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Reviews <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="@(ViewBag.Page == "reviews:pending" ? "active" : null)"><a href="/reviews/pending-moderation">Pending moderation</a></li>
+                <li class="@(ViewBag.Page == "reviews:latest" ? "active" : null)"><a href="/reviews">Recent</a></li>
+              </ul>
+            </li>
+            <!-- Advertising -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Advertising <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="@(ViewBag.Page == "advertising:create" ? "active" : null)"><a href="/advertising/create">Create a new advertising campaign</a></li>
+                <li class="divider"></li>
+                <li class="@(ViewBag.Page == "advertising:active" ? "active" : null)"><a href="/advertising/active">Active campaigns</a></li>
+                <li class="@(ViewBag.Page == "advertising:inactive" ? "active" : null)"><a href="/advertising/inactive">Inactive campaigns</a></li>
+              </ul>
+            </li>
+            <!-- Users -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Users <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="@(ViewBag.Page == "users:index" ? "active" : null)"><a href="/users">Listing of all users</a></li>
+                <li class="divider"></li>
+                <li class="@(ViewBag.Page == "users:export" ? "active" : null)"><a href="/users/export">Export listing</a></li>
+              </ul>
+            </li>
+            <!-- Documents -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documents <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="@(ViewBag.Page == "documents:create" ? "active" : null)"><a href="/document/create">Create</a></li>
+                <li class="divider"></li>
+                <li class="@(ViewBag.Page == "documents:drafts" ? "active" : null)"><a href="/documents/drafts">Current drafts</a></li>
+                <li class="@(ViewBag.Page == "documents:published" ? "active" : null)"><a href="/documents">Currently published</a></li>
+              </ul>
+            </li>
+            <!-- Lists -->
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Lists <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="@(ViewBag.Page == "lists:create" ? "active" : null)"><a href="/lists/create">Create</a></li>
+                <li class="divider"></li>
+                <li class="@(ViewBag.Page == "lists:index" ? "active" : null)"><a href="/lists">Listing of lists</a></li>
+              </ul>
+            </li>
+          </ul>
+        }
+        <ul class="nav pull-right">
+          @if (User.Identity.IsAuthenticated)
+          {
+            <li><a href="/logout">Logout</a></li> 
+          }
+          else
+          {
+            <li><a href="/login">Login</a></li> 
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

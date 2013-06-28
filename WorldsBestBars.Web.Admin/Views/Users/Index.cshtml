@@ -1,0 +1,39 @@
+﻿@model IEnumerable<UserSummary>
+
+<div class="container">
+  <h1>Users
+    @using (Html.BeginForm("Index", "Users", FormMethod.Get, new { @class = "pull-right" }))
+  {
+    <div class="input-append">
+      <input id="filter" name="filter" placeholder="" type="text" value="@Request.QueryString["filter"]" />
+      <button class="btn" type="submit">Filter</button>
+    </div>
+  }</h1>
+  
+
+  @if (Model.Any())
+  {
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><a href="?sort=name">Name</a></th>
+          <th><a href="?sort=email">Email</a></th>
+          <th><a href="?sort=isadmin">Administrator</a></th>
+          <th><a href="?sort=created">Joined</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var user in Model)
+        {
+          <tr>
+            <td>@user.Name</td>
+            <td>@user.Email</td>
+            <td>@(user.IsAdmin ? "Yes" : "No")</td>
+            <td>@user.Created.ToString("MMMM d, yyyy")</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  @Html.Partial("_Pagination")
+</div>

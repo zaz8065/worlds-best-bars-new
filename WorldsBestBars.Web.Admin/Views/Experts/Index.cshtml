@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ExpertSummary>
+
+<div class="container">
+  <h1>Experts
+    @using (Html.BeginForm("Index", "Experts", FormMethod.Get, new { @class = "pull-right" }))
+    {
+      <div class="input-append">
+        <input id="filter" name="filter" placeholder="" type="text" value="@Request.QueryString["filter"]" />
+        <button class="btn" type="submit">Filter</button>
+      </div>
+    }</h1>
+
+
+  @if (Model.Any())
+  {
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th><a href="?sort=name@((ViewBag.Sort ?? "name") == "name" && ViewBag.SortDirection != "desc" ? "&sortd=desc" : null)">Name</a></th>
+          <th><a href="?sort=created@(ViewBag.Sort == "created" && ViewBag.SortDirection != "desc" ? "&sortd=desc" : null)">Created</a></th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var expert in Model)
+        {
+          <tr>
+            <td><a href="/experts/@expert.Id">@(string.IsNullOrWhiteSpace(expert.Name) ? "[blank]" : expert.Name)</a></td>
+            <td>@expert.Created.ToString("MMMM d, yyyy")</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+  @Html.Partial("_Pagination")
+</div>

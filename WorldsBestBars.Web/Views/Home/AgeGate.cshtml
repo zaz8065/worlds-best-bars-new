@@ -1,0 +1,130 @@
+﻿@{Layout = null;}
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>World's Best Bars</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+  <script type="text/javascript" src="http://cdn.jquerytools.org/1.2.6/all/jquery.tools.min.js"></script>
+  <link href="@("/Content/css/rateit.css")" rel="stylesheet" type="text/css">
+  <link type="text/css" rel="stylesheet" href="@("/Content/css/global.css")" />
+  <!--[if IE 6]>
+  <link href="@("/Content/css/ie6.css")" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <!--[if IE 7]>a
+  <link href="@("/Content/css/ie7.css")" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <!--[if IE 8]>
+  <link href="@("/Content/css/ie8.css")" rel="stylesheet" type="text/css" />
+  <![endif]-->
+  <meta property="fb:page_id" content="149071961796732" />
+  <link rel="shortcut icon" href="@("/favicon.ico")" />
+  <link rel="stylesheet" href="@Url.Content("~/Content/css/mobile.css")" media="handheld, only screen and (max-device-width:640px)"/>
+  <meta name="viewport" content="initial-scale=0.5, user-scalable=no, width=640" />
+
+  <meta name="description" content="Bars, Cocktail Lounges and Cool Pubs around the World" />
+  <style>
+  #logo {margin-bottom:40px}
+  
+  </style>
+</head>
+<body>
+  <a id="topofpage"></a>
+  <div id="container">
+    <div id="page">
+      <div id="header">
+        <a href="@("/")" title="World's Best Bars&reg;">
+          <div id="logo">
+            World's Best Bars</div></a>
+        </div>
+      </div>
+      <div id="age_gate">
+        <h2>
+          You need to be of legal drinking age to enter our website.</h2>
+        <h3>
+          Please select your date of birth</h3>
+        <form action="@Url.Action("AgeGate", "Home")" method="post">
+        <input type="hidden" name="redirect" value="@Model" />
+        <label>
+          day</label>
+        <select name="day" class="day" size="5">
+          @for (int i = 1; i <= 31; i++)
+          {
+            <option value="@i"@(ViewBag.SelectedDay == i ? " selected" : string.Empty)>@i.ToString("00")</option>
+          }
+        </select>
+        <label>
+          month</label>
+        <select name="month" class="month" size="5">
+          @for (int i = 0; i < 12; i++)
+          {
+            <option value="@(i + 1)"@(ViewBag.SelectedMonth == i + 1 ? " selected" : string.Empty)>@ViewBag.Months[i]</option>
+          }
+        </select>
+        <label>
+          year
+        </label>
+        <select name="year" class="year" size="5">
+          @for (var i = DateTime.Today.Year; i >= DateTime.Today.Year - 90; i--)
+          {          
+            <option value="@i"@(ViewBag.SelectedYear == i ? " selected" : string.Empty)>@i</option>
+          }
+        </select>
+        <div id="remember_area">
+          <label>
+            Remember your details?</label>
+          <input type="checkbox" id="remember" name="remember" value="yes" />
+          <span class="remember_label">Remember your details?</span> <span>(Do not tick if it
+            is a shared computer)</span>
+        </div>
+        <div class="location">
+          <label>
+            Where are you?</label>
+          <select name="country" id="location">
+            <option value="--"></option>
+            @foreach (var country in ViewBag.Countries)
+            {
+              <option value="@country.Id"@(ViewBag.SelectedCountry == country.Id.ToString() || (ViewBag.SelectedCountry == null && ViewBag.DetectedCountry == country.ShortISO) ? " selected" : string.Empty)>@country.Name</option>
+            }
+          </select>
+        </div>
+        <input type="submit" class="sub_btn" />
+        <span>Entering this site means you agree to our <a href="@("/terms-and-conditions")">
+          Terms &amp; Conditions</a> and our <a href="@("/privacy-policy")">Privacy Policy</a></span>
+        </form>
+        @if (ViewBag.Errors != null)
+        {
+          <div id="age_errors">
+            <a class="close" href="#">Close</a>
+            <p>
+              We are sorry but access to worldsbestbars.com is denied for one of the following
+              reasons:</p>
+            <p>
+              You are under legal drinking age or under the age of 18. The laws of your country
+              prevent you from accessing this website.</p>
+            <p class="msg">
+              In this case it's because @ViewBag.Errors</p>
+          </div>
+          <script type="text/javascript">
+              $('div#age_gate div#age_errors a.close').click(function (e) {
+                  e.preventDefault();
+                  $('#age_gate #age_errors ').fadeOut();
+              });
+
+	    
+	    </script>
+        }
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '@Config.Google.AnalyticsTrackingCode'], ['_trackPageview', '/age-gate'], ['_trackPageLoadTime']);
+
+      (function () {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+  </script>
+</body>
+</html>

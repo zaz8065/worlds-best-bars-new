@@ -1,0 +1,82 @@
+﻿@model UpdateAdvert
+
+<div class="container">
+  @if (ViewContext.RouteData.Values["id"] == null)
+  {
+    <h2>Create</h2>
+  }
+  else
+  {
+    <h2>Update</h2>
+  }
+
+  <form action="@Request.Url.AbsolutePath" method="post" enctype="multipart/form-data">
+    @Html.ValidationSummary(true)
+
+    <dl>
+      <dt>
+        @Html.LabelFor(model => model.Title)
+      </dt>
+      <dd>
+        @Html.EditorFor(model => model.Title)
+        @Html.ValidationMessageFor(model => model.Title)
+      </dd>
+
+      <dt>
+        <label for="file">Skyscraper</label>
+      </dt>
+      <dd>
+        @if (ViewBag.SkyscraperUrl != null)
+        {
+          <a href="@(ConfigurationManager.AppSettings["path:media:relative"] + "/../.." + ViewBag.SkyscraperUrl)" target="_blank">@ViewBag.SkyscraperUrl</a><br />
+        }
+        <input type="file" name="file" id="file" />
+      </dd>
+
+      <dt>
+        @Html.LabelFor(model => model.Start)
+      </dt>
+      <dd>
+        @Html.TextBoxFor(model => model.Start, new { type = "date" })
+        @Html.ValidationMessageFor(model => model.Start)
+      </dd>
+
+      <dt>
+        @Html.LabelFor(model => model.Finish)
+      </dt>
+      <dd>
+        @Html.TextBoxFor(model => model.Finish, new { type = "date" })
+        @Html.ValidationMessageFor(model => model.Finish)
+      </dd>
+
+      <dt>
+        @Html.LabelFor(model => model.Weight)
+      </dt>
+      <dd>
+        @Html.TextBoxFor(model => model.Weight, new { type = "number", max = 255, min = 1 })
+        @Html.ValidationMessageFor(model => model.Weight)
+      </dd>
+
+      <dt>
+        @Html.LabelFor(model => model.Type)
+      </dt>
+      <dd>
+        @Html.DropDownListFor(model => model.Type, (new string[] { "image", "flash" }).Select(e => new SelectListItem { Text = e, Value = e }))
+        @Html.ValidationMessageFor(model => model.Type)
+      </dd>
+
+      <dt>
+        @Html.LabelFor(model => model.DestinationUrl)
+      </dt>
+      <dd>
+        @Html.TextBoxFor(model => model.DestinationUrl, new { type = "url" })
+        @Html.ValidationMessageFor(model => model.DestinationUrl)
+      </dd>
+
+    </dl>
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <button class="btn" type="reset">Reset</button>
+    </div>
+  </form>
+</div>

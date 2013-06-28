@@ -1,0 +1,99 @@
+﻿@model WorldsBestBars.Model.Document
+@{
+  if (Model.Parent == null)
+  {
+    ViewBag.Title = "Cocktails & More";
+  }
+  else
+  {
+    ViewBag.Title = Model.Name + " | Cocktails & More";
+  }
+}
+@section MetaTags
+{
+    <meta name="description" content="Updates on all the latest bar openings from cities around the world written by our reporters on the ground." />
+}
+<div id="breadcrumb-zone">
+  @{Html.RenderPartial("Breadcrumbs", Model.Id);}
+</div>
+<div id="articles" class="wb">
+  @if (ViewBag.Children != null)
+  {
+    <div class="header_box">
+      <h2>@Model.Name</h2>
+      <p>
+        We're proud to bring you our new features section of World's Best Bars. Each month
+        you'll find great new insights into the world of bars, nightlife and cocktails;
+        the best places to go and what to drink.
+      </p>
+    </div>
+   
+    <div class="main_box">
+      @foreach (var document in ViewBag.Children)
+      {        
+        <div class="expert">
+          <a href="@("/" + document.Url)">
+            <img src="@Url.GetFirstMedia((Guid)document.Id, "245x165.orig")" alt="@document.Name" class="float_left" />
+            <h3>@document.Name</h3>
+          </a>
+          <p>
+            @document.Synopsis <a href="@("/" + document.Url)">read more...</a></p>
+        </div>          
+      }
+    </div>
+    <div class="pagination">
+      <a id="prev" href="#">Prev</a>&nbsp;|&nbsp;<a id="next" href="#">Next</a>
+    </div>
+    <script type="text/template" id="document_template">
+      <div class="expert">
+        <a href="{url}">
+          <img src="{image}" alt="{title}" class="float_left" />
+          <h3>{title}</h3>
+        </a>
+        <p>
+          {synopsis} <a href="{url}">read more...</a></p>
+      </div>          
+    </script>
+  }
+  else
+  {
+    <div class="main_box article_content">
+      <div id="article_content">@Html.Raw(Model.Content)</div>
+    </div>
+  }
+  
+  <div class="bar-sharing">
+      <a class="fb" href="#">Facebook</a> 
+      <a class="twit" href="#">Twitter</a> 
+      
+
+            <div class="g-plusone" data-size="medium" data-annotation="inline" data-width="120" style="width:35px !important;overflow:hidden"></div>
+
+            <!-- Place this render call where appropriate -->
+            <script type="text/javascript">
+                window.___gcfg = { lang: 'en-GB' };
+
+                (function () {
+                    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+                    po.src = 'https://apis.google.com/js/plusone.js';
+                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+                })();
+            </script>
+          
+          <a href="http://pinterest.com/pin/create/button/?url=http://staging.worldsbestbars.com/@Model.Url&media=http://staging.worldsbestbars.com/content/media/@Model.Url/365x270.orig.00.jpg&description=@Model.Synopsis" class="pin-it-button pinterest"><img border="0" src="//assets.pinterest.com/images/PinExt.png" title="Pin It" /></a>
+	         
+	<a class="share" href="#">Share</a>
+      <div class="share_hover">
+        <h4>
+          Share this bar <span class="close">x</span></h4>
+        <a href="#" class="del">Delicious</a> <a href="#" class="digg">Digg</a> <a href="#"
+          class="reddit">Reddit</a> <a href="#" class="stumble">StumbleUpon</a> <a href="#"
+            class="print">Print</a> <a href="#" class="email">Email</a>
+      </div>
+    </div>
+  
+</div>
+
+<script type="text/javascript" src="//assets.pinterest.com/js/pinit.js"></script>
+<script type="text/javascript" src="@("/content/js/pages/document.js")"></script>
+<script type="text/javascript">var controller = new DocumentPage(@ViewBag.TotalCount);</script>

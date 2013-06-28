@@ -1,0 +1,62 @@
+﻿@model IEnumerable<WorldsBestBars.Model.DatabaseObject>
+@{ 
+  ViewBag.Title = "Most Talked About";
+}
+@section MetaTags
+{
+    <meta name="description" content="These are the newest bars on the site that have got our Facebook and Twitter fans talking." />
+}
+<div id="most-talked-about">
+  <div id="panel-1">
+    <div class="header_box">
+      <h2>Most talked about</h2>
+      <p>The world of bars is changing all the time. These are new bars that are getting everyone in the industry talking and which we have added to the site recently. To keep up to date on the latest bar news follow us on our <a href="http://www.facebook.com/worldsbestbars" target="_blank">Facebook page</a>. </p>
+    </div>
+  </div>
+  <div id="panel-4">
+    <div class="secondary-content">
+      <div class="filter_options">
+        <h4>
+          Most talked about by city</h4>
+        <select name="filter">
+          <option value="-">Select a city</option>
+          @foreach (var city in ViewBag.Cities)
+          {
+            <option value="@city">@city</option>
+          }
+        </select>
+      </div>
+      <hr class="exp" />
+      <div id="bar_list_container">
+      @foreach (var entity in Model)
+      {
+        var bar = WorldsBestBars.Web.Cache.Bars.Instance.GetById((Guid)entity.Id);
+        
+        <div class="panel"@(Html.Raw((bar.Address != null ? " data-city=\"" + bar.Address.City + "\"" : string.Empty)))>
+          <a href="@("/" + bar.Url)" title="@bar.Name">
+            <img src="@Url.GetFirstMedia(entity.Id, "245x165.orig")" width="243" height="165" alt="@entity.Name" /></a>
+          <h4>
+            <a href="@("/" + bar.Url)">@entity.Name</a></h4>
+          @if (bar.Parent != null)
+          {
+            <h5>
+              <a href="@("/" + bar.Parent.Url)">@bar.Parent.Name</a></h5>
+          }
+          <p>
+            @bar.Intro...<a href="@("/" + bar.Url)">Read more</a></p>
+        </div>
+      }
+      </div>
+      <div id="bar_list_pagination" class="pagination">
+        <a id="prev" href="#">Prev</a>&nbsp;|&nbsp;<span class="pages"></span><a id="next" href="#">Next</a>
+      </div>
+    </div>
+    @{Html.RenderPartial("Related", new Guid("6774A7DD-7DC9-4BA1-82C6-FC1DAE11E25E"));}
+  </div>
+</div>
+
+<script type="text/javascript" src="@("/content/js/pagination.js")"></script>
+<script type="text/javascript" src="@("/content/js/pages/most-talked-about.js")"></script>
+<script type="text/javascript">
+  var controller = new MostTalkedAboutPage();
+</script>

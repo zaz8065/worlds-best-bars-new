@@ -1,0 +1,76 @@
+﻿<div class="action-dialog manage-documents">
+  <div class="left">
+    <div class="scrollable" style="overflow: auto; width: 250px; height: 506px">
+      <div class="tree scrollable">
+      </div>
+      <button class="refresh">Refresh</button>
+    </div>
+  </div>
+  <div class="right">
+    <ul>
+      <li class="tab-head"><a href="#manage-documents-right-information">Information</a></li>
+      <li class="tab-head"><a href="#manage-documents-right-content">Content</a></li>
+      <li class="tab-head"><a href="#manage-documents-right-media">Media</a></li>
+      <li class="tab-head"><a href="#manage-documents-right-related">Related</a></li>
+    </ul>
+    <div class="manage-documents-right-information">
+      <form>
+      <label for="synopsis">
+        Synopsis</label>
+      <textarea id="synopsis" name="synopsis" class="text ui-widget-content ui-corner-all"></textarea>
+      <label for="urlkey">
+        Url Key</label>
+      <input type="text" name="urlkey" id="urlkey" class="text ui-widget-content ui-corner-all" />
+      <label for="date">
+        Date</label>
+      <input type="date" name="date" id="date" class="text ui-widget-content ui-corner-all" />
+      <label for="redirect">
+        Redirect</label>
+      <input type="text" name="redirect" id="redirect" class="text redirect ui-widget-content ui-corner-all"
+        disabled="disabled" />
+      <a class="redirect" href="#">change</a>
+      <button class="save">Save</button>
+      <button class="activate">Deactivate</button>
+      </form>
+    </div>
+    <div class="manage-documents-right-content">
+      <textarea name="content" class="text ui-widget-content ui-corner-all"></textarea>
+      <button class="preview">Preview</button>
+      <button class="format">Format</button>
+      <button class="save">Save</button>
+    </div>
+    <div class="manage-documents-right-media">
+      <div class="media-list">
+      </div>
+      <div class="media-upload">
+        <form class="upload-form" enctype="multipart/form-data" action="/admin/process/uploadmedia"
+        method="post">
+        <div>
+          <input name="file" type="file" /></div>
+        <div>
+          process uploaded image <input type="checkbox" name="process" />
+          <input type="submit" value="Upload" /></div>
+        </form>
+      </div>
+    </div>
+    <div class="manage-documents-right-related">
+      <div class="related">
+        <div class="existing">
+          <label>
+            Existing (click to remove)</label>
+          <div class="search-results">
+          </div>
+        </div>
+        <div class="add">
+          <div class="search">
+            <label for="search">
+              Search (click to add)</label>
+            <input type="text" id="search" name="search" class="text ui-widget-content ui-corner-all" />
+          </div>
+          <div class="search-results">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

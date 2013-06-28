@@ -1,0 +1,74 @@
+﻿@model WorldsBestBars.Model.Location
+@{
+  ViewBag.Title = "Cocktail Bars in " + Model.Name;
+}
+@section MetaTags
+{
+    <meta name="description" content="Find the best bars, cocktail lounges and clubs in @Model.Name. Plan your nightlife in @Model.Name with maps and reviews of the top venues." />
+}
+<div id="breadcrumb-zone">
+  @{Html.RenderPartial("Breadcrumbs", Model.Id);}
+</div>
+<div id="cities_page">
+  <div id="panel-1" class="wb">
+    <div class="header_box">
+      <img src="@Url.GetFirstMedia(Model.Id, "245x165.orig")" width="245" height="165" alt="@Model.Name" />
+      <h2>
+        World's Best Bars in @Model.Name</h2>
+      <p>
+        @Html.Raw(Model.Synopsis)</p>
+    </div>
+    <hr class="exp" />
+    <div class="main_box">
+      @foreach (var location in ViewBag.Locations)
+      {
+
+        <div class="expert">
+          <a href="@("/" + location.Url)">
+            <img src="@Url.GetFirstMedia((Guid)location.Id, "245x165.orig")" alt="@location.Name" class="float_left" />
+            <h3>@location.Name</h3>
+          </a>
+          <p>@location.Intro <a href="@("/" + location.Url)">more</a></p>
+        </div>          
+      }
+    </div>
+  </div>
+  @if (ViewBag.Bars != null)
+  {
+    <hr class="hr10" />
+    <div id="panel-4">
+      <div class="secondary-content">
+        <div id="bar_list_container">
+          @foreach (var bar in ViewBag.Bars)
+          {
+            <div class="panel">
+              <a href="@("/" + bar.Url)" title="@bar.Name">
+                <img src="@Url.GetFirstMedia((Guid)bar.Id, "245x165.orig")" alt="@bar.Name" /></a>
+              <h4>
+                <a href="@("/" + bar.Url)">@bar.Name</a></h4>
+              @if (bar.Parent != null)
+              {
+                <h5>
+                  <a href="@("/" + bar.Parent.Url)">@bar.Parent.Name</a></h5>
+              }
+              <p>
+                @bar.Intro</p>
+              <hr class="exp" />
+            </div>
+          }
+        </div>
+        <div id="bar_list_pagination" class="pagination">
+          <a id="prev" href="#">Prev</a>&nbsp;|&nbsp;<span class="pages"></span><a id="next"
+            href="#">Next</a>
+        </div>
+      </div>
+      @{Html.RenderPartial("Related", Model.Id);}
+    </div>
+  }
+</div>
+<script type="text/javascript" src="@("/content/js/pages/location-area.js")"></script>
+<script type="text/javascript" src="@("/content/js/pagination.js")"></script>
+<script type="text/javascript">
+  new LocationAreaPage('@Model.Id');
+</script>
+

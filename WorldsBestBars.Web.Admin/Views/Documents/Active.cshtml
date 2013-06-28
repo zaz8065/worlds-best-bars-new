@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Document>
+<div class="container">
+  <h1>Active Documents</h1>
+  @if (Model.Any())
+  {
+    <div class="row">
+      @Html.DisplayForModel()
+    </div>
+    @Html.Partial("_Pagination")
+  }
+  else
+  {
+    <p>There are no active documents.</p>
+  }
+</div>

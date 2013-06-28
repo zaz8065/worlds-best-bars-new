@@ -1,0 +1,1522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="local.worldsbestbarsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="localworldsbestbarsModelStoreContainer">
+          <EntitySet Name="Advert" EntityType="local.worldsbestbarsModel.Store.Advert" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="AdvertStats" EntityType="local.worldsbestbarsModel.Store.AdvertStats" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Bar" EntityType="local.worldsbestbarsModel.Store.Bar" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BarCategory" EntityType="local.worldsbestbarsModel.Store.BarCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="BarOpening" EntityType="local.worldsbestbarsModel.Store.BarOpening" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Category" EntityType="local.worldsbestbarsModel.Store.Category" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Country" EntityType="local.worldsbestbarsModel.Store.Country" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Document" EntityType="local.worldsbestbarsModel.Store.Document" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="DocumentCategory" EntityType="local.worldsbestbarsModel.Store.DocumentCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Feature" EntityType="local.worldsbestbarsModel.Store.Feature" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Location" EntityType="local.worldsbestbarsModel.Store.Location" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LocationCategory" EntityType="local.worldsbestbarsModel.Store.LocationCategory" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Rating" EntityType="local.worldsbestbarsModel.Store.Rating" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Redirect" EntityType="local.worldsbestbarsModel.Store.Redirect" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Related" EntityType="local.worldsbestbarsModel.Store.Related" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Review" EntityType="local.worldsbestbarsModel.Store.Review" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="local.worldsbestbarsModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="UserAttribute" EntityType="local.worldsbestbarsModel.Store.UserAttribute" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ActiveAdverts" EntityType="local.worldsbestbarsModel.Store.ActiveAdverts" store:Type="Views" store:Schema="dbo" store:Name="ActiveAdverts">
+            <DefiningQuery>SELECT 
+      [ActiveAdverts].[Title] AS [Title], 
+      [ActiveAdverts].[Body] AS [Body], 
+      [ActiveAdverts].[SkyscraperUrl] AS [SkyscraperUrl], 
+      [ActiveAdverts].[VideoUrl] AS [VideoUrl]
+      FROM [dbo].[ActiveAdverts] AS [ActiveAdverts]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="ActiveEntities" EntityType="local.worldsbestbarsModel.Store.ActiveEntities" store:Type="Views" store:Schema="dbo" store:Name="ActiveEntities">
+            <DefiningQuery>SELECT 
+      [ActiveEntities].[Type] AS [Type], 
+      [ActiveEntities].[Id] AS [Id], 
+      [ActiveEntities].[Name] AS [Name], 
+      [ActiveEntities].[ParentId] AS [ParentId], 
+      [ActiveEntities].[UrlKey] AS [UrlKey], 
+      [ActiveEntities].[IsActive] AS [IsActive]
+      FROM [dbo].[ActiveEntities] AS [ActiveEntities]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="UrlMap" EntityType="local.worldsbestbarsModel.Store.UrlMap" store:Type="Views" store:Schema="dbo" store:Name="UrlMap">
+            <DefiningQuery>SELECT 
+      [UrlMap].[Type] AS [Type], 
+      [UrlMap].[Id] AS [Id], 
+      [UrlMap].[Name] AS [Name], 
+      [UrlMap].[ParentId] AS [ParentId], 
+      [UrlMap].[UrlKey] AS [UrlKey], 
+      [UrlMap].[Url] AS [Url], 
+      [UrlMap].[IsActive] AS [IsActive]
+      FROM [dbo].[UrlMap] AS [UrlMap]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AdvertStats_AdvertStats" Association="local.worldsbestbarsModel.Store.FK_AdvertStats_AdvertStats">
+            <End Role="Advert" EntitySet="Advert" />
+            <End Role="AdvertStats" EntitySet="AdvertStats" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Bar_Location" Association="local.worldsbestbarsModel.Store.FK_Bar_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Bar" EntitySet="Bar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BarCategory_Bar" Association="local.worldsbestbarsModel.Store.FK_BarCategory_Bar">
+            <End Role="Bar" EntitySet="Bar" />
+            <End Role="BarCategory" EntitySet="BarCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BarCategory_Category" Association="local.worldsbestbarsModel.Store.FK_BarCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="BarCategory" EntitySet="BarCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BarOpening_Bar" Association="local.worldsbestbarsModel.Store.FK_BarOpening_Bar">
+            <End Role="Bar" EntitySet="Bar" />
+            <End Role="BarOpening" EntitySet="BarOpening" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_ParentDocument" Association="local.worldsbestbarsModel.Store.FK_Document_ParentDocument">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="Document1" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_RedirectDocument" Association="local.worldsbestbarsModel.Store.FK_Document_RedirectDocument">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="Document1" EntitySet="Document" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentCategory_Category" Association="local.worldsbestbarsModel.Store.FK_DocumentCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="DocumentCategory" EntitySet="DocumentCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DocumentCategory_Document" Association="local.worldsbestbarsModel.Store.FK_DocumentCategory_Document">
+            <End Role="Document" EntitySet="Document" />
+            <End Role="DocumentCategory" EntitySet="DocumentCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Feature_Bar" Association="local.worldsbestbarsModel.Store.FK_Feature_Bar">
+            <End Role="Bar" EntitySet="Bar" />
+            <End Role="Feature" EntitySet="Feature" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationCategory_Category" Association="local.worldsbestbarsModel.Store.FK_LocationCategory_Category">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="LocationCategory" EntitySet="LocationCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LocationCategory_Location" Association="local.worldsbestbarsModel.Store.FK_LocationCategory_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="LocationCategory" EntitySet="LocationCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentLocation_Location" Association="local.worldsbestbarsModel.Store.FK_ParentLocation_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Location1" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Bar" Association="local.worldsbestbarsModel.Store.FK_Review_Bar">
+            <End Role="Bar" EntitySet="Bar" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Rating" Association="local.worldsbestbarsModel.Store.FK_Review_Rating">
+            <End Role="Rating" EntitySet="Rating" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Review" Association="local.worldsbestbarsModel.Store.FK_Review_Review">
+            <End Role="Review" EntitySet="Review" />
+            <End Role="Review1" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_User" Association="local.worldsbestbarsModel.Store.FK_Review_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="Review" EntitySet="Review" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAttribute_User" Association="local.worldsbestbarsModel.Store.FK_UserAttribute_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserAttribute" EntitySet="UserAttribute" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Advert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="Body" Type="text" />
+          <Property Name="SkyscraperUrl" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="VideoUrl" Type="varchar" MaxLength="256" />
+          <Property Name="VideoImageUrl" Type="varchar" MaxLength="256" />
+          <Property Name="Start" Type="datetime" />
+          <Property Name="Finish" Type="datetime" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Weight" Type="tinyint" Nullable="false" />
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="DestinationUrl" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="AdvertStats">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="AdvertId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Period" Type="datetime" Nullable="false" />
+          <Property Name="Impressions" Type="int" Nullable="false" />
+          <Property Name="Clicks" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'Geocoordinate' in the table 'local.worldsbestbars.dbo.Bar' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
+      -->
+        <EntityType Name="Bar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="LocationId" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Intro" Type="ntext" />
+          <Property Name="Description" Type="ntext" Nullable="false" />
+          <Property Name="Website" Type="nvarchar" MaxLength="256" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="xml" />
+          <Property Name="OpenHours" Type="xml" />
+          <Property Name="LegacyId" Type="int" />
+          <Property Name="UrlKey" Type="nvarchar" MaxLength="64" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="GeocoordinateString" Type="nvarchar(max)" StoreGeneratedPattern="Computed" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+          <Property Name="Url" Type="varchar(max)" StoreGeneratedPattern="Computed" />
+          <Property Name="MenuUrl" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="BarCategory">
+          <Key>
+            <PropertyRef Name="BarId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="BarId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BarOpening">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BarId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Day" Type="tinyint" Nullable="false" />
+          <Property Name="Open" Type="time" Nullable="false" />
+          <Property Name="Close" Type="time" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Key" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="IsSystem" Type="bit" Nullable="false" />
+          <Property Name="IsSearchable" Type="bit" Nullable="false" />
+          <Property Name="Order" Type="xml" />
+          <Property Name="Group" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="ShortISO" Type="char" Nullable="false" MaxLength="2" />
+          <Property Name="LongISO" Type="char" Nullable="false" MaxLength="3" />
+          <Property Name="MinAge" Type="tinyint" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="RedirectId" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Synopsis" Type="ntext" Nullable="false" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="UrlKey" Type="nvarchar" MaxLength="32" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+          <Property Name="Url" Type="varchar(max)" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="DocumentCategory">
+          <Key>
+            <PropertyRef Name="DocumentId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="DocumentId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BarId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="128" />
+          <Property Name="Details" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Extra" Type="nvarchar(max)" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" Nullable="false" MaxLength="32" />
+          <Property Name="Sponsor" Type="nvarchar" MaxLength="32" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'Geocoordinate' in the table 'local.worldsbestbars.dbo.Location' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
+      -->
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Intro" Type="ntext" />
+          <Property Name="Synopsis" Type="ntext" />
+          <Property Name="LegacyId" Type="int" />
+          <Property Name="UrlKey" Type="nvarchar" MaxLength="64" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+          <Property Name="Url" Type="varchar(max)" StoreGeneratedPattern="Computed" />
+          <Property Name="GeocoordinateString" Type="nvarchar(max)" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="LocationCategory">
+          <Key>
+            <PropertyRef Name="LocationId" />
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="LocationId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="CategoryId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Design" Type="tinyint" Nullable="false" />
+          <Property Name="Drinks" Type="tinyint" Nullable="false" />
+          <Property Name="Service" Type="tinyint" Nullable="false" />
+          <Property Name="Overall" Type="int" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Redirect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Inbound" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Outbound" Type="nvarchar" Nullable="false" MaxLength="255" />
+          <Property Name="Hits" Type="int" Nullable="false" />
+          <Property Name="LastHit" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Related">
+          <Key>
+            <PropertyRef Name="LeftId" />
+            <PropertyRef Name="RightId" />
+          </Key>
+          <Property Name="LeftId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="RightId" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="BarId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" />
+          <Property Name="RatingId" Type="uniqueidentifier" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="LegacyId" Type="int" />
+          <Property Name="Comment" Type="ntext" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="IsModerated" Type="bit" Nullable="false" />
+          <Property Name="Title" Type="nvarchar" MaxLength="50" />
+          <Property Name="UserIP" Type="varchar" MaxLength="16" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="Title" Type="nvarchar" MaxLength="64" />
+          <Property Name="Email" Type="nvarchar" MaxLength="128" />
+          <Property Name="Password" Type="char" MaxLength="32" />
+          <Property Name="City" Type="nvarchar" MaxLength="64" />
+          <Property Name="DateOfBirth" Type="date" />
+          <Property Name="Biography" Type="ntext" />
+          <Property Name="Website" Type="nvarchar" MaxLength="256" />
+          <Property Name="UrlKey" Type="nvarchar" MaxLength="32" />
+          <Property Name="IsExpert" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="Modified" Type="datetime" Nullable="false" />
+          <Property Name="LegacyId" Type="int" />
+        </EntityType>
+        <EntityType Name="UserAttribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Key" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="ValueString" Type="nvarchar(max)" />
+          <Property Name="ValueInt" Type="int" />
+          <Property Name="ValueDecimal" Type="decimal" Precision="9" Scale="4" />
+          <Property Name="ValueBinary" Type="varbinary(max)" />
+          <Property Name="ValueDate" Type="datetime" />
+          <Property Name="ValueBool" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'local.worldsbestbars.dbo.ActiveAdverts' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ActiveAdverts">
+          <Key>
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="SkyscraperUrl" />
+          </Key>
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="32" />
+          <Property Name="Body" Type="text" />
+          <Property Name="SkyscraperUrl" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="VideoUrl" Type="varchar" MaxLength="256" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'local.worldsbestbars.dbo.ActiveEntities' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="ActiveEntities">
+          <Key>
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="UrlKey" Type="nvarchar" MaxLength="64" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+      warning 6002: The table/view 'local.worldsbestbars.dbo.UrlMap' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+        <EntityType Name="UrlMap">
+          <Key>
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="8" />
+          <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="64" />
+          <Property Name="ParentId" Type="uniqueidentifier" />
+          <Property Name="UrlKey" Type="nvarchar" MaxLength="64" />
+          <Property Name="Url" Type="varchar(max)" />
+          <Property Name="IsActive" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AdvertStats_AdvertStats">
+          <End Role="Advert" Type="local.worldsbestbarsModel.Store.Advert" Multiplicity="1" />
+          <End Role="AdvertStats" Type="local.worldsbestbarsModel.Store.AdvertStats" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advert">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdvertStats">
+              <PropertyRef Name="AdvertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Bar_Location">
+          <End Role="Location" Type="local.worldsbestbarsModel.Store.Location" Multiplicity="0..1" />
+          <End Role="Bar" Type="local.worldsbestbarsModel.Store.Bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bar">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BarCategory_Bar">
+          <End Role="Bar" Type="local.worldsbestbarsModel.Store.Bar" Multiplicity="1" />
+          <End Role="BarCategory" Type="local.worldsbestbarsModel.Store.BarCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BarCategory">
+              <PropertyRef Name="BarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BarCategory_Category">
+          <End Role="Category" Type="local.worldsbestbarsModel.Store.Category" Multiplicity="1" />
+          <End Role="BarCategory" Type="local.worldsbestbarsModel.Store.BarCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BarCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BarOpening_Bar">
+          <End Role="Bar" Type="local.worldsbestbarsModel.Store.Bar" Multiplicity="1" />
+          <End Role="BarOpening" Type="local.worldsbestbarsModel.Store.BarOpening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BarOpening">
+              <PropertyRef Name="BarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_ParentDocument">
+          <End Role="Document" Type="local.worldsbestbarsModel.Store.Document" Multiplicity="0..1" />
+          <End Role="Document1" Type="local.worldsbestbarsModel.Store.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_RedirectDocument">
+          <End Role="Document" Type="local.worldsbestbarsModel.Store.Document" Multiplicity="0..1" />
+          <End Role="Document1" Type="local.worldsbestbarsModel.Store.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document1">
+              <PropertyRef Name="RedirectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentCategory_Category">
+          <End Role="Category" Type="local.worldsbestbarsModel.Store.Category" Multiplicity="1" />
+          <End Role="DocumentCategory" Type="local.worldsbestbarsModel.Store.DocumentCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DocumentCategory_Document">
+          <End Role="Document" Type="local.worldsbestbarsModel.Store.Document" Multiplicity="1" />
+          <End Role="DocumentCategory" Type="local.worldsbestbarsModel.Store.DocumentCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DocumentCategory">
+              <PropertyRef Name="DocumentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Feature_Bar">
+          <End Role="Bar" Type="local.worldsbestbarsModel.Store.Bar" Multiplicity="1" />
+          <End Role="Feature" Type="local.worldsbestbarsModel.Store.Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feature">
+              <PropertyRef Name="BarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationCategory_Category">
+          <End Role="Category" Type="local.worldsbestbarsModel.Store.Category" Multiplicity="1" />
+          <End Role="LocationCategory" Type="local.worldsbestbarsModel.Store.LocationCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LocationCategory">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LocationCategory_Location">
+          <End Role="Location" Type="local.worldsbestbarsModel.Store.Location" Multiplicity="1" />
+          <End Role="LocationCategory" Type="local.worldsbestbarsModel.Store.LocationCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="LocationCategory">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentLocation_Location">
+          <End Role="Location" Type="local.worldsbestbarsModel.Store.Location" Multiplicity="0..1" />
+          <End Role="Location1" Type="local.worldsbestbarsModel.Store.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Bar">
+          <End Role="Bar" Type="local.worldsbestbarsModel.Store.Bar" Multiplicity="1" />
+          <End Role="Review" Type="local.worldsbestbarsModel.Store.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="BarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Rating">
+          <End Role="Rating" Type="local.worldsbestbarsModel.Store.Rating" Multiplicity="0..1" />
+          <End Role="Review" Type="local.worldsbestbarsModel.Store.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rating">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="RatingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Review">
+          <End Role="Review" Type="local.worldsbestbarsModel.Store.Review" Multiplicity="0..1" />
+          <End Role="Review1" Type="local.worldsbestbarsModel.Store.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_User">
+          <End Role="User" Type="local.worldsbestbarsModel.Store.User" Multiplicity="0..1" />
+          <End Role="Review" Type="local.worldsbestbarsModel.Store.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAttribute_User">
+          <End Role="User" Type="local.worldsbestbarsModel.Store.User" Multiplicity="1" />
+          <End Role="UserAttribute" Type="local.worldsbestbarsModel.Store.UserAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserAttribute">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetUrl" ReturnType="varchar(max)" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="uniqueidentifier" Mode="In" />
+        </Function>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WorldBestBars.Model" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bars" EntityType="WorldBestBars.Model.Bar" />
+          <EntitySet Name="Documents" EntityType="WorldBestBars.Model.Document" />
+          <EntitySet Name="Locations" EntityType="WorldBestBars.Model.Location" />
+          <EntitySet Name="Reviews" EntityType="WorldBestBars.Model.Review" />
+          <EntitySet Name="Users" EntityType="WorldBestBars.Model.User" />
+          <EntitySet Name="UrlMaps" EntityType="WorldBestBars.Model.UrlMap" />
+          <AssociationSet Name="FK_Bar_Location" Association="WorldBestBars.Model.FK_Bar_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Bar" EntitySet="Bars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_Bar" Association="WorldBestBars.Model.FK_Review_Bar">
+            <End Role="Bar" EntitySet="Bars" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_ParentDocument" Association="WorldBestBars.Model.FK_Document_ParentDocument">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="Document1" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ParentLocation_Location" Association="WorldBestBars.Model.FK_ParentLocation_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Location1" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Review_User" Association="WorldBestBars.Model.FK_Review_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <EntitySet Name="Categories" EntityType="WorldBestBars.Model.Category" />
+          <AssociationSet Name="BarCategory" Association="WorldBestBars.Model.BarCategory">
+            <End Role="Bar" EntitySet="Bars" />
+            <End Role="Category" EntitySet="Categories" />
+          </AssociationSet>
+          <AssociationSet Name="DocumentCategory" Association="WorldBestBars.Model.DocumentCategory">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Document" EntitySet="Documents" />
+          </AssociationSet>
+          <AssociationSet Name="LocationCategory" Association="WorldBestBars.Model.LocationCategory">
+            <End Role="Category" EntitySet="Categories" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <EntitySet Name="ActiveEntities" EntityType="WorldBestBars.Model.ActiveEntity" />
+          <EntitySet Name="Adverts" EntityType="WorldBestBars.Model.Advert" />
+          <EntitySet Name="ActiveAdverts" EntityType="WorldBestBars.Model.ActiveAdvert" />
+          <EntitySet Name="AdvertStats" EntityType="WorldBestBars.Model.AdvertStat" />
+          <AssociationSet Name="FK_AdvertStats_AdvertStats" Association="WorldBestBars.Model.FK_AdvertStats_AdvertStats">
+            <End Role="Advert" EntitySet="Adverts" />
+            <End Role="AdvertStat" EntitySet="AdvertStats" />
+          </AssociationSet>
+          <EntitySet Name="Ratings" EntityType="WorldBestBars.Model.Rating" />
+          <AssociationSet Name="FK_Review_Rating" Association="WorldBestBars.Model.FK_Review_Rating">
+            <End Role="Rating" EntitySet="Ratings" />
+            <End Role="Review" EntitySet="Reviews" />
+          </AssociationSet>
+          <EntitySet Name="Relateds" EntityType="WorldBestBars.Model.Related" />
+          <AssociationSet Name="FK_Review_Review" Association="WorldBestBars.Model.FK_Review_Review">
+            <End Role="Review" EntitySet="Reviews" />
+            <End Role="Review1" EntitySet="Reviews" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Document_RedirectDocument" Association="WorldBestBars.Model.FK_Document_RedirectDocument">
+            <End Role="Document" EntitySet="Documents" />
+            <End Role="Document1" EntitySet="Documents" />
+          </AssociationSet>
+          <EntitySet Name="Countries" EntityType="WorldBestBars.Model.Country" />
+          <EntitySet Name="Redirects" EntityType="WorldBestBars.Model.Redirect" />
+          <EntitySet Name="UserAttributes" EntityType="WorldBestBars.Model.UserAttribute" />
+          <AssociationSet Name="FK_UserAttribute_User" Association="WorldBestBars.Model.FK_UserAttribute_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserAttribute" EntitySet="UserAttributes" />
+          </AssociationSet>
+          <EntitySet Name="Features" EntityType="WorldBestBars.Model.Feature" />
+          <AssociationSet Name="FK_Feature_Bar" Association="WorldBestBars.Model.FK_Feature_Bar">
+            <End Role="Bar" EntitySet="Bars" />
+            <End Role="Feature" EntitySet="Features" />
+          </AssociationSet>
+          <EntitySet Name="BarOpenings" EntityType="WorldBestBars.Model.BarOpening" />
+          <AssociationSet Name="FK_BarOpening_Bar" Association="WorldBestBars.Model.FK_BarOpening_Bar">
+            <End Role="Bar" EntitySet="Bars" />
+            <End Role="BarOpening" EntitySet="BarOpenings" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Bar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="Guid" />
+          <Property Name="LocationId" Type="Guid" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Intro" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Website" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Email" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Fax" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="OpenHours" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LegacyId" Type="Int32" />
+          <Property Name="UrlKey" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="GeocoordinateString" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" annotation:StoreGeneratedPattern="Computed" a:GetterAccess="Private" xmlns:a="http://schemas.microsoft.com/ado/2006/04/codegeneration" a:SetterAccess="Private" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="WorldBestBars.Model.FK_Bar_Location" FromRole="Bar" ToRole="Location" />
+          <NavigationProperty Name="Reviews" Relationship="WorldBestBars.Model.FK_Review_Bar" FromRole="Bar" ToRole="Review" />
+          <NavigationProperty Name="Categories" Relationship="WorldBestBars.Model.BarCategory" FromRole="Bar" ToRole="Category" />
+          <Property Type="String" Name="Url" MaxLength="Max" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Features" Relationship="WorldBestBars.Model.FK_Feature_Bar" FromRole="Bar" ToRole="Feature" />
+          <Property Type="String" Name="MenuUrl" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BarOpenings" Relationship="WorldBestBars.Model.FK_BarOpening_Bar" FromRole="Bar" ToRole="BarOpening" />
+          </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="Guid" />
+          <Property Name="ParentId" Type="Guid" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Synopsis" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Content" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="UrlKey" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Children" Relationship="WorldBestBars.Model.FK_Document_ParentDocument" FromRole="Document" ToRole="Document1" />
+          <NavigationProperty Name="Parent" Relationship="WorldBestBars.Model.FK_Document_ParentDocument" FromRole="Document1" ToRole="Document" />
+          <NavigationProperty Name="Categories" Relationship="WorldBestBars.Model.DocumentCategory" FromRole="Document" ToRole="Category" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="String" Name="Url" MaxLength="Max" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <Property Type="Guid" Name="RedirectId" />
+          <NavigationProperty Name="RedirectedFrom" Relationship="WorldBestBars.Model.FK_Document_RedirectDocument" FromRole="Document" ToRole="Document1" />
+          <NavigationProperty Name="RedirectTo" Relationship="WorldBestBars.Model.FK_Document_RedirectDocument" FromRole="Document1" ToRole="Document" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="Guid" />
+          <Property Name="ParentId" Type="Guid" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Synopsis" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LegacyId" Type="Int32" />
+          <Property Name="UrlKey" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <NavigationProperty Name="Bars" Relationship="WorldBestBars.Model.FK_Bar_Location" FromRole="Location" ToRole="Bar" />
+          <NavigationProperty Name="Children" Relationship="WorldBestBars.Model.FK_ParentLocation_Location" FromRole="Location" ToRole="Location1" />
+          <NavigationProperty Name="Parent" Relationship="WorldBestBars.Model.FK_ParentLocation_Location" FromRole="Location1" ToRole="Location" />
+          <NavigationProperty Name="Categories" Relationship="WorldBestBars.Model.LocationCategory" FromRole="Location" ToRole="Category" />
+          <Property Type="String" Name="Intro" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Url" MaxLength="Max" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <Property Type="String" Name="GeocoordinateString" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Review">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="Guid" />
+          <Property Name="BarId" Type="Guid" Nullable="false" />
+          <Property Name="UserId" Type="Guid" />
+          <Property Name="Comment" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="LegacyId" Type="Int32" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Bar" Relationship="WorldBestBars.Model.FK_Review_Bar" FromRole="Review" ToRole="Bar" />
+          <NavigationProperty Name="User" Relationship="WorldBestBars.Model.FK_Review_User" FromRole="Review" ToRole="User" />
+          <Property Type="Boolean" Name="IsModerated" Nullable="false" />
+          <Property Type="String" Name="Title" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="RatingId" />
+          <NavigationProperty Name="Rating" Relationship="WorldBestBars.Model.FK_Review_Rating" FromRole="Review" ToRole="Rating" />
+          <Property Type="String" Name="UserIP" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="ParentId" />
+          <NavigationProperty Name="Responses" Relationship="WorldBestBars.Model.FK_Review_Review" FromRole="Review" ToRole="Review1" />
+          <NavigationProperty Name="Parent" Relationship="WorldBestBars.Model.FK_Review_Review" FromRole="Review1" ToRole="Review" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="Guid" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="IsExpert" Type="Boolean" Nullable="false" />
+          <Property Name="LegacyId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Biography" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="Website" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
+          <Property Name="UrlKey" Type="String" MaxLength="32" Unicode="true" FixedLength="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Reviews" Relationship="WorldBestBars.Model.FK_Review_User" FromRole="User" ToRole="Review" />
+          <Property Type="String" Name="Password" MaxLength="32" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="false" />
+          <Property Type="String" Name="Email" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="Created" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="Modified" Nullable="false" Precision="3" />
+          <Property Type="String" Name="City" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="DateOfBirth" Precision="0" />
+          <NavigationProperty Name="Attributes" Relationship="WorldBestBars.Model.FK_UserAttribute_User" FromRole="User" ToRole="UserAttribute" />
+        </EntityType>
+        <EntityType Name="UrlMap">
+          <Key>
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Name="Type" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="ParentId" Type="Guid" />
+          <Property Name="UrlKey" Type="String" MaxLength="64" Unicode="true" FixedLength="false" />
+          <Property Name="Url" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Type="Int32" Name="IsActive" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Bar_Location">
+          <End Role="Location" Type="WorldBestBars.Model.Location" Multiplicity="0..1" />
+          <End Role="Bar" Type="WorldBestBars.Model.Bar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Bar">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_Bar">
+          <End Role="Bar" Type="WorldBestBars.Model.Bar" Multiplicity="1" />
+          <End Role="Review" Type="WorldBestBars.Model.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="BarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_ParentDocument">
+          <End Role="Document" Type="WorldBestBars.Model.Document" Multiplicity="0..1" />
+          <End Role="Document1" Type="WorldBestBars.Model.Document" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ParentLocation_Location">
+          <End Role="Location" Type="WorldBestBars.Model.Location" Multiplicity="0..1" />
+          <End Role="Location1" Type="WorldBestBars.Model.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Location1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Review_User">
+          <End Role="User" Type="WorldBestBars.Model.User" Multiplicity="0..1" />
+          <End Role="Review" Type="WorldBestBars.Model.Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="Guid" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Key" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsSystem" Nullable="false" />
+          <NavigationProperty Name="Bars" Relationship="WorldBestBars.Model.BarCategory" FromRole="Category" ToRole="Bar" />
+          <NavigationProperty Name="Documents" Relationship="WorldBestBars.Model.DocumentCategory" FromRole="Category" ToRole="Document" />
+          <NavigationProperty Name="Locations" Relationship="WorldBestBars.Model.LocationCategory" FromRole="Category" ToRole="Location" />
+          <Property Type="Boolean" Name="IsSearchable" Nullable="false" />
+          <Property Type="String" Name="Order" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Group" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="BarCategory">
+          <End Type="WorldBestBars.Model.Bar" Role="Bar" Multiplicity="*" />
+          <End Type="WorldBestBars.Model.Category" Role="Category" Multiplicity="*" />
+        </Association>
+        <Association Name="DocumentCategory">
+          <End Type="WorldBestBars.Model.Category" Role="Category" Multiplicity="*" />
+          <End Type="WorldBestBars.Model.Document" Role="Document" Multiplicity="*" />
+        </Association>
+        <Association Name="LocationCategory">
+          <End Type="WorldBestBars.Model.Category" Role="Category" Multiplicity="*" />
+          <End Type="WorldBestBars.Model.Location" Role="Location" Multiplicity="*" />
+        </Association>
+        <EntityType Name="ActiveEntity">
+          <Key>
+            <PropertyRef Name="Type" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Name" />
+            <PropertyRef Name="IsActive" />
+          </Key>
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="ParentId" />
+          <Property Type="String" Name="UrlKey" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="IsActive" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Advert">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="Guid" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Body" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SkyscraperUrl" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="VideoUrl" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="Start" Precision="3" />
+          <Property Type="DateTime" Name="Finish" Precision="3" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <Property Type="Byte" Name="Weight" Nullable="false" />
+          <NavigationProperty Name="AdvertStats" Relationship="WorldBestBars.Model.FK_AdvertStats_AdvertStats" FromRole="Advert" ToRole="AdvertStat" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="DestinationUrl" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VideoImageUrl" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ActiveAdvert">
+          <Key>
+            <PropertyRef Name="Title" />
+            <PropertyRef Name="SkyscraperUrl" />
+          </Key>
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Body" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SkyscraperUrl" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="VideoUrl" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="AdvertStat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="AdvertId" Nullable="false" />
+          <Property Type="Int32" Name="Impressions" Nullable="false" />
+          <Property Type="Int32" Name="Clicks" Nullable="false" />
+          <NavigationProperty Name="Advert" Relationship="WorldBestBars.Model.FK_AdvertStats_AdvertStats" FromRole="AdvertStat" ToRole="Advert" />
+          <Property Type="DateTime" Name="Period" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_AdvertStats_AdvertStats">
+          <End Type="WorldBestBars.Model.Advert" Role="Advert" Multiplicity="1" />
+          <End Type="WorldBestBars.Model.AdvertStat" Role="AdvertStat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Advert">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AdvertStat">
+              <PropertyRef Name="AdvertId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Rating">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Byte" Name="Design" Nullable="false" />
+          <Property Type="Byte" Name="Drinks" Nullable="false" />
+          <Property Type="Byte" Name="Service" Nullable="false" />
+          <Property Type="Int32" Name="Overall" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <Association Name="FK_Review_Rating">
+          <End Type="WorldBestBars.Model.Rating" Role="Rating" Multiplicity="0..1" />
+          <End Type="WorldBestBars.Model.Review" Role="Review" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Rating">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review">
+              <PropertyRef Name="RatingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Related">
+          <Key>
+            <PropertyRef Name="LeftId" />
+            <PropertyRef Name="RightId" />
+          </Key>
+          <Property Type="Guid" Name="LeftId" Nullable="false" />
+          <Property Type="Guid" Name="RightId" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Review_Review">
+          <End Type="WorldBestBars.Model.Review" Role="Review" Multiplicity="0..1" />
+          <End Type="WorldBestBars.Model.Review" Role="Review1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Review">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Review1">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Document_RedirectDocument">
+          <End Type="WorldBestBars.Model.Document" Role="Document" Multiplicity="0..1" />
+          <End Type="WorldBestBars.Model.Document" Role="Document1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Document">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Document1">
+              <PropertyRef Name="RedirectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ShortISO" Nullable="false" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="String" Name="LongISO" Nullable="false" MaxLength="3" FixedLength="true" Unicode="false" />
+          <Property Type="Byte" Name="MinAge" />
+        </EntityType>
+        <EntityType Name="Redirect">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="String" Name="Inbound" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Outbound" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Hits" Nullable="false" />
+          <Property Type="DateTime" Name="LastHit" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="UserAttribute">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="UserId" Nullable="false" />
+          <Property Type="String" Name="Key" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ValueString" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ValueInt" />
+          <Property Type="Decimal" Name="ValueDecimal" Precision="9" Scale="4" />
+          <Property Type="Binary" Name="ValueBinary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="User" Relationship="WorldBestBars.Model.FK_UserAttribute_User" FromRole="UserAttribute" ToRole="User" />
+          <Property Type="DateTime" Name="ValueDate" Precision="3" />
+          <Property Type="Boolean" Name="ValueBool" />
+        </EntityType>
+        <Association Name="FK_UserAttribute_User">
+          <End Type="WorldBestBars.Model.User" Role="User" Multiplicity="1" />
+          <End Type="WorldBestBars.Model.UserAttribute" Role="UserAttribute" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserAttribute">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="BarId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Details" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Extra" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsActive" Nullable="false" />
+          <NavigationProperty Name="Bar" Relationship="WorldBestBars.Model.FK_Feature_Bar" FromRole="Feature" ToRole="Bar" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Sponsor" MaxLength="32" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_Feature_Bar">
+          <End Type="WorldBestBars.Model.Bar" Role="Bar" Multiplicity="1" />
+          <End Type="WorldBestBars.Model.Feature" Role="Feature" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Feature">
+              <PropertyRef Name="BarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BarOpening">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Guid" Name="Id" Nullable="false" />
+          <Property Type="Guid" Name="BarId" Nullable="false" />
+          <Property Type="Byte" Name="Day" Nullable="false" />
+          <Property Type="Time" Name="Open" Nullable="false" Precision="7" />
+          <Property Type="Time" Name="Close" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Bar" Relationship="WorldBestBars.Model.FK_BarOpening_Bar" FromRole="BarOpening" ToRole="Bar" />
+        </EntityType>
+        <Association Name="FK_BarOpening_Bar">
+          <End Type="WorldBestBars.Model.Bar" Role="Bar" Multiplicity="1" />
+          <End Type="WorldBestBars.Model.BarOpening" Role="BarOpening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BarOpening">
+              <PropertyRef Name="BarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="localworldsbestbarsModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Bars"><EntityTypeMapping TypeName="WorldBestBars.Model.Bar"><MappingFragment StoreEntitySet="Bar">
+                <ScalarProperty Name="MenuUrl" ColumnName="MenuUrl" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Intro" ColumnName="Intro" />
+            <ScalarProperty Name="Description" ColumnName="Description" />
+            <ScalarProperty Name="Website" ColumnName="Website" />
+            <ScalarProperty Name="Email" ColumnName="Email" />
+            <ScalarProperty Name="Phone" ColumnName="Phone" />
+            <ScalarProperty Name="Fax" ColumnName="Fax" />
+            <ScalarProperty Name="Address" ColumnName="Address" />
+            <ScalarProperty Name="OpenHours" ColumnName="OpenHours" />
+            <ScalarProperty Name="LegacyId" ColumnName="LegacyId" />
+            <ScalarProperty Name="UrlKey" ColumnName="UrlKey" />
+            <ScalarProperty Name="GeocoordinateString" ColumnName="GeocoordinateString" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Documents"><EntityTypeMapping TypeName="WorldBestBars.Model.Document"><MappingFragment StoreEntitySet="Document">
+            <ScalarProperty Name="RedirectId" ColumnName="RedirectId" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Synopsis" ColumnName="Synopsis" />
+            <ScalarProperty Name="Content" ColumnName="Content" />
+            <ScalarProperty Name="UrlKey" ColumnName="UrlKey" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Locations"><EntityTypeMapping TypeName="WorldBestBars.Model.Location"><MappingFragment StoreEntitySet="Location">
+            <ScalarProperty Name="GeocoordinateString" ColumnName="GeocoordinateString" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Intro" ColumnName="Intro" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Synopsis" ColumnName="Synopsis" />
+            <ScalarProperty Name="LegacyId" ColumnName="LegacyId" />
+            <ScalarProperty Name="UrlKey" ColumnName="UrlKey" />
+            </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Reviews"><EntityTypeMapping TypeName="WorldBestBars.Model.Review"><MappingFragment StoreEntitySet="Review">
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="UserIP" ColumnName="UserIP" />
+                <ScalarProperty Name="RatingId" ColumnName="RatingId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IsModerated" ColumnName="IsModerated" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="BarId" ColumnName="BarId" />
+            <ScalarProperty Name="UserId" ColumnName="UserId" />
+            <ScalarProperty Name="Comment" ColumnName="Comment" />
+            <ScalarProperty Name="LegacyId" ColumnName="LegacyId" />
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+            <ScalarProperty Name="Created" ColumnName="Created" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="IsTypeOf(WorldBestBars.Model.User)">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Modified" ColumnName="Modified" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UrlKey" ColumnName="UrlKey" />
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Biography" ColumnName="Biography" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="LegacyId" ColumnName="LegacyId" />
+                <ScalarProperty Name="IsExpert" ColumnName="IsExpert" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="UrlMaps"><EntityTypeMapping TypeName="WorldBestBars.Model.UrlMap"><MappingFragment StoreEntitySet="UrlMap">
+            <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+            <ScalarProperty Name="Name" ColumnName="Name" />
+            <ScalarProperty Name="Id" ColumnName="Id" />
+            <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+            <ScalarProperty Name="UrlKey" ColumnName="UrlKey" />
+            <ScalarProperty Name="Url" ColumnName="Url" />
+          </MappingFragment></EntityTypeMapping></EntitySetMapping>
+          <EntitySetMapping Name="Categories">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="Group" ColumnName="Group" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="IsSearchable" ColumnName="IsSearchable" />
+                <ScalarProperty Name="IsSystem" ColumnName="IsSystem" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="BarCategory" TypeName="WorldBestBars.Model.BarCategory" StoreEntitySet="BarCategory">
+            <EndProperty Name="Category">
+              <ScalarProperty Name="Id" ColumnName="CategoryId" />
+            </EndProperty>
+            <EndProperty Name="Bar">
+              <ScalarProperty Name="Id" ColumnName="BarId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="DocumentCategory" TypeName="WorldBestBars.Model.DocumentCategory" StoreEntitySet="DocumentCategory">
+            <EndProperty Name="Document">
+              <ScalarProperty Name="Id" ColumnName="DocumentId" />
+            </EndProperty>
+            <EndProperty Name="Category">
+              <ScalarProperty Name="Id" ColumnName="CategoryId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="LocationCategory" TypeName="WorldBestBars.Model.LocationCategory" StoreEntitySet="LocationCategory">
+            <EndProperty Name="Location">
+              <ScalarProperty Name="Id" ColumnName="LocationId" />
+            </EndProperty>
+            <EndProperty Name="Category">
+              <ScalarProperty Name="Id" ColumnName="CategoryId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="ActiveEntities">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.ActiveEntity">
+              <MappingFragment StoreEntitySet="ActiveEntities">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="UrlKey" ColumnName="UrlKey" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adverts">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.Advert">
+              <MappingFragment StoreEntitySet="Advert">
+                <ScalarProperty Name="VideoImageUrl" ColumnName="VideoImageUrl" />
+                <ScalarProperty Name="DestinationUrl" ColumnName="DestinationUrl" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Finish" ColumnName="Finish" />
+                <ScalarProperty Name="Start" ColumnName="Start" />
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+                <ScalarProperty Name="SkyscraperUrl" ColumnName="SkyscraperUrl" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActiveAdverts">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.ActiveAdvert">
+              <MappingFragment StoreEntitySet="ActiveAdverts">
+                <ScalarProperty Name="VideoUrl" ColumnName="VideoUrl" />
+                <ScalarProperty Name="SkyscraperUrl" ColumnName="SkyscraperUrl" />
+                <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AdvertStats">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.AdvertStat">
+              <MappingFragment StoreEntitySet="AdvertStats">
+                <ScalarProperty Name="Period" ColumnName="Period" />
+                <ScalarProperty Name="Clicks" ColumnName="Clicks" />
+                <ScalarProperty Name="Impressions" ColumnName="Impressions" />
+                <ScalarProperty Name="AdvertId" ColumnName="AdvertId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ratings">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.Rating">
+              <MappingFragment StoreEntitySet="Rating">
+                <ScalarProperty Name="Overall" ColumnName="Overall" />
+                <ScalarProperty Name="Service" ColumnName="Service" />
+                <ScalarProperty Name="Drinks" ColumnName="Drinks" />
+                <ScalarProperty Name="Design" ColumnName="Design" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Relateds">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.Related">
+              <MappingFragment StoreEntitySet="Related">
+                <ScalarProperty Name="RightId" ColumnName="RightId" />
+                <ScalarProperty Name="LeftId" ColumnName="LeftId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="MinAge" ColumnName="MinAge" />
+                <ScalarProperty Name="LongISO" ColumnName="LongISO" />
+                <ScalarProperty Name="ShortISO" ColumnName="ShortISO" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Redirects">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.Redirect">
+              <MappingFragment StoreEntitySet="Redirect">
+                <ScalarProperty Name="LastHit" ColumnName="LastHit" />
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="Outbound" ColumnName="Outbound" />
+                <ScalarProperty Name="Inbound" ColumnName="Inbound" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAttributes">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.UserAttribute">
+              <MappingFragment StoreEntitySet="UserAttribute">
+                <ScalarProperty Name="ValueBool" ColumnName="ValueBool" />
+                <ScalarProperty Name="ValueDate" ColumnName="ValueDate" />
+                <ScalarProperty Name="ValueBinary" ColumnName="ValueBinary" />
+                <ScalarProperty Name="ValueDecimal" ColumnName="ValueDecimal" />
+                <ScalarProperty Name="ValueInt" ColumnName="ValueInt" />
+                <ScalarProperty Name="ValueString" ColumnName="ValueString" />
+                <ScalarProperty Name="Key" ColumnName="Key" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.Feature">
+              <MappingFragment StoreEntitySet="Feature">
+                <ScalarProperty Name="Sponsor" ColumnName="Sponsor" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Extra" ColumnName="Extra" />
+                <ScalarProperty Name="Details" ColumnName="Details" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BarId" ColumnName="BarId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BarOpenings">
+            <EntityTypeMapping TypeName="WorldBestBars.Model.BarOpening">
+              <MappingFragment StoreEntitySet="BarOpening">
+                <ScalarProperty Name="Close" ColumnName="Close" />
+                <ScalarProperty Name="Open" ColumnName="Open" />
+                <ScalarProperty Name="Day" ColumnName="Day" />
+                <ScalarProperty Name="BarId" ColumnName="BarId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Default" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="Model" DisplayType="false" ZoomLevel="72">
+        <EntityTypeShape EntityType="WorldBestBars.Model.Bar" Width="1.5" PointX="5.375" PointY="3.875" Height="5.057109375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.Document" Width="1.5" PointX="0.625" PointY="3.875" Height="4.0956022135416656" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.Location" Width="1.5" PointX="3" PointY="3.875" Height="3.7109993489583317" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.Review" Width="1.5" PointX="5.375" PointY="10.25" Height="4.2879036458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.User" Width="1.5" PointX="7.75" PointY="3.875" Height="4.2879036458333335" IsExpanded="true" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.UrlMap" Width="1.5" PointX="10.125" PointY="3.875" Height="2.1725878906249996" IsExpanded="true" />
+        <AssociationConnector Association="WorldBestBars.Model.FK_Bar_Location" ManuallyRouted="false">
+          <ConnectorPoint PointX="4.5" PointY="5.7304996744791659" />
+          <ConnectorPoint PointX="5.375" PointY="5.7304996744791659" />
+        </AssociationConnector>
+        <AssociationConnector Association="WorldBestBars.Model.FK_Review_Bar" ManuallyRouted="false">
+          <ConnectorPoint PointX="6.125" PointY="8.932109375" />
+          <ConnectorPoint PointX="6.125" PointY="10.25" />
+        </AssociationConnector>
+        <AssociationConnector Association="WorldBestBars.Model.FK_Document_ParentDocument" ManuallyRouted="false">
+          <ConnectorPoint PointX="1.1569230769230767" PointY="7.9706022135416656" />
+          <ConnectorPoint PointX="1.1569230769230767" PointY="8.2206022135416656" />
+          <ConnectorPoint PointX="1.6034615384615383" PointY="8.2206022135416656" />
+          <ConnectorPoint PointX="1.6034615384615383" PointY="7.9706022135416656" />
+        </AssociationConnector>
+        <AssociationConnector Association="WorldBestBars.Model.FK_ParentLocation_Location" ManuallyRouted="false">
+          <ConnectorPoint PointX="3.5319230769230767" PointY="7.5859993489583317" />
+          <ConnectorPoint PointX="3.5319230769230767" PointY="7.8359993489583317" />
+          <ConnectorPoint PointX="3.9784615384615383" PointY="7.8359993489583317" />
+          <ConnectorPoint PointX="3.9784615384615383" PointY="7.5859993489583317" />
+        </AssociationConnector>
+        <AssociationConnector Association="WorldBestBars.Model.FK_Review_User" ManuallyRouted="false">
+          <ConnectorPoint PointX="7.7511528461538459" PointY="8.355205078125" />
+          <ConnectorPoint PointX="7.375" PointY="8.7313579242788464" />
+          <ConnectorPoint PointX="7.375" PointY="12.393951822916666" />
+          <ConnectorPoint PointX="6.875" PointY="12.393951822916666" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WorldBestBars.Model.Category" Width="1.5" PointX="3" PointY="0.5" Height="2.364889322916667" />
+        <AssociationConnector Association="WorldBestBars.Model.BarCategory" ManuallyRouted="false" >
+          <ConnectorPoint PointX="6.125" PointY="3.875" />
+          <ConnectorPoint PointX="6.125" PointY="1.9708968098958333" />
+          <ConnectorPoint PointX="4.5" PointY="1.9708968098958333" />
+        </AssociationConnector>
+        <AssociationConnector Association="WorldBestBars.Model.DocumentCategory" >
+          <ConnectorPoint PointX="3" PointY="1.8747460937499998" />
+          <ConnectorPoint PointX="1.375" PointY="1.8747460937499998" />
+          <ConnectorPoint PointX="1.375" PointY="3.875" />
+        </AssociationConnector>
+        <AssociationConnector Association="WorldBestBars.Model.LocationCategory" >
+          <ConnectorPoint PointX="3.75" PointY="3.2494921875" />
+          <ConnectorPoint PointX="3.75" PointY="3.875" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WorldBestBars.Model.ActiveEntity" Width="1.5" PointX="10.125" PointY="1.625" Height="1.9802864583333317" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.Advert" Width="1.5" PointX="12" PointY="1.625" Height="2.3648893229166665" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.ActiveAdvert" Width="1.5" PointX="16.25" PointY="2" Height="1.7879850260416674" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.AdvertStat" Width="1.5" PointX="14.25" PointY="2" Height="2.1725878906249996" />
+        <AssociationConnector Association="WorldBestBars.Model.FK_AdvertStats_AdvertStats" >
+          <ConnectorPoint PointX="13.5" PointY="3.0862939453125" />
+          <ConnectorPoint PointX="14.25" PointY="3.0862939453125" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WorldBestBars.Model.Rating" Width="1.5" PointX="2.75" PointY="10.875" Height="2.1725878906249996" />
+        <AssociationConnector Association="WorldBestBars.Model.FK_Review_Rating" >
+          <ConnectorPoint PointX="4.25" PointY="11.865143229166666" />
+          <ConnectorPoint PointX="5.375" PointY="11.865143229166666" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WorldBestBars.Model.Related" Width="1.5" PointX="16.25" PointY="4.125" Height="1.4033821614583388" />
+        <AssociationConnector Association="WorldBestBars.Model.FK_Review_Review" >
+          <ConnectorPoint PointX="5.9069230769230767" PointY="14.537903645833334" />
+          <ConnectorPoint PointX="5.9069230769230767" PointY="14.787903645833332" />
+          <ConnectorPoint PointX="6.3534615384615378" PointY="14.787903645833332" />
+          <ConnectorPoint PointX="6.3534615384615378" PointY="14.537903645833334" />
+        </AssociationConnector>
+        <AssociationConnector Association="WorldBestBars.Model.FK_Document_RedirectDocument" >
+          <ConnectorPoint PointX="0.625" PointY="5.2854345953525641" />
+          <ConnectorPoint PointX="0.375" PointY="5.2854345953525641" />
+          <ConnectorPoint PointX="0.375" PointY="6.5905184044471152" />
+          <ConnectorPoint PointX="0.625" PointY="6.5905184044471152" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="WorldBestBars.Model.Country" Width="1.5" PointX="8.375" PointY="1.125" Height="1.9802864583333388" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.Redirect" Width="1.5" PointX="14.25" PointY="4.5" Height="1.5956835937500031" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.UserAttribute" Width="1.5" PointX="9.75" PointY="8.375" />
+        <AssociationConnector Association="WorldBestBars.Model.FK_UserAttribute_User" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.Feature" Width="1.5" PointX="0.5" PointY="9.75" />
+        <AssociationConnector Association="WorldBestBars.Model.FK_Feature_Bar" />
+        <EntityTypeShape EntityType="WorldBestBars.Model.BarOpening" Width="1.5" PointX="14" PointY="11.875" />
+        <AssociationConnector Association="WorldBestBars.Model.FK_BarOpening_Bar" />
+        </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

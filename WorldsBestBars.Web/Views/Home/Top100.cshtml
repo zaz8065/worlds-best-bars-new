@@ -1,0 +1,73 @@
+﻿@model IEnumerable<WorldsBestBars.Model.DatabaseObject>
+@{ 
+  ViewBag.Title = "Readers' Top 100";
+}
+@section MetaTags
+{
+    <meta name="description" content="The 100 best bars in the world selected from the bars ranked highest by our users' reviews." />
+}
+<div id="top100">
+  <div id="panel-1">
+    <div class="header_box">
+      <h2>Readers' Top 100</h2>
+      <p>Based on your ratings and updated regularly <a href="/top-100">Readers’ Top 100</a> is your selection of the best bars in the world. If a fantastic establishment you’ve been to recently doesn’t feature, post your thoughts on our <a href="https://www.facebook.com/worldsbestbars">Facebook page</a> and let mankind share in your discovery! </p>
+    </div>
+  </div>
+  <div id="panel-4">
+    <div class="secondary-content">
+      <div class="filter_options">
+        <h4>
+          Filter Top 100 by city</h4>
+        <select name="filter">
+          <option value="-">Select a city</option>
+          @foreach (var city in ViewBag.Cities)
+          {
+            <option value="@city">@city</option>
+          }
+        </select>
+      </div>
+      @{var index = 0;}
+      <div id="bar_list_container">
+      @foreach (var entity in Model)
+      {
+        index++;
+        var bar = WorldsBestBars.Web.Cache.Bars.Instance.GetById(entity.Id);
+        
+        <div class="panel@(index == 1 ? " winner" : string.Empty)"@(Html.Raw((bar.Address != null ? " data-city=\"" + bar.Address.City + "\"" : string.Empty)))>
+          <a href="@("/" + bar.Url)" title="@bar.Name">
+            <img src="@Url.GetFirstMedia(entity.Id, "245x165.orig")" width="243" height="165" alt="@entity.Name" /></a>
+          <h4>
+            <a href="@("/" + bar.Url)">@entity.Name</a></h4>
+          @if (bar.Parent != null)
+          {
+            <h5>
+              <a href="@("/" + bar.Parent.Url)">@bar.Parent.Name</a></h5>
+          }
+          @if (index == 100)
+          {
+          <h6>
+            1<span>00</span></h6>
+          }
+          else
+          {
+          <h6>
+            @index</h6>
+          }
+          <p>
+            @bar.Intro...<a href="@("/" + bar.Url)">Read more</a></p>
+
+        </div>
+      }
+      </div>
+      <div id="bar_list_pagination" class="pagination">
+        <a id="prev" href="#">Prev</a>&nbsp;|&nbsp;<span class="pages"></span><a id="next" href="#">Next</a>
+      </div>
+    </div>
+    @{Html.RenderPartial("Related", new Guid("19FE4CF5-5069-4C93-A0B6-E78B698F5882"));}
+  </div>
+</div>
+<script type="text/javascript" src="@("/content/js/pagination.js")"></script>
+<script type="text/javascript" src="@("/content/js/pages/top-100.js")"></script>
+<script type="text/javascript">
+    var controller = new Top100Page();
+</script>

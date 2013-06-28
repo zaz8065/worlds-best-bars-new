@@ -1,0 +1,113 @@
+﻿@model UpdateDocument
+
+<div class="container">
+
+  @if (ViewBag.IsNew)
+  {
+    <h1>Create a new document</h1>
+  }
+  else
+  {
+    <h1>Updating: @Model.Name</h1>
+  }
+  <form action="@Request.Url.AbsolutePath" method="post" enctype="multipart/form-data">
+    <div class="row">
+      <div class="span6">
+        <dl>
+          <dt>@Html.LabelFor(model => model.Name)</dt>
+          <dd>
+            @Html.TextBoxFor(model => model.Name, new { @class = "input-xlarge" })
+            @Html.ValidationMessageFor(model => model.Name)</dd>
+
+          <dt>@Html.LabelFor(model => model.UrlKey)</dt>
+          <dd>
+            @Html.TextBoxFor(model => model.UrlKey, new { @class = "input-large" })
+            @Html.ValidationMessageFor(model => model.UrlKey)</dd>
+
+          <dt>@Html.LabelFor(model => model.ParentId)</dt>
+          <dd>
+            @Html.DropDownListFor(model => model.ParentId, (IEnumerable<SelectListItem>)ViewBag.Documents, "Select...", new { @class = "input-xxlarge" })
+            @Html.ValidationMessageFor(model => model.ParentId)</dd>
+
+          <dt>@Html.LabelFor(model => model.Synopsis)</dt>
+          <dd>
+            @Html.TextAreaFor(model => model.Synopsis, new { rows = 4, @class = "input-xxlarge" })
+            @Html.ValidationMessageFor(model => model.Synopsis)</dd>
+
+          <dt>@Html.LabelFor(model => model.Content)</dt>
+          <dd>
+            @Html.TextAreaFor(model => model.Content, new { rows = 10, @class = "input-xxlarge code" })
+            @Html.ValidationMessageFor(model => model.Content)</dd>
+        </dl>
+      </div>
+      <div class="span6">
+        <ul class="nav nav-tabs">
+          <li class="active"><a href="#media" data-toggle="tab">Media</a></li>
+          @if (!ViewBag.IsNew)
+          {
+            <li><a href="#categories" data-toggle="tab">Lists</a></li>
+          }
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="media">
+            @if (Model != null && Model.Images != null && Model.Images.Any())
+            {
+              foreach (var image in Model.Images)
+              {
+              <div class="image">
+                <img src="@image" />
+                <input type="hidden" name="Images" value="@image" />
+                <label>
+                  <input type="checkbox" />
+                  Delete?</label>
+              </div>
+              }
+            }
+            <input type="file" name="images_" id="images" multiple="multiple" />
+            <label>
+              <input type="checkbox" name="process" />
+              Process</label>
+          </div>
+          @if (!ViewBag.IsNew)
+          {
+            <div class="tab-pane" id="categories">
+              <div>
+                <span class="input-append">
+                  <input type="text" data-type="list-search" data-target="category" />
+                  <button class="btn">Clear</button>
+                  <button type="submit" class="btn">Add</button>
+                </span>
+                <input type="hidden" name="category" id="category" />
+              </div>
+              <ul>
+                @foreach (var category in Model.Categories)
+                {
+                  <li><a href="/lists/@category.Id">@category.Name</a></li>
+                }
+              </ul>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Save</button>
+      <button class="btn" type="reset">Reset</button>
+      <div class="pull-right">
+        @if (!ViewBag.IsNew)
+        {
+          if (ViewBag.IsActive)
+          {
+          <a href="/document/@Request.RequestContext.RouteData.Values["id"]/activate/false" class="btn btn-warning">Deactivate</a>
+          }
+          else
+          {
+          <a href="/document/@Request.RequestContext.RouteData.Values["id"]/activate/true" class="btn btn-warning">Activate</a>
+          }
+          <a href="/document/@Request.RequestContext.RouteData.Values["id"]/delete" class="btn btn-danger">Delete</a>
+        }
+      </div>
+    </div>
+  </form>
+</div>

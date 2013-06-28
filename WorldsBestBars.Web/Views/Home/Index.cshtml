@@ -1,0 +1,159 @@
+﻿@using WorldsBestBars.Logic
+@using System.Linq
+@{
+  var advert = WorldsBestBars.Logic.Adverts.GetRandomAdvert(Session);
+}
+@section MetaTags
+{
+    <meta name="description" content="Find the best bars, cocktail lounges and clubs in the world. View maps, read and post reviews. Plan your night with guides for all the major cities." />
+}
+<!-- top cities / featured articles -->
+<div id="panel-1">
+  <div class="fifty-fifty mr10 top-cities">
+    <h2>Top Cities</h2>
+    &nbsp;<span class="learnmore"><a href="@("/all-cities")">See more cities</a></span>
+    @foreach (var entity in ViewBag.TopCities)
+    {
+        var _entity = WorldsBestBars.Web.Cache.Locations.Instance.GetById(entity.Id);
+      <div class="redborder">
+        <h3>
+          <a href="@("/" + _entity.Url)">@_entity.Name</a></h3>
+        <p>@_entity.Intro <a href="@("/" + _entity.Url)">more</a></p>
+      </div>
+    }
+  </div>
+  <div class="fifty-fifty white_tint1">
+    <div id="cocktails">
+      <div class="scrollable2">
+        <div class="items">
+          @foreach (var entity in ViewBag.FeaturedArticles)
+          {
+              var _entity = WorldsBestBars.Web.Cache.Documents.Instance.GetById(entity.Id);
+            <div>
+              <a href="@("/" + _entity.Url)">
+                <img src="@Url.GetFirstMedia((Guid)entity.Id, "365x270.orig")" width="365" height="270" alt="@_entity.Name" /></a>
+              <hr />
+              <span><strong><a href="@("/" + _entity.Url)">@_entity.Name</a></strong>
+                @_entity.Synopsis</span>
+            </div>
+          }
+        </div>
+      </div>
+      <a class="prev browse left"></a><a class="next browse right"></a>
+      <div class="navi">
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="hr10">
+<!-- more features articles -->
+<div id="panel-2" class="whitebg">
+  <h2>
+    You may also be interested in...</h2>
+  @if (advert != null && !string.IsNullOrEmpty(advert.Video))
+  {
+    <div class="thirty-three br">
+      <div class="flashExpander">
+        <img alt="@advert.Name" src="@advert.VideoImage" width="155" height="105" />
+        <h4>
+          @advert.Name</h4>
+        <span>@advert.Body</span> <a href="@advert.Destination">more</a>
+      </div>
+    </div>
+  }
+  @foreach (var entity in ViewBag.AltFeaturedArticles)
+  {
+      var _entity = WorldsBestBars.Web.Cache.Documents.Instance.GetById(entity.Id);
+    <div class="thirty-three br">
+      <a href="@("/" + _entity.Url)">
+        <img alt="@_entity.Name" src="@Url.GetFirstMedia((Guid)entity.Id, "245x165.orig")" width="245" height="165" /></a>
+      <h4>
+        <a href="@("/" + _entity.Url)">@_entity.Name</a></h4>
+      <span>@_entity.Synopsis</span> <a href="@("/" + _entity.Url)">more</a>
+    </div>
+  }
+</div>
+<hr class="hr10">
+<!-- experts -->
+<div id="panel-3" class="whitebg white_tint1">
+  <h3>
+    <a href="@Url.Content("~/experts-choice")">Expert's Choice</a></h3>
+  <div id="experts">
+    <!-- root element for scrollable -->
+    <div class="scrollable">
+      <!-- root element for the items -->
+      <div class="items">
+        <div>
+          @{var index = 0;}
+          @foreach (var entity in ViewBag.Experts)
+          {
+            <div class="thirty-three">
+              <a href="@("/" + entity.Url)">
+                <img src="@Url.GetFirstMedia((Guid)entity.Id, "155x105.sep")" alt="@entity.Name" width="155" class="float_left" /></a>
+              <h4>
+                <a href="@("/" + entity.Url)">@entity.Name</a></h4>
+              <strong>@entity.Title</strong>
+            </div>
+              if (++index % 3 == 0 && index < ViewBag.ExpertCount - 1)
+              { 
+            @Html.Raw("</div><div>")
+              }
+          }
+        </div>
+      </div>
+    </div>
+    <a class="prev browse left"></a><a class="next browse right"></a>
+    <div class="navi">
+    </div>
+  </div>
+</div>
+<hr class="hr10">
+<div id="panel-4">
+  <div class="fifty-fifty mr10">
+    <h3>
+      <a href="@Url.Content("~/most-talked-about")">Most Talked About</a></h3>
+    @foreach (var entity in ViewBag.MostTalkedAbout)
+    {
+        var _entity = WorldsBestBars.Web.Cache.Bars.Instance.GetById(entity.Id);
+      <div class="bar-thumb">
+        <div class="bar-image">
+          <a href="@("/" + entity.Url)">
+            <img alt="@entity.Name" src="@Url.GetFirstMedia((Guid)entity.Id, "155x105.orig")" height="105" width="155" /></a>
+        </div>
+        <div class="bar-text">
+          <h4>
+            <a href="@("/" + entity.Url)">@entity.Name</a></h4>
+          @if (_entity.Parent != null)
+          {
+            <h5>
+              <a href="@("/" + _entity.Parent.Url)">@_entity.Parent.Name</a></h5>
+          }
+          <p>
+            @_entity.Intro</p>
+        </div>
+      </div>
+    }
+  </div>
+  <div class="fifty-fifty">
+    <h3>
+      Recent Bar Reviews</h3>
+    @foreach (var review in ViewBag.RecentReviews)
+    {
+        var bar = WorldsBestBars.Web.Cache.Bars.Instance.GetById(review.Bar.Id);
+      <div class="bar-thumb">
+        <div class="bar-image">
+          <a href="@("/" + bar.Url)">
+            <img alt="@bar.Name" src="@Url.GetFirstMedia((Guid)bar.Id, "155x105.orig")" height="105" width="155" /></a>
+        </div>
+        <div class="bar-text">
+          <h4>
+            <a href="@("/" + bar.Url)">@bar.Name</a></h4>
+          <h5>
+            @review.Created.ToString("ddd, MMM d @ h:mm tt")</h5>
+          <p>
+            @review.Comment</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>

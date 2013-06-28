@@ -1,0 +1,73 @@
+﻿@{
+  const int MaxVisible = 15;
+  
+  var format = "?page={0}";
+  if (!string.IsNullOrEmpty(Request.QueryString["filter"]))
+  {
+    format += "&filter=" + Request.QueryString["filter"];
+  }
+  
+  if (!string.IsNullOrEmpty(Request.QueryString["sort"]))
+  {
+    format += "&sort=" + Request.QueryString["sort"];
+  }
+
+  int HalfMaxVisible = (int)Math.Floor(MaxVisible / 2.0);
+  var range = Enumerable.Range(1, ViewBag.PageCount);
+  if (ViewBag.PageCount > MaxVisible)
+  {
+    if (ViewBag.CurrentPage > HalfMaxVisible)
+    {
+      if (ViewBag.CurrentPage > ViewBag.PageCount - HalfMaxVisible)
+      {
+        range = Enumerable.Range(ViewBag.PageCount - (MaxVisible - 1), MaxVisible);
+      }
+      else
+      {
+        range = Enumerable.Range(ViewBag.CurrentPage - HalfMaxVisible, MaxVisible);
+      }
+    }
+    else
+    {
+      range = Enumerable.Range(1, MaxVisible);
+    }
+  }
+}
+@if (ViewBag.PageCount > 1)
+{
+  <div class="row">
+    <div class="pagination pagination-centered">
+      <ul>
+        @if (ViewBag.CurrentPage == 1)
+        {
+          <li class="disabled"><a href="#" onclick="return false">&laquo;</a></li>
+        }
+        else
+        {
+          <li><a href="@string.Format(format, ViewBag.CurrentPage - 1)">&laquo;</a></li>
+        }
+
+        @foreach (var page in range)
+        {
+          if (page == ViewBag.CurrentPage)
+          {
+            <li class="active"><a href="@string.Format(format, page)" onclick="return false">@page</a></li>
+          }
+          else
+          {
+            <li><a href="@string.Format(format, page)">@page</a></li>
+          }          
+        }
+
+        @if (ViewBag.CurrentPage == ViewBag.PageCount)
+        {
+          <li class="disabled"><a href="#" onclick="return false">&raquo;</a></li>
+        }
+        else
+        {
+          <li><a href="@string.Format(format, ViewBag.CurrentPage + 1)">&raquo;</a></li>
+        }
+      </ul>
+    </div>
+  </div>
+}

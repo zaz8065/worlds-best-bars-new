@@ -1,0 +1,62 @@
+﻿@model LocationModel
+<div class="container">
+  <h1>Locations
+    @if (Model.Current != null)
+    {
+      <small>@Model.Current.Name</small>
+      if (Model.Current.ParentId.HasValue)
+      {
+      <a class="btn" href="/locations/@Model.Current.ParentId">Up</a>
+      }
+      else
+      {
+      <a class="btn" href="/locations">Up</a>
+      }
+      <a class="btn" href="/locations/@Model.Current.Id/update">Edit</a>
+    }
+  </h1>
+  @if (Model.Locations != null && Model.Locations.Any())
+  {
+    if (Model.Current != null)
+    {
+    <h2>Child Locations</h2>
+    }
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th class="span1">Bars</th>
+          <th class="span2">Child Locations</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var location in Model.Locations)
+        {
+          <tr>
+            <td><a href="/locations/@location.Id">@location.Name</a></td>
+            <td>@location.ChildBarCount.ToString("N0")</td>
+            <td>@location.ChildLocationCount.ToString("N0")</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+  @if (Model.Bars != null && Model.Bars.Any())
+  {
+    <h2>Bars</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      @foreach (var bar in Model.Bars)
+      {
+        <tr>
+          <td><a href="/bar/@bar.Id">@bar.Name</a></td>
+        </tr>
+      }
+    </table>
+  }
+</div>

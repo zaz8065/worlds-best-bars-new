@@ -1,0 +1,28 @@
+﻿@model IEnumerable<BarSummary>
+
+<div class="container">
+  <h1>Active bars
+        @using (Html.BeginForm("Active", "Bars", FormMethod.Get, new { @class = "pull-right" }))
+        {
+          <div class="input-append">
+            <input id="filter" name="filter" placeholder="Filter..." type="text" value="@Request.QueryString["filter"]" />
+            <button class="btn" type="submit"><i class="icon-search"></i></button>
+          </div>
+        }
+  </h1>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Reviews</th>
+        <th>Created</th>
+      </tr>
+    </thead>
+    <tbody>
+      @Html.DisplayForModel()
+    </tbody>
+  </table>
+
+  @Html.Partial("_Pagination")
+</div>

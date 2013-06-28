@@ -1,0 +1,80 @@
+﻿@model CategoryDetail
+
+<div class="container">
+  <h1>@Model.Name <a class="btn btn-small" href="/lists/@Model.Id/update">Edit</a></h1>
+  <div class="row">
+    <div class="span2">
+      <strong>Key</strong><br />@Model.Key
+    </div>
+    @if (!string.IsNullOrEmpty(Model.Group))
+    {
+      <div class="span2">
+        <strong>Group</strong><br />@Model.Group
+      </div>
+    }
+  </div>
+  @if (Model.Bars.Any())
+  {
+    <h2>Bars</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var entity in Model.Bars)
+        {
+          <tr>
+            <td><a href="/bar/@entity.Id">@entity.Name</a></td>
+            <td><a class="btn btn-mini btn-danger pull-right" href="/lists/@Model.Id/remove/@entity.Id/bar">Remove</a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+
+  @if (Model.Documents.Any())
+  {
+    <h2>Documents</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var entity in Model.Documents)
+        {
+          <tr>
+            <td><a href="/document/@entity.Id">@entity.Name</a></td>
+            <td><a class="btn btn-mini btn-danger pull-right" href="/lists/@Model.Id/remove/@entity.Id/document">Remove</a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+
+
+  @if (Model.Locations.Any())
+  {
+    <h2>Locations</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        @foreach (var entity in Model.Locations)
+        {
+          <tr>
+            <td><a href="/locations/@entity.Id">@entity.Name</a></td>
+            <td><a class="btn btn-mini btn-danger pull-right" href="/lists/@Model.Id/remove/@entity.Id/location">Remove</a></td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  }
+</div>
