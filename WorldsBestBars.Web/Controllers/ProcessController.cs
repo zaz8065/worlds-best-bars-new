@@ -102,25 +102,16 @@ namespace WorldsBestBars.Web.Controllers
                     }
 
                     var body = new StringBuilder();
-                    body.AppendLine(string.Format("From: {0}", sender));
+                    body.AppendLine(string.Format("Check out {0} in {1} found on www.worldsbestbars.com", bar.Name, bar.Address.City));
 
-                    body.AppendLine(bar.Name);
                     if (bar.Address != null)
                     {
-                        body.AppendLine(string.Format("Address: {0}", bar.Address));
+                        body.AppendLine(string.Format("Here is the address: {0}", bar.Address));
                     }
                     if (!string.IsNullOrEmpty(bar.Phone))
                     {
-                        body.AppendLine(string.Format("Telephone: {0}", bar.Phone));
+                        body.AppendLine(bar.Phone);
                     }
-                    if (!string.IsNullOrEmpty(bar.Website))
-                    {
-                        body.AppendLine(string.Format("Website: {0}", bar.Website));
-                    }
-                    body.AppendLine();
-                    body.AppendLine("Check it out and see what others have to say about it on World's Best Bars - http://www.worldsbestbars.com" + bar.Url);
-                    body.AppendLine();
-                    body.AppendLine(bar.Description);
 
                     if (!string.IsNullOrEmpty(message))
                     {
@@ -132,7 +123,7 @@ namespace WorldsBestBars.Web.Controllers
 
                     var _message = new MailMessage()
                     {
-                        Subject = "Check out this great bar - " + bar.Name,
+                        Subject = string.Format("Check out {0} found on www.worldsbestbars.com", bar.Name),
                         Body = body.ToString(),
                         IsBodyHtml = false
                     };

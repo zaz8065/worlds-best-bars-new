@@ -55,6 +55,9 @@
       area = Model.Parent.Name;
     }
   }
+
+  var defaultImage = Url.GetFirstMedia(Model.Id, "365x270.orig", true);
+  ViewBag.DefaultImage = string.IsNullOrEmpty(defaultImage) ? null : Url.ContentAbsolute(defaultImage);
 }
 @section MetaTags
 {
