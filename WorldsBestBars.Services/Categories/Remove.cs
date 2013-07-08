@@ -21,6 +21,8 @@ namespace WorldsBestBars.Services.Categories
             using (var connection = GetConnection())
             {
                 connection.Execute(string.Format(Sql, type), new { entity = entity, category = category });
+
+                ServiceResolver.GetService<TryInvalidateCache>().Execute(category, "list");
             }
         }
 
