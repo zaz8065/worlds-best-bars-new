@@ -272,7 +272,7 @@ namespace WorldsBestBars.Web.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Update(Guid id, UpdateBarModel model)
+        public ActionResult Update(Guid id, UpdateBarModel model, IEnumerable<string> delete)
         {
             ViewBag.Page = "bars:update";
 
@@ -333,6 +333,14 @@ namespace WorldsBestBars.Web.Admin.Controllers
                         {
                             Services.Media.Helper.UploadMedia(feature.File.InputStream, bar.Url + "/features/" + featureId.ToString(), false);
                         }
+                    }
+                }
+
+                if (delete != null)
+                {
+                    foreach (var image in delete)
+                    {
+                        Services.Media.Helper.Delete(image);
                     }
                 }
 

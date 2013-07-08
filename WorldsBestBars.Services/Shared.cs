@@ -7,11 +7,16 @@ namespace WorldsBestBars.Services
 {
     internal static class Shared
     {
+        internal static string GetMediaPathPhysicalRoot()
+        {
+            return ConfigurationManager.AppSettings["path:media:physical"];
+        }
+
         internal static string GetMediaPathPhysical(string url)
         {
             if (url == null) { return null; }
 
-            return Path.Combine(ConfigurationManager.AppSettings["path:media:physical"], url);
+            return Path.Combine(GetMediaPathPhysicalRoot(), url);
         }
 
         internal static string GetMediaPathRelative(string url)

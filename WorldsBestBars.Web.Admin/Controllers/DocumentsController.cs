@@ -115,7 +115,7 @@ namespace WorldsBestBars.Web.Admin.Controllers
         }
 
         [HttpPost, ValidateInput(false)]
-        public ActionResult Update(Guid id, UpdateDocument model, IEnumerable<HttpPostedFileBase> images_, bool? process, Guid? category)
+        public ActionResult Update(Guid id, UpdateDocument model, IEnumerable<HttpPostedFileBase> images_, bool? process, Guid? category, IEnumerable<string> delete)
         {
             ViewBag.Page = "documents:update";
 
@@ -129,6 +129,14 @@ namespace WorldsBestBars.Web.Admin.Controllers
                     foreach (var image in images_)
                     {
                         Services.Media.Helper.UploadMedia(image.InputStream, document.Url, process.HasValue && process.Value);
+                    }
+                }
+
+                if (delete != null)
+                {
+                    foreach (var image in delete)
+                    {
+                        Services.Media.Helper.Delete(image);
                     }
                 }
 

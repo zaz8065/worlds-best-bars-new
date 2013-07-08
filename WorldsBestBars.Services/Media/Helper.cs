@@ -16,5 +16,16 @@ namespace WorldsBestBars.Services.Media
 
             service.Execute(input, destination, process);
         }
+
+        /// <summary>
+        /// Deletes a file from the specified virtual path.
+        /// </summary>
+        /// <param name="virtualPath">The virtual path of the file to be deleted.</param>
+        public static void Delete(string virtualPath)
+        {
+            var service = new Delete();
+
+            service.Execute(virtualPath);
+        }
     }
 }
