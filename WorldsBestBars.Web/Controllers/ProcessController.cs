@@ -191,6 +191,9 @@ namespace WorldsBestBars.Web.Controllers
                     Cache.Users.Instance.RefreshEntity(id);
                     Cache.UrlMap.Instance.RefreshEntity(id);
                     break;
+                case "list":
+                    Cache.Lists.Instance.Update(id);
+                    break;
             }
         }
     }
