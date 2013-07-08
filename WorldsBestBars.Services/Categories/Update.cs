@@ -31,6 +31,8 @@ where
                     key = model.Key,
                     group = model.Group
                 });
+
+                ServiceResolver.GetService<TryInvalidateCache>().Execute(id, "list");
             }
         }
 
