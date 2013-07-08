@@ -71,6 +71,7 @@
     <Compile Include="Locations\Delete.cs" />
     <Compile Include="Locations\Get.cs" />
     <Compile Include="Locations\Update.cs" />
+    <Compile Include="Media\Delete.cs" />
     <Compile Include="Media\Helper.cs" />
     <Compile Include="Experts\Update.cs" />
     <Compile Include="Experts\Get.cs" />
