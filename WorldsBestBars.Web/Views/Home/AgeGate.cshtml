@@ -42,54 +42,55 @@
           You need to be of legal drinking age to enter our website.</h2>
         <h3>
           Please select your date of birth</h3>
+          <p><button onclick="facebook_login">FACEBOOK!</button></p>
         <form action="@Url.Action("AgeGate", "Home")" method="post">
-        <input type="hidden" name="redirect" value="@Model" />
-        <label>
-          day</label>
-        <select name="day" class="day" size="5">
-          @for (int i = 1; i <= 31; i++)
-          {
-            <option value="@i"@(ViewBag.SelectedDay == i ? " selected" : string.Empty)>@i.ToString("00")</option>
-          }
-        </select>
-        <label>
-          month</label>
-        <select name="month" class="month" size="5">
-          @for (int i = 0; i < 12; i++)
-          {
-            <option value="@(i + 1)"@(ViewBag.SelectedMonth == i + 1 ? " selected" : string.Empty)>@ViewBag.Months[i]</option>
-          }
-        </select>
-        <label>
-          year
-        </label>
-        <select name="year" class="year" size="5">
-          @for (var i = DateTime.Today.Year; i >= DateTime.Today.Year - 90; i--)
-          {          
-            <option value="@i"@(ViewBag.SelectedYear == i ? " selected" : string.Empty)>@i</option>
-          }
-        </select>
-        <div id="remember_area">
+          <input type="hidden" name="redirect" value="@Model" />
           <label>
-            Remember your details?</label>
-          <input type="checkbox" id="remember" name="remember" value="yes" />
-          <span class="remember_label">Remember your details?</span> <span>(Do not tick if it
-            is a shared computer)</span>
-        </div>
-        <div class="location">
-          <label>
-            Where are you?</label>
-          <select name="country" id="location">
-            <option value="--"></option>
-            @foreach (var country in ViewBag.Countries)
+            day</label>
+          <select name="day" class="day" size="5">
+            @for (int i = 1; i <= 31; i++)
             {
-              <option value="@country.Id"@(ViewBag.SelectedCountry == country.Id.ToString() || (ViewBag.SelectedCountry == null && ViewBag.DetectedCountry == country.ShortISO) ? " selected" : string.Empty)>@country.Name</option>
+              <option value="@i"@(ViewBag.SelectedDay == i ? " selected" : string.Empty)>@i.ToString("00")</option>
             }
           </select>
-        </div>
-        <input type="submit" class="sub_btn" />
-        <span>Entering this site means you agree to our <a href="@("/terms-and-conditions")">
-          Terms &amp; Conditions</a> and our <a href="@("/privacy-policy")">Privacy Policy</a></span>
+          <label>
+            month</label>
+          <select name="month" class="month" size="5">
+            @for (int i = 0; i < 12; i++)
+            {
+              <option value="@(i + 1)"@(ViewBag.SelectedMonth == i + 1 ? " selected" : string.Empty)>@ViewBag.Months[i]</option>
+            }
+          </select>
+          <label>
+            year
+          </label>
+          <select name="year" class="year" size="5">
+            @for (var i = DateTime.Today.Year; i >= DateTime.Today.Year - 90; i--)
+            {          
+              <option value="@i"@(ViewBag.SelectedYear == i ? " selected" : string.Empty)>@i</option>
+            }
+          </select>
+          <div id="remember_area">
+            <label>
+              Remember your details?</label>
+            <input type="checkbox" id="remember" name="remember" value="yes" />
+            <span class="remember_label">Remember your details?</span> <span>(Do not tick if it
+              is a shared computer)</span>
+          </div>
+          <div class="location">
+            <label>
+              Where are you?</label>
+            <select name="country" id="location">
+              <option value="--"></option>
+              @foreach (var country in ViewBag.Countries)
+              {
+                <option value="@country.Id"@(ViewBag.SelectedCountry == country.Id.ToString() || (ViewBag.SelectedCountry == null && ViewBag.DetectedCountry == country.ShortISO) ? " selected" : string.Empty)>@country.Name</option>
+              }
+            </select>
+          </div>
+          <input type="submit" class="sub_btn" />
+          <span>Entering this site means you agree to our <a href="@("/terms-and-conditions")">
+            Terms &amp; Conditions</a> and our <a href="@("/privacy-policy")">Privacy Policy</a></span>
         </form>
         @if (ViewBag.Errors != null)
         {
@@ -108,10 +109,8 @@
               $('div#age_gate div#age_errors a.close').click(function (e) {
                   e.preventDefault();
                   $('#age_gate #age_errors ').fadeOut();
-              });
-
-	    
-	    </script>
+              });	    
+	        </script>
         }
       </div>
     </div>
@@ -125,6 +124,54 @@
           ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
+  </script>
+  <div id="fb-root"></div>
+  <script>
+    window.fbAsyncInit = function () {
+      FB.init({
+        appId: '@Config.Facebook.AppId',
+        channelUrl: '//@Request.Url.Host/channel.html',
+        status: true,
+        xfbml: false
+      });
+    };
+
+    (function (d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) { return; }
+      js = d.createElement(s); js.id = id;
+      js.src = "//connect.facebook.net/en_US/all.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+    var facebook_login = function () {
+      try {
+        FB.login(function (response) {
+          if (response.authResponse) {
+            console.log('Welcome!  Fetching your information.... ');
+            FB.api('/me', function (response) {
+              var s = response.birthday;
+              var d = new Date();
+              var p = s.split('/');
+              var month = parseInt(p[0]);
+              var day = parseInt(p[1]);
+              var year = parseInt(p[2]);
+            
+              $('.month').val(month);
+              $('.day').val(day);
+              $('.year').val(year);
+            });
+          } else {
+            console.log('User cancelled login or did not fully authorize.');
+          }
+        }, { scope: 'user_birthday' });
+      }
+      catch (ex) {
+        if (console) { console.log('oh dear', ex); }
+      }
+
+      return false;
+    };
   </script>
 </body>
 </html>
