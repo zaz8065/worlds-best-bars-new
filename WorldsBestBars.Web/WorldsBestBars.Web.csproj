@@ -700,7 +700,6 @@
     <Content Include="App_Data\Config\log4net.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\GeoIP.dat" />
     <Content Include="App_Data\GeoLiteCity.dat" />
   </ItemGroup>
   <ItemGroup>

@@ -139,7 +139,7 @@ BarPage.prototype.initSharing = function () {
             text = 'I just reviewed ' + that.bar.name + ' on @WorldsBestBars #discoverbars ' + (_area ? _area + ' ' : '') + '- Check it out here ';
         }
         else {
-            text = 'I found this great bar ' + that.bar.name + ' on @worldsbestbars in #' + _area;
+            text = 'I found this great bar ' + that.bar.name + ' on @worldsbestbars in ' + _area;
         }
         var share_url = 'https://twitter.com/share?text=' + encodeURIComponent(text);
 
