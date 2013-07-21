@@ -42,7 +42,7 @@
           You need to be of legal drinking age to enter our website.</h2>
         <h3>
           Please select your date of birth</h3>
-          <p><button onclick="facebook_login">FACEBOOK!</button></p>
+        <p class="facebook-section"><button onclick="facebook_login()">FACEBOOK!</button></p>
         <form action="@Url.Action("AgeGate", "Home")" method="post">
           <input type="hidden" name="redirect" value="@Model" />
           <label>
@@ -127,7 +127,17 @@
   </script>
   <div id="fb-root"></div>
   <script>
+    var facebook_user_id;
     window.fbAsyncInit = function () {
+      FB.Event.subscribe('auth.statusChange', function (response) {
+        if (response.status == 'connected') {
+          facebook_user_id = response.authResponse.userID;
+
+          $('.facebook-section').hide();
+          get_from_facebook();
+        }
+      });
+
       FB.init({
         appId: '@Config.Facebook.AppId',
         channelUrl: '//@Request.Url.Host/channel.html',
@@ -144,27 +154,50 @@
       fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
+    var get_from_facebook = function () {
+      FB.api('/me', function (response) {
+        var s = response.birthday;
+        var d = new Date();
+        var p = s.split('/');
+        var month = parseInt(p[0]);
+        var day = parseInt(p[1]);
+        var year = parseInt(p[2]);
+
+        $('.month').val(month);
+        $('.day').val(day);
+        $('.year').val(year);
+      });
+
+      FB.api({
+        method: 'fql.query',
+        query: 'SELECT current_location FROM user where uid=' + facebook_user_id
+      },
+      function (response) {
+        if (response && response.length > 0 && response[0].current_location) {
+          var location = response[0].current_location.country;
+          var id;
+          $("#location option").each(function () {
+            if (this.text == location) {
+              id = $(this).attr('value');
+            }
+          });
+          if (id) {
+            $('#location').val(id);
+          }
+        }
+      });
+    };
+
     var facebook_login = function () {
       try {
         FB.login(function (response) {
           if (response.authResponse) {
-            console.log('Welcome!  Fetching your information.... ');
-            FB.api('/me', function (response) {
-              var s = response.birthday;
-              var d = new Date();
-              var p = s.split('/');
-              var month = parseInt(p[0]);
-              var day = parseInt(p[1]);
-              var year = parseInt(p[2]);
-            
-              $('.month').val(month);
-              $('.day').val(day);
-              $('.year').val(year);
-            });
+            facebook_user_id = response.authResponse.userID;
+            get_from_facebook();
           } else {
-            console.log('User cancelled login or did not fully authorize.');
+            // :(
           }
-        }, { scope: 'user_birthday' });
+        }, { scope: 'user_birthday,user_location' });
       }
       catch (ex) {
         if (console) { console.log('oh dear', ex); }

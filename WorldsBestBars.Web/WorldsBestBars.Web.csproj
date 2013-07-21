@@ -268,6 +268,7 @@
     <Content Include="Areas\BarResource\Content\css\base.css" />
     <Content Include="Areas\BarResource\Content\css\site.css" />
     <Content Include="Areas\BarResource\Content\js\site.js" />
+    <Content Include="channel.html" />
     <Content Include="Content\css\global.css" />
     <Content Include="Content\css\ie6.css" />
     <Content Include="Content\css\ie7.css" />
