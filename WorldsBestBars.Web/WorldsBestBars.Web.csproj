@@ -350,7 +350,9 @@
     <Content Include="Content\img\bar-detail\breadcrumb_02.gif" />
     <Content Include="Content\img\bar-detail\breadcrumb_04.gif" />
     <Content Include="Content\img\bar-detail\categories_recommended.jpg" />
+    <Content Include="Content\img\bar-detail\categories_recommended2.jpg" />
     <Content Include="Content\img\bar-detail\categories_speciality.jpg" />
+    <Content Include="Content\img\bar-detail\categories_speciality2.jpg" />
     <Content Include="Content\img\bar-detail\categories_style.jpg" />
     <Content Include="Content\img\bar-detail\delete.gif" />
     <Content Include="Content\img\bar-detail\delicious-icon.gif" />
@@ -382,6 +384,9 @@
     <Content Include="Content\img\bar-detail\top-100-blk-bg.gif" />
     <Content Include="Content\img\bar-detail\top100-barheader.jpg" />
     <Content Include="Content\img\bar-detail\twitter-btn.gif" />
+    <Content Include="Content\img\bar-detail\wbb-bar-info_r1_c1.png" />
+    <Content Include="Content\img\bar-detail\wbb-bar-info_r1_c3.png" />
+    <Content Include="Content\img\bar-detail\wbb-bar-info_r3_c1.png" />
     <Content Include="Content\img\bar-detail\wbb-fb.png" />
     <Content Include="Content\img\bar-detail\wbb-twit.png" />
     <Content Include="Content\img\bar-detail\WBB_2012_BarDetail_13.png" />
@@ -436,6 +441,7 @@
     <Content Include="Content\img\elements\login_btn_dn.jpg" />
     <Content Include="Content\img\elements\login_btn_up.jpg" />
     <Content Include="Content\img\elements\logo-facebook.jpg" />
+    <Content Include="Content\img\elements\new_window.png" />
     <Content Include="Content\img\elements\red-arrow-right.gif" />
     <Content Include="Content\img\elements\red-dot.png" />
     <Content Include="Content\img\elements\red_header_box_bg.jpg" />
@@ -709,9 +715,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Config\log4net.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_Data\GeoLiteCity.dat" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\BarResource\Views\Shared\_Layout.cshtml" />
