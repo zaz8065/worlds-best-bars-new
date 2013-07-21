@@ -337,6 +337,8 @@
     <Content Include="Content\img\bar-detail\3stars.png" />
     <Content Include="Content\img\bar-detail\4stars.png" />
     <Content Include="Content\img\bar-detail\add-review-btn.png" />
+    <Content Include="Content\img\bar-detail\bar-features.png" />
+    <Content Include="Content\img\bar-detail\bar-menu.png" />
     <Content Include="Content\img\bar-detail\big-gold-star.jpg" />
     <Content Include="Content\img\bar-detail\big-grey-star.jpg" />
     <Content Include="Content\img\bar-detail\big_close_btn_03.png" />
@@ -371,6 +373,7 @@
     <Content Include="Content\img\bar-detail\right-breadcrumb.gif" />
     <Content Include="Content\img\bar-detail\share-button.gif" />
     <Content Include="Content\img\bar-detail\signature-drink.png" />
+    <Content Include="Content\img\bar-detail\signature_cocktail.png" />
     <Content Include="Content\img\bar-detail\small-gold-star.jpg" />
     <Content Include="Content\img\bar-detail\small-grey-star.jpg" />
     <Content Include="Content\img\bar-detail\star-black-bg.gif" />
@@ -379,6 +382,9 @@
     <Content Include="Content\img\bar-detail\top-100-blk-bg.gif" />
     <Content Include="Content\img\bar-detail\top100-barheader.jpg" />
     <Content Include="Content\img\bar-detail\twitter-btn.gif" />
+    <Content Include="Content\img\bar-detail\wbb-fb.png" />
+    <Content Include="Content\img\bar-detail\wbb-twit.png" />
+    <Content Include="Content\img\bar-detail\WBB_2012_BarDetail_13.png" />
     <Content Include="Content\img\bar-detail\white-bg_73.jpg" />
     <Content Include="Content\img\branding\absolut.png" />
     <Content Include="Content\img\branding\beefeater.png" />
@@ -400,6 +406,11 @@
     <Content Include="Content\img\elements\bg-divider-shim.gif" />
     <Content Include="Content\img\elements\bg-facebook-alternative.jpg" />
     <Content Include="Content\img\elements\bg_white_w_red_lines.jpg" />
+    <Content Include="Content\img\elements\btn-features.png" />
+    <Content Include="Content\img\elements\btn-info.png" />
+    <Content Include="Content\img\elements\btn-menu.png" />
+    <Content Include="Content\img\elements\btn-reviews.png" />
+    <Content Include="Content\img\elements\btn-signature-drink.png" />
     <Content Include="Content\img\elements\btn_everything_dn.jpg" />
     <Content Include="Content\img\elements\btn_everything_up.jpg" />
     <Content Include="Content\img\elements\btn_just_bars_dn.jpg" />
