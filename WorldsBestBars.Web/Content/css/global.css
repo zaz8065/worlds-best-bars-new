@@ -3148,3 +3148,16 @@ div#article_content a[target=_blank] {
   background: url(/content/img/elements/new_window.png) transparent no-repeat center right;
   padding-right: 20px;
 }
+
+
+p.facebook-section button 
+{
+    background: url(/content/img/elements/login-fb.png) transparent;
+    border:none;
+    width:200px;
+    height:44px;
+	display:block;
+	margin:10px auto;
+	text-indent:-9000px;
+	cursor:pointer;
+}
