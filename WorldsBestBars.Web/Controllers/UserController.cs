@@ -140,6 +140,8 @@ namespace WorldsBestBars.Web.Controllers
             {
                 var id = Model.User.Register(name, city, email, dob, password);
 
+                Services.Email.MailChimp.Helper.Subscribe(id);
+
                 Cache.Users.Instance.RefreshEntity(id);
 
                 Session.SetCurrentUser(Cache.Users.Instance.GetById(id));
@@ -174,6 +176,7 @@ namespace WorldsBestBars.Web.Controllers
                     }
                     else
                     {
+                        Services.Email.MailChimp.Helper.Unsubscribe(user.Id);
                         Model.User.SetAttribute(user.Id, "email.unsubscribed", true);
                     }
                 }
