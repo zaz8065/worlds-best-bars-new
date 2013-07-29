@@ -11,6 +11,8 @@
     <AssemblyName>WorldsBestBars.Services</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +32,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -64,6 +69,10 @@
     <Compile Include="Categories\Update.cs" />
     <Compile Include="DefaultServiceResolver.cs" />
     <Compile Include="DocumentService.cs" />
+    <Compile Include="Email\MailChimp\Unsubscribe.cs" />
+    <Compile Include="Email\MailChimp\Helper.cs" />
+    <Compile Include="Email\MailChimp\Shared.cs" />
+    <Compile Include="Email\MailChimp\Subscribe.cs" />
     <Compile Include="Email\TrySendEmail.cs" />
     <Compile Include="Experts\Delete.cs" />
     <Compile Include="Experts\Create.cs" />
@@ -112,6 +121,8 @@
     <Compile Include="SubmissionService.cs" />
     <Compile Include="TryInvalidateCache.cs" />
     <Compile Include="UserService.cs" />
+    <Compile Include="Users\Get.cs" />
+    <Compile Include="Users\GetSubscribed.cs" />
     <Compile Include="Users\LostPasswordRequest.cs" />
     <Compile Include="Users\Helper.cs" />
     <Compile Include="Users\IsEmailInUse.cs" />
@@ -122,8 +133,11 @@
       <Name>WorldsBestBars.Data</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
