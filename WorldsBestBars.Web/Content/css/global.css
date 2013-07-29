@@ -3154,10 +3154,14 @@ p.facebook-section button
 {
     background: url(/content/img/elements/login-fb.png) transparent;
     border:none;
-    width:200px;
-    height:44px;
+    width:150px;
+    height:33px;
 	display:block;
 	margin:10px auto;
 	text-indent:-9000px;
 	cursor:pointer;
+}
+#signinButton {
+	margin: 10px auto;
+	width: 110px;
 }
