@@ -154,7 +154,7 @@
             <dl>
               @foreach (var day in Model.OpenHours.GroupBy(p => p.Day))
               {
-                <dt>@day.Key</dt>
+                <dt>@((DayOfWeek)day.Key)</dt>
                 <dd>@string.Join(", ", day.Select(d => string.Format("{0:h':'mm} - {1:h':'mm}", d.Open, d.Close)))</dd>
               }
             </dl>
