@@ -56,6 +56,7 @@
                     data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.profile"></span>
             </span>
             <form action="@Url.Action("AgeGate", "Home")" method="post">
+                <input type="hidden" name="source" value="" />
                 <input type="hidden" name="redirect" value="@Model" />
                 <label>
                     day</label>
@@ -181,6 +182,17 @@
         };
 
         var get_from_facebook = function () {
+            var count = 0;
+
+            var check_and_submit = function () {
+                if (count == 2) {
+                    @if (ViewBag.Source == null)
+                    {
+                        <text>$('[name=source]').val('facebook');
+                        $('[type=submit]').click();</text>
+                    }
+                }
+            };
             FB.api('/me', function (response) {
                 var s = response.birthday;
                 var d = new Date();
@@ -192,6 +204,8 @@
                 $('.month').val(month);
                 $('.day').val(day);
                 $('.year').val(year);
+
+                count++; check_and_submit();
             });
 
             FB.api({
@@ -203,6 +217,8 @@
                     var location = response[0].current_location.country;
 
                     select_country(location);
+
+                    count++; check_and_submit();
                 }
             });
         };
@@ -226,6 +242,17 @@
         };
 
         function signinCallback(authResult) {
+            var count = 0;
+            var check_and_submit = function () {
+                if (count == 2) {
+                    @if (ViewBag.Source == null)
+                    {
+                        <text>$('[name=source]').val('google');
+                        $('[type=submit]').click();</text>
+                    }
+                }
+            };
+
             if (authResult['access_token']) {
                 gapi.client.load('plus', 'v1', function () {
                     var request = gapi.client.plus.people.get({
@@ -235,6 +262,8 @@
                         if (resp.placesLived && resp.placesLived.length) {
                             var l = resp.placesLived[0].value.split(',');
                             select_country(l[l.length - 1]);
+
+                            count++; check_and_submit();
                         }
                     });
                 });
@@ -251,6 +280,8 @@
                         if (month != 0) { $('.month').val(month); }
                         if (day != 0) { $('.day').val(day); } 
                         if (year != 0) { $('.year').val(year); }
+
+                        count++; check_and_submit();
                     });
                 });
                 // Successfully authorized

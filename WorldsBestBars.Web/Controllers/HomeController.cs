@@ -155,7 +155,7 @@ namespace WorldsBestBars.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult AgeGate(string redirect, string country, string remember, int? day, int? month, int? year)
+        public ActionResult AgeGate(string redirect, string country, string remember, int? day, int? month, int? year, string source)
         {
             Guid _country = Guid.Empty;
 
@@ -163,6 +163,7 @@ namespace WorldsBestBars.Web.Controllers
             ViewBag.SelectedDay = day;
             ViewBag.SelectedMonth = month;
             ViewBag.SelectedYear = year;
+            ViewBag.Source = source;
 
             if (!Guid.TryParse(country, out _country))
             {
