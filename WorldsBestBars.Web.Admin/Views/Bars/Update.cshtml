@@ -206,7 +206,7 @@
   var map, marker;
   var geocoder = new google.maps.Geocoder();
   
-  var markerOptions;
+  var markerOptions = { draggable: true };
 
   var dropMarker = function() {
     markerOptions.map = map;
@@ -233,8 +233,7 @@
     mapOptions.zoom = 16;
 
     markerOptions = {
-      position: mapOptions.center,
-      draggable: true
+      position: mapOptions.center
     };
     </text>}
     else

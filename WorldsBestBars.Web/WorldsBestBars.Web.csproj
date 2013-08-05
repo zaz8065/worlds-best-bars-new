@@ -438,6 +438,7 @@
     <Content Include="Content\img\elements\image-ex.gif" />
     <Content Include="Content\img\elements\join_us_dn.jpg" />
     <Content Include="Content\img\elements\join_us_up.jpg" />
+    <Content Include="Content\img\elements\login-fb.png" />
     <Content Include="Content\img\elements\login_btn_dn.jpg" />
     <Content Include="Content\img\elements\login_btn_up.jpg" />
     <Content Include="Content\img\elements\logo-facebook.jpg" />
