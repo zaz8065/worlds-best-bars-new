@@ -22,7 +22,7 @@ namespace WorldsBestBars.Web.Controllers
                     break;
                 case "Location":
                     var children = Cache.Locations.Instance.GetByParent(id);
-                    var bars = Cache.Bars.Instance.GetByParent(id).OrderBy(b => b.Name);
+                    var bars = Cache.Bars.Instance.GetByParent(id).Where(b => b.IsActive).OrderBy(b => b.Name);
 
                     ViewBag.Locations = children.OrderBy(l => l.Name);
                     ViewBag.Bars = bars;

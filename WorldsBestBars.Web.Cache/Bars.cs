@@ -67,7 +67,7 @@ namespace WorldsBestBars.Web.Cache
 
 		public Model.Bar[] GetByParent(Guid? location)
 		{
-			return GetAll().Where(b => (location == null && b.Parent == null) || (b.Parent != null && b.Parent.Id == location)).ToArray();
+			return GetAll().Where(b => b.IsActive && (location == null && b.Parent == null) || (b.Parent != null && b.Parent.Id == location)).ToArray();
 		}
 
 		public Model.Bar[] GetByBounds(double north, double south, double east, double west)
