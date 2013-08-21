@@ -36,7 +36,7 @@ namespace WorldsBestBars.Services.Email.MailChimp
             values.Add("email", user.Email);
             values.Add("merge_vars", JsonConvert.SerializeObject(mergeVars));
             values.Add("double_optin", "false");
-            values.Add("update_existing", "false");
+            values.Add("update_existing", "true");
             values.Add("replace_interests", "false");
             values.Add("send_welcome", "false");
         }

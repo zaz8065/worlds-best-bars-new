@@ -49,6 +49,21 @@ if @password is not null
 
         public void Execute(Guid id, Models.UpdateUser updates)
         {
+            var original = GetService<Get>().Execute(id);
+
+            if (original.Email != updates.Email)
+            {
+                // if the user has changed their email address, unsubscribe them from mail chimp first
+                try
+                {
+                    GetService<Email.MailChimp.Unsubscribe>().Execute(id);
+                }
+                catch
+                {
+                    // probably should do something here.
+                }
+            }
+
             using (var connection = GetConnection())
             {
                 connection.Execute(Sql, new
@@ -64,6 +79,32 @@ if @password is not null
                     favouriteBrands = updates.FavouriteBrands,
                     password = string.IsNullOrEmpty(updates.Password) ? null : Helper.MD5(updates.Password)
                 });
+            }
+
+            if (original.Email != updates.Email)
+            {
+                // if the user has changed their email address, re-subscribe them from mail chimp first
+                try
+                {
+                    GetService<Email.MailChimp.Subscribe>().Execute(id);
+                }
+                catch
+                {
+                    // probably should do something here.
+                }
+            }
+
+            if (original.City != updates.City && original.Email == updates.Email)
+            {
+                // if the user has updated their city, re-subscribing them updates their details
+                try
+                {
+                    GetService<Email.MailChimp.Subscribe>().Execute(id);
+                }
+                catch
+                {
+                    // probably should do something here.
+                }
             }
         }
 
