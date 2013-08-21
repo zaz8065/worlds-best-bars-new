@@ -1,0 +1,56 @@
+﻿@model WorldsBestBars.Model.User
+@{
+    ViewBag.Title = "Your Profile";
+}
+
+<div id="panel-1">
+    <div class="full_width whitebox">
+        <div>
+            <strong>Name</strong> @Model.Name
+        </div>
+        <div>
+            <strong>Home City</strong> @Model.City
+        </div>
+        <div>
+            <strong>Email</strong> @Model.Email
+        </div>
+
+        @if (Model.DateOfBirth.HasValue)
+        {
+            <div>
+                <strong>Date of Birth</strong> @Model.DateOfBirth.Value.ToLongDateString()
+            </div>
+        }
+
+        @if (Model.Attributes.ContainsKey("favourite:cities"))
+        {
+
+            <div>
+                <strong>Favourite Cities</strong> @Model.Attributes["favourite:cities"]
+            </div>
+        }
+
+        @if (Model.Attributes.ContainsKey("favourite:bars"))
+        {
+            <div>
+                <strong>Favourite Bars</strong> @Model.Attributes["favourite:bars"]
+            </div>
+        }
+
+        @if (Model.Attributes.ContainsKey("favourite:brands"))
+        {
+            <div>
+                <strong>Favourite Brands</strong> @Model.Attributes["favourite:brands"]
+            </div>
+        }
+
+        @if (Model.Attributes.ContainsKey("favourite:cocktails"))
+        {
+            <div>
+                <strong>Favourite Cocktails</strong> @Model.Attributes["favourite:cocktails"]
+            </div>
+        }
+
+        <a href="/profile/update">Update</a>
+    </div>
+</div>

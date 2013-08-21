@@ -1,0 +1,91 @@
+﻿@model UpdateProfile
+@{
+    ViewBag.Title = "Update Profile";
+}
+
+<style type="text/css">
+    .profile form > div {
+        margin-bottom: 10px;
+    }
+        .profile form > div > label {
+            font-weight: bold;
+            display: inline-block;
+            width: 150px;
+        }
+
+        .profile form > div > input {
+            width: 400px;
+            border-radius: 4px;
+            box-shadow: inset;
+            padding: 4px 8px;
+        }
+
+    .profile h2 {
+        margin-bottom: 20px;
+    }
+
+    .profile h3 {
+        margin-bottom: 15px;
+        font-size: 17px;
+    }
+</style>
+<div id="panel-1">
+    <div class="full_width whitebox profile">
+        <h2>Your Personal Profile</h2>
+        <form action="@Request.Url" method="post">
+            <div>
+                @Html.LabelFor(m => m.Name, "Name *")
+                @Html.TextBoxFor(m => m.Name)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.City, "Home City")
+                @Html.TextBoxFor(m => m.City)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.Email, "Email *")
+                @Html.TextBoxFor(m => m.Email)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.DateOfBirth, "Date of Birth *")
+                @Html.TextBoxFor(m => m.DateOfBirth)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.Password)
+                @Html.TextBoxFor(m => m.Password)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.PasswordConfirm, "Confirm")
+                @Html.TextBoxFor(m => m.PasswordConfirm)
+            </div>
+
+            <h3>Cities you like to go out in/travel to</h3>
+            <div>
+                @Html.LabelFor(m => m.FavouriteCities, "My favourite cities")
+                @Html.TextBoxFor(m => m.FavouriteCities)
+            </div>
+
+            <h3>My Favourite...</h3>
+            <div>
+                @Html.LabelFor(m => m.FavouriteBars, "Bars")
+                @Html.TextBoxFor(m => m.FavouriteBars)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.FavouriteBrands, "Drinks brand")
+                @Html.TextBoxFor(m => m.FavouriteBrands)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.FavouriteCocktails, "Cocktails")
+                @Html.TextBoxFor(m => m.FavouriteCocktails)
+            </div>
+
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+            <a href="/profile">Cancel</a>
+        </form>
+    </div>
+</div>

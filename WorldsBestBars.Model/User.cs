@@ -33,6 +33,12 @@ namespace WorldsBestBars.Model
         [JsonProperty("email")]
         public string Email { get; set; }
 
+        [JsonProperty("city")]
+        public string City { get; set; }
+
+        [JsonProperty("dob")]
+        public DateTime? DateOfBirth { get; set; }
+
         [JsonProperty("reviews")]
         public Review[] Reviews { get; set; }
 
@@ -67,6 +73,8 @@ namespace WorldsBestBars.Model
                 IsActive = input.IsActive,
                 IsExpert = input.IsExpert,
                 IsAdmin = input.IsAdmin,
+                City = input.City,
+                DateOfBirth = input.DateOfBirth,
                 Password = input.Password == null ? null : input.Password.ToLower(),
                 Attributes = input.Attributes.ToDictionary(e => e.Key, attr => (object)attr.ValueBool ?? (object)attr.ValueDate ?? (object)attr.ValueBinary ?? (object)attr.ValueDecimal ?? (object)attr.ValueInt ?? (object)attr.ValueString)
             };

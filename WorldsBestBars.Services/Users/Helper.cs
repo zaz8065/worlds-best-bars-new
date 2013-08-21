@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Security.Cryptography;
+using System.Text;
 using WorldsBestBars.Services.Models;
 
 namespace WorldsBestBars.Services.Users
@@ -47,6 +50,11 @@ namespace WorldsBestBars.Services.Users
             }
 
             return null;
+        }
+
+        public static string MD5(string input)
+        {
+            return string.Join(string.Empty, new MD5CryptoServiceProvider().ComputeHash(Encoding.UTF8.GetBytes(input)).Select(b => b.ToString("x2")));
         }
     }
 }

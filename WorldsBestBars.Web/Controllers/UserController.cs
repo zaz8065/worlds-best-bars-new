@@ -224,6 +224,64 @@ namespace WorldsBestBars.Web.Controllers
             return View();
         }
 
+        public ActionResult DisplayProfile()
+        {
+            if (Session.CurrentUser() == null) { return Redirect("/"); }
+
+            return View(Session.CurrentUser());
+        }
+
+        public ActionResult UpdateProfile()
+        {
+            if (Session.CurrentUser() == null) { return Redirect("/"); }
+
+            var user = Session.CurrentUser();
+
+            var model = new UpdateProfile()
+            {
+                Name = user.Name,
+                Email = user.Email,
+                City = user.City,
+                DateOfBirth = user.DateOfBirth.HasValue ? user.DateOfBirth.Value.ToString("yyyy-MM-dd") : null
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult UpdateProfile(UpdateProfile model)
+        {
+            if (Session.CurrentUser() == null) { return Redirect("/"); }
+
+            if (ModelState.IsValid)
+            {
+                var updates = new Services.Models.UpdateUser()
+                {
+                    Name = model.Name,
+                    Email = model.Email,
+                    City = model.City,
+                    DateOfBirth = string.IsNullOrEmpty(model.DateOfBirth) ? null : (DateTime?)DateTime.Parse(model.DateOfBirth),
+                    FavouriteBars = model.FavouriteBars,
+                    FavouriteBrands = model.FavouriteBrands,
+                    FavouriteCocktails = model.FavouriteCocktails,
+                    FavouriteCities = model.FavouriteCities,
+                    Password = string.IsNullOrEmpty(model.Password) ? null : model.Password
+                };
+
+                var service = new Services.Users.UpdateUser();
+
+                service.Execute(Session.CurrentUser().Id, updates);
+
+                Cache.Users.Instance.RefreshEntity(Session.CurrentUser().Id);
+
+                Session.SetCurrentUser(Cache.Users.Instance.GetById(Session.CurrentUser().Id));
+
+                return RedirectToAction("DisplayProfile");
+            }
+
+            return View(model);
+        }
+
         static string MakeSentence(IEnumerable<string> parts)
         {
             if (parts.Count() == 1)

@@ -194,6 +194,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LostPasswordModel.cs" />
+    <Compile Include="Models\UpdateProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -493,6 +494,7 @@
     <Content Include="Content\img\sponsor-headers\Seattle_Headerplustype.jpg" />
     <Content Include="Content\img\sponsor-headers\Shanghai_Headerplustype.jpg" />
     <Content Include="Content\js\global.js" />
+    <Content Include="Content\js\jquery-2.0.0.js" />
     <Content Include="Content\js\jquery.rateit.min.js" />
     <Content Include="Content\js\jquery.scrollTo-1.4.2-min.js" />
     <Content Include="Content\js\mobile.js" />
@@ -769,6 +771,8 @@
     <Content Include="Views\Content\ClosedBar.cshtml" />
     <Content Include="Views\User\LostPassword.cshtml" />
     <Content Include="Views\User\LostPasswordSuccess.cshtml" />
+    <Content Include="Views\User\UpdateProfile.cshtml" />
+    <Content Include="Views\User\DisplayProfile.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

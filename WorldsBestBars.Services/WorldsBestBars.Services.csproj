@@ -109,6 +109,7 @@
     <Compile Include="Models\UpdateAdvert.cs" />
     <Compile Include="Models\UpdateBar.cs" />
     <Compile Include="Models\UpdateDocument.cs" />
+    <Compile Include="Models\UpdateUser.cs" />
     <Compile Include="Models\UserSummary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\BarDetail.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Users\LostPasswordRequest.cs" />
     <Compile Include="Users\Helper.cs" />
     <Compile Include="Users\IsEmailInUse.cs" />
+    <Compile Include="Users\UpdateUser.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WorldsBestBars.Data\WorldsBestBars.Data.csproj">
