@@ -224,13 +224,6 @@ namespace WorldsBestBars.Web.Controllers
             return View();
         }
 
-        public ActionResult DisplayProfile()
-        {
-            if (Session.CurrentUser() == null) { return Redirect("/"); }
-
-            return View(Session.CurrentUser());
-        }
-
         public ActionResult UpdateProfile()
         {
             if (Session.CurrentUser() == null) { return Redirect("/"); }
@@ -252,6 +245,14 @@ namespace WorldsBestBars.Web.Controllers
         public ActionResult UpdateProfile(UpdateProfile model)
         {
             if (Session.CurrentUser() == null) { return Redirect("/"); }
+
+            if (!string.IsNullOrEmpty(model.Password))
+            {
+                if (model.PasswordConfirm != model.PasswordConfirm)
+                {
+                    ModelState.AddModelError("ConfirmPassword", "The passwords do not match.");
+                }
+            }
 
             if (ModelState.IsValid)
             {
@@ -276,7 +277,7 @@ namespace WorldsBestBars.Web.Controllers
 
                 Session.SetCurrentUser(Cache.Users.Instance.GetById(Session.CurrentUser().Id));
 
-                return RedirectToAction("DisplayProfile");
+                return RedirectToAction("UpdateProfile");
             }
 
             return View(model);

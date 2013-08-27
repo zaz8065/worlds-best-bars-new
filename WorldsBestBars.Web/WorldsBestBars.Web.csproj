@@ -772,7 +772,6 @@
     <Content Include="Views\User\LostPassword.cshtml" />
     <Content Include="Views\User\LostPasswordSuccess.cshtml" />
     <Content Include="Views\User\UpdateProfile.cshtml" />
-    <Content Include="Views\User\DisplayProfile.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

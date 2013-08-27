@@ -3165,3 +3165,125 @@ p.facebook-section button
 	margin: 10px auto;
 	width: 110px;
 }
+
+/* form bits */
+#generic.profile {background-color: #f5f3f3;}
+.profile_page  {padding:10px;}
+.profile_page h2 {margin-bottom:20px}
+.profile_page h3 {margin-bottom:10px;margin-top:20px}
+.profile_page input {border: 0;
+	-webkit-box-shadow: inset 1px 1px 1px 1px #aaa;
+	box-shadow: inset 1px 1px 1px 1px #aaa;	
+	-moz-box-shadow: inset 1px 1px 1px 1px #aaa;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;width: 370px;
+	height: 26px;
+	line-height: 26px;
+	font-size: 13px;
+	margin-bottom: 10px;
+	margin-right: 20px;
+	padding: 0 4px;
+ }
+.profile_page label {
+	width: 133px;
+	display: inline-block;
+	margin-bottom: 10px;
+	font-weight:bold;
+	font-size:13px;}
+
+.profile_page textarea {
+	-webkit-box-shadow: inset 1px 1px 1px 1px #aaa;
+	box-shadow: inset 1px 1px 1px 1px #aaa;	
+	-moz-box-shadow: inset 1px 1px 1px 1px #aaa;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	width: 370px;
+	height: 52px;
+	margin-bottom: 10px;
+	margin-right: 140px;
+	padding: 0 4px;
+	border:none;
+}
+.profile_page p.formfield * {
+	vertical-align:top;
+}
+
+.profile_page span {
+	width:31px;
+	height:25px;
+	display: inline-block;
+	margin-right: 60px;
+}
+
+/* validation */
+.profile_page span.not-validated {
+
+	background-image:  url(extra%20images/greybox.jpg);
+
+ }
+.profile_page span.validated {
+	 
+	background-image:  url(extra%20images/validated.jpg);
+ 
+ }
+
+.profile_page input.submit {
+	background-color: #000;
+	background-repeat: no-repeat;
+	background-position: 7px center;
+	color: #fff;
+	text-decoration: none;
+	display: block;
+	height: 31px;
+	color: #fff;
+	display: block;
+	font-family: Georgia,"Times New Roman",Times,serif;
+	font-size: 14px;
+	font-weight: bold;
+	height: 31px;
+	float: left;
+	line-height: 31px;
+	margin: 10px 0 0 10px;
+	width: 120px;
+	text-align: center;
+	cursor: pointer;
+	left: 125px;
+	position: relative;
+}
+
+
+
+/* new nav */
+/* new iamges are to go in 'elements' folder ideally */
+/* paths to existing elements have 'http://www.worldsbestbars.com/' for testing purposes.... */
+#soc_net_holder {
+	background-image: url("/content/img/elements/bg-divider-shim.gif");
+background-repeat: repeat-x;
+	}
+#soc_net_holder span {color:#ad9961;font-size:14px;margin-top:50px;
+text-align:left;float:left;}
+#soc_net_holder a {width:27px;height:26px;position:relative;cursor:pointer;display:block;z-index:10000}
+#soc_net_holder a#fb {background-image: url('/content/img/elements/fb-follow.jpg');background-repeat:no-repeat;margin-right:4px;top: 40px;
+left: 10px;}
+#soc_net_holder a#twit {background-image: url('/content/img/elements/twitter-follow.jpg');background-repeat:no-repeat;margin-right:0px;top: 40px;
+left: 10px;}
+#soc_net_holder a#pin {background-image: url('/content/img/elements/pinterest-follow.jpg');background-repeat:no-repeat;margin-right:4px;top: 40px;
+left: 10px;}
+
+
+
+div#signup {position:relative;top:114px;color:black;
+}
+
+#signup a {background-color: #ad9961;padding: 5px 12px; font-size:16px;text-align:center;margin:5px;position: relative;-webkit-border-radius: 5px;
+	border-radius: 5px;}
+#signup a:hover {background-color: #ccc;}
+#signup a#login {left:8px;}
+#signup a#sign_up {left:5px;}
+
+.profile_page .field-validation-error {
+    display: block;
+    color: #711B24;
+    width: auto;
+    margin-left: 140px;
+}

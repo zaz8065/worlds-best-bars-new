@@ -3,89 +3,71 @@
     ViewBag.Title = "Update Profile";
 }
 
-<style type="text/css">
-    .profile form > div {
-        margin-bottom: 10px;
-    }
-        .profile form > div > label {
-            font-weight: bold;
-            display: inline-block;
-            width: 150px;
-        }
-
-        .profile form > div > input {
-            width: 400px;
-            border-radius: 4px;
-            box-shadow: inset;
-            padding: 4px 8px;
-        }
-
-    .profile h2 {
-        margin-bottom: 20px;
-    }
-
-    .profile h3 {
-        margin-bottom: 15px;
-        font-size: 17px;
-    }
-</style>
 <div id="panel-1">
-    <div class="full_width whitebox profile">
+    <div class="full_width whitebox profile profile_page">
         <h2>Your Personal Profile</h2>
-        <form action="@Request.Url" method="post">
-            <div>
+        <form action="@Request.Url" method="post" id="profile">
+            <p class="formfield">
                 @Html.LabelFor(m => m.Name, "Name *")
                 @Html.TextBoxFor(m => m.Name)
-            </div>
+                @Html.ValidationMessageFor(m => m.Name)
+            </p>
 
-            <div>
+            <p class="formfield">
                 @Html.LabelFor(m => m.City, "Home City")
                 @Html.TextBoxFor(m => m.City)
-            </div>
+                @Html.ValidationMessageFor(m => m.City)
+            </p>
 
-            <div>
+            <p class="formfield">
                 @Html.LabelFor(m => m.Email, "Email *")
                 @Html.TextBoxFor(m => m.Email)
-            </div>
+                @Html.ValidationMessageFor(m => m.Email)
+            </p>
 
-            <div>
+            <p class="formfield">
                 @Html.LabelFor(m => m.DateOfBirth, "Date of Birth *")
                 @Html.TextBoxFor(m => m.DateOfBirth)
-            </div>
+                @Html.ValidationMessageFor(m => m.DateOfBirth)
+            </p>
 
-            <div>
+            <p class="formfield">
                 @Html.LabelFor(m => m.Password)
                 @Html.TextBoxFor(m => m.Password)
-            </div>
+                @Html.ValidationMessageFor(m => m.Password)
+            </p>
 
-            <div>
-                @Html.LabelFor(m => m.PasswordConfirm, "Confirm")
+            <p class="formfield">
+                @Html.LabelFor(m => m.PasswordConfirm, "Confirm Password*")
                 @Html.TextBoxFor(m => m.PasswordConfirm)
-            </div>
+                @Html.ValidationMessageFor(m => m.PasswordConfirm)
+            </p>
 
             <h3>Cities you like to go out in/travel to</h3>
-            <div>
+            <p class="formfield">
                 @Html.LabelFor(m => m.FavouriteCities, "My favourite cities")
-                @Html.TextBoxFor(m => m.FavouriteCities)
-            </div>
+                @Html.TextAreaFor(m => m.FavouriteCities)
+                @Html.ValidationMessageFor(m => m.FavouriteCities)
+            </p>
 
             <h3>My Favourite...</h3>
-            <div>
+            <p class="formfield">
                 @Html.LabelFor(m => m.FavouriteBars, "Bars")
-                @Html.TextBoxFor(m => m.FavouriteBars)
-            </div>
-            <div>
+                @Html.TextAreaFor(m => m.FavouriteBars)
+                @Html.ValidationMessageFor(m => m.FavouriteBars)
+            </p>
+            <p class="formfield">
                 @Html.LabelFor(m => m.FavouriteBrands, "Drinks brand")
-                @Html.TextBoxFor(m => m.FavouriteBrands)
-            </div>
-            <div>
+                @Html.TextAreaFor(m => m.FavouriteBrands)
+                @Html.ValidationMessageFor(m => m.FavouriteBrands)
+            </p>
+            <p class="formfield">
                 @Html.LabelFor(m => m.FavouriteCocktails, "Cocktails")
-                @Html.TextBoxFor(m => m.FavouriteCocktails)
-            </div>
+                @Html.TextAreaFor(m => m.FavouriteCocktails)
+                @Html.ValidationMessageFor(m => m.FavouriteCocktails)
+            </p>
 
-            <button type="submit">Submit</button>
-            <button type="reset">Reset</button>
-            <a href="/profile">Cancel</a>
+            <input type="submit" class="submit" value="Confirm" />
         </form>
     </div>
 </div>
