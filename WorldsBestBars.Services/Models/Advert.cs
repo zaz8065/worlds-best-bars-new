@@ -27,6 +27,9 @@ namespace WorldsBestBars.Services.Models
         public string Type { get; set; }
         public string DestinationUrl { get; set; }
 
+        public int TotalClicks { get; set; }
+        public int TotalImpressions { get; set; }
+
         public IEnumerable<Statistic> Stats { get; set; }
 
         public class Statistic

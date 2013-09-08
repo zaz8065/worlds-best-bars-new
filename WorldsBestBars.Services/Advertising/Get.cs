@@ -18,23 +18,27 @@ namespace WorldsBestBars.Services.Advertising
     [IsActive],
     [Weight],
     [Type],
-    [DestinationUrl]
+    [DestinationUrl],
+    (select sum([Clicks]) from AdvertStats where AdvertId = Advert.Id) as [TotalClicks],
+    (select sum([Impressions]) from AdvertStats where AdvertId = Advert.Id) as [TotalImpressions]
 from
     Advert
 where
     Id = @id";
 
         const string SqlStats = @"select
-    top 48
-    Period,
-    Clicks,
-    Impressions
+    top 24
+    cast(Period as date) as [Period],
+    sum(Clicks) as [Clicks],
+    sum(Impressions) as [Impressions]
 from
     AdvertStats
 where
     AdvertId = @id
+group by
+    cast(Period as date)
 order by 
-    Period desc";
+    cast(Period as date) desc";
 
         #endregion
 
