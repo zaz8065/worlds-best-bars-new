@@ -33,5 +33,24 @@ namespace WorldsBestBars.Web.Controllers
                 image = Logic.Helper.GetFirstMedia(new UrlHelper(Request.RequestContext), a.Id, "245x165.orig")
             }));
         }
+
+        //[WorldsBestBars.Web.Mvc.Filters.CustomContentType(ContentType = "application/json")]
+        public string Cities(string q)
+        {
+            if (q == null) { return null; }
+
+            q = q.ToLower();
+
+            return JsonConvert.SerializeObject(new { results = Cache.Locations.Instance.GetAll().Where(l => l.Parent != null && l.Name.ToLower().Contains(q)).Select(l => new { id = l.Id, name = l.Name }) });
+        }
+
+        public string Bars(string q)
+        {
+            if (q == null) { return null; }
+
+            q = q.ToLower();
+
+            return JsonConvert.SerializeObject(new { results = Cache.Bars.Instance.GetAll().Where(l => l.Name.ToLower().Contains(q)).Select(l => new { id = l.Id, name = l.Name }) });
+        }
     }
 }

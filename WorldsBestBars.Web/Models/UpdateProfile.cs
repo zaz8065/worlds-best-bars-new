@@ -15,7 +15,7 @@ namespace WorldsBestBars.Web.Models
         public string DateOfBirth { get; set; }
         public string Password { get; set; }
         public string PasswordConfirm { get; set; }
-        public string FavouriteCities { get; set; }
+        public string[] FavouriteCities { get; set; }
         public string FavouriteBars { get; set; }
         public string FavouriteBrands { get; set; }
         public string FavouriteCocktails { get; set; }

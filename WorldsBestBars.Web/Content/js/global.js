@@ -199,13 +199,6 @@ function closepopup() {
     fadeallin();
 }
 
-$('a#sign_up').click(function (e) {
-    e.preventDefault();
-    closepopup();
-    fadeallout();
-    $('div.sign_up_popup').show();
-});
-
 function closesignuppopup() {
     $('div.login_popup').hide();
 }

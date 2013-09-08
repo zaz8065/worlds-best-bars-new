@@ -122,6 +122,7 @@
     <Compile Include="SubmissionService.cs" />
     <Compile Include="TryInvalidateCache.cs" />
     <Compile Include="UserService.cs" />
+    <Compile Include="Users\CreateUser.cs" />
     <Compile Include="Users\Get.cs" />
     <Compile Include="Users\GetSubscribed.cs" />
     <Compile Include="Users\LostPasswordRequest.cs" />

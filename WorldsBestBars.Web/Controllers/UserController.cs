@@ -226,25 +226,35 @@ namespace WorldsBestBars.Web.Controllers
 
         public ActionResult UpdateProfile()
         {
-            if (Session.CurrentUser() == null) { return Redirect("/"); }
+            ViewBag.Cities = Cache.Locations.Instance.GetAll().Where(l => l.Parent != null);
 
             var user = Session.CurrentUser();
-
-            var model = new UpdateProfile()
+            if (user != null)
             {
-                Name = user.Name,
-                Email = user.Email,
-                City = user.City,
-                DateOfBirth = user.DateOfBirth.HasValue ? user.DateOfBirth.Value.ToString("yyyy-MM-dd") : null
-            };
+                var model = new UpdateProfile()
+                {
+                    Name = user.Name,
+                    Email = user.Email,
+                    City = user.City,
+                    DateOfBirth = user.DateOfBirth.HasValue ? user.DateOfBirth.Value.ToString("yyyy-MM-dd") : null,
+                    FavouriteCities = user.Attributes.ContainsKey("favourite:cities") ? user.Attributes["favourite:cities"] == null ? null : ((string)user.Attributes["favourite:cities"]).Split(',').Select(s => s.Trim()).ToArray() : null,
+                    FavouriteBars = user.Attributes.ContainsKey("favourite:bars") ? (string)user.Attributes["favourite:bars"] : null,
+                    FavouriteBrands = user.Attributes.ContainsKey("favourite:brands") ? (string)user.Attributes["favourite:brands"] : null,
+                    FavouriteCocktails = user.Attributes.ContainsKey("favourite:cocktails") ? (string)user.Attributes["favourite:cocktails"] : null
+                };
 
-            return View(model);
+                return View(model);
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
         public ActionResult UpdateProfile(UpdateProfile model)
         {
-            if (Session.CurrentUser() == null) { return Redirect("/"); }
+            var newUser = Session.CurrentUser() == null;
 
             if (!string.IsNullOrEmpty(model.Password))
             {
@@ -265,20 +275,37 @@ namespace WorldsBestBars.Web.Controllers
                     FavouriteBars = model.FavouriteBars,
                     FavouriteBrands = model.FavouriteBrands,
                     FavouriteCocktails = model.FavouriteCocktails,
-                    FavouriteCities = model.FavouriteCities,
+                    FavouriteCities = string.Join(", ", model.FavouriteCities),
                     Password = string.IsNullOrEmpty(model.Password) ? null : model.Password
                 };
 
-                var service = new Services.Users.UpdateUser();
+                if (newUser)
+                {
+                    var service = new Services.Users.CreateUser();
 
-                service.Execute(Session.CurrentUser().Id, updates);
+                    var id = service.Execute(updates);
 
-                Cache.Users.Instance.RefreshEntity(Session.CurrentUser().Id);
+                    Cache.Users.Instance.RefreshEntity(id);
 
-                Session.SetCurrentUser(Cache.Users.Instance.GetById(Session.CurrentUser().Id));
+                    Session.SetCurrentUser(Cache.Users.Instance.GetById(id));
 
-                return RedirectToAction("UpdateProfile");
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    var service = new Services.Users.UpdateUser();
+
+                    service.Execute(Session.CurrentUser().Id, updates);
+
+                    Cache.Users.Instance.RefreshEntity(Session.CurrentUser().Id);
+
+                    Session.SetCurrentUser(Cache.Users.Instance.GetById(Session.CurrentUser().Id));
+
+                    return RedirectToAction("UpdateProfile");
+                }
             }
+
+            ViewBag.Cities = Cache.Locations.Instance.GetAll().Where(l => l.Parent != null);
 
             return View(model);
         }

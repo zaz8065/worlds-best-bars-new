@@ -112,7 +112,7 @@
         @if (Session.CurrentUser() == null)
         {
           <a id="login" href="#">Login</a>
-          <a id="sign_up" href="#">Sign up</a>
+          <a id="sign_up" href="/profile">Sign up</a>
         }
         else
         {
@@ -166,6 +166,8 @@
   </script>
   <script type="text/javascript" src="@Url.Content("~/Content/js/select2.min.js")"></script>
   <script type="text/javascript" src="@Url.Content("~/Content/js/global.js")"></script>
+
+    @RenderSection("Scripts", false)
 
   <script type="text/javascript">
     var _gaq = _gaq || [];
