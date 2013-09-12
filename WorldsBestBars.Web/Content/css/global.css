@@ -1822,10 +1822,8 @@ div.filter_options {
 }
 
 #age_gate {
-  border-top: 1px solid #aa8e3c;
   margin: 24px 0px 50px 0;
   padding: 44px 0px 20px 0;
-  border-bottom: 1px solid #aa8e3c;
   position: relative;
 }
 
@@ -1834,13 +1832,15 @@ div.filter_options {
     text-align: center;
     font-size: 30px;
     font-weight: normal;
-    width: 500px;
+    width: 790px;
     display: block;
-    margin: 00px auto;
+    margin: 0px auto;
+    clear: both;
   }
 
   #age_gate h3 {
     margin-top: 20px;
+    font-size: 20px;
   }
 
   #age_gate form label {
@@ -1852,10 +1852,38 @@ div.filter_options {
     font-family: Georgia;
   }
 
+  #page.age-gate {
+      width: 960px;
+  }
+
+  #page.age-gate #header {
+      width: 960px;
+  }
+
   #age_gate form {
     width: 500px;
     margin: 30px auto;
     text-align: center;
+  }
+
+  #age_gate .social-connect {
+      width: 320px;
+      margin: 20px auto;
+      padding: 0;
+  }
+
+  #age_gate .social-connect li {
+      width: 160px;
+      float: left;
+      margin-bottom: 40px;
+  }
+
+  #age_gate .location {
+      margin-top: 40px;
+  }
+
+  #age_gate .social-connect li.google {
+      margin-top: 10px;
   }
 
     #age_gate form select {
