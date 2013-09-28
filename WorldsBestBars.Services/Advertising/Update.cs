@@ -14,7 +14,8 @@ namespace WorldsBestBars.Services.Advertising
     [Finish] = @finish,
     [Weight] = @weight,
     [Type] = @type,
-    [DestinationUrl] = @destination
+    [DestinationUrl] = @destination,
+    [TargetCountries] = @targetCountries
 where
     Id = @id";
 
@@ -34,7 +35,8 @@ where
                     finish = model.Finish,
                     weight = model.Weight,
                     type = model.Type,
-                    destination = model.DestinationUrl
+                    destination = model.DestinationUrl,
+                    targetCountries = model.TargetCountries
                 });
             }
         }

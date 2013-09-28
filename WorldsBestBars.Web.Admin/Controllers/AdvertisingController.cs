@@ -84,7 +84,8 @@ namespace WorldsBestBars.Web.Admin.Controllers
                 Start = entity.Start,
                 Title = entity.Title,
                 Type = entity.Type,
-                Weight = entity.Weight
+                Weight = entity.Weight,
+                TargetCountries = entity.TargetCountries
             };
 
             return View(model);

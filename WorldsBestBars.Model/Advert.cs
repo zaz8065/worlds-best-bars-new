@@ -39,6 +39,9 @@ namespace WorldsBestBars.Model
         [JsonProperty("active")]
         public bool IsActive { get; set; }
 
+        [JsonProperty("target_countries")]
+        public string TargetCountries { get; set; }
+
         public static Advert Convert(Data.Advert input)
         {
             if (input == null) { return null; }
@@ -55,7 +58,8 @@ namespace WorldsBestBars.Model
                 Finish = input.Finish,
                 Type = input.Type,
                 Weight = input.Weight,
-                IsActive = input.IsActive
+                IsActive = input.IsActive,
+                TargetCountries = input.TargetCountries
             };
         }
 

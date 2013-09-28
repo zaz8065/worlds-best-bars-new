@@ -26,6 +26,7 @@ namespace WorldsBestBars.Services.Models
         public byte Weight { get; set; }
         public string Type { get; set; }
         public string DestinationUrl { get; set; }
+        public string TargetCountries { get; set; }
 
         public int TotalClicks { get; set; }
         public int TotalImpressions { get; set; }

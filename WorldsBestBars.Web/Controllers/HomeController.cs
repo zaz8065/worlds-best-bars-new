@@ -189,6 +189,8 @@ namespace WorldsBestBars.Web.Controllers
                     if (Model.Country.VerifyAge(dob, _country))
                     {
                         Session["age.check"] = true;
+                        Session["user:country"] = country;
+                        Session["user:dob"] = dob;
 
                         if (remember == "yes")
                         {

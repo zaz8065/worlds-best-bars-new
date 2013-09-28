@@ -19,6 +19,7 @@ namespace WorldsBestBars.Services.Advertising
     [Weight],
     [Type],
     [DestinationUrl],
+    [TargetCountries],
     (select sum([Clicks]) from AdvertStats where AdvertId = Advert.Id) as [TotalClicks],
     (select sum([Impressions]) from AdvertStats where AdvertId = Advert.Id) as [TotalImpressions]
 from

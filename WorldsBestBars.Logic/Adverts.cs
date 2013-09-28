@@ -50,7 +50,7 @@ namespace WorldsBestBars.Logic
                     currentAdvert = ((Model.Advert)session["advert"]).Id;
                 }
 
-                var _advert = GetRandomAdvert();
+                var _advert = GetRandomAdvert(session["user:country"] as string);
 
                 if (_advert == null)
                 {
@@ -61,7 +61,7 @@ namespace WorldsBestBars.Logic
                 {
                     for (var i = 0; i < 10; i++)
                     {
-                        _advert = GetRandomAdvert();
+                        _advert = GetRandomAdvert(session["user:country"] as string);
                         if (_advert.Id != currentAdvert)
                         {
                             break;
@@ -88,9 +88,13 @@ namespace WorldsBestBars.Logic
             return (Model.Advert)session["advert"];
         }
 
-        public static Model.Advert GetRandomAdvert()
+        public static Model.Advert GetRandomAdvert(string targetCountry)
         {
-            var original = Web.Cache.Adverts.Instance.GetAll().Where(a => a.IsActive && (a.Start == null || a.Start < DateTime.Now) && (a.Finish == null || a.Finish > DateTime.Now));
+            var original = Web.Cache.Adverts.Instance.GetAll()
+                .Where(a => 
+                    a.IsActive && 
+                    (a.Start == null || a.Start < DateTime.Now) && (a.Finish == null || a.Finish > DateTime.Now) && 
+                    (a.TargetCountries == null || targetCountry == null || a.TargetCountries.Split(',').Contains(targetCountry)));
 
             if (!original.Any())
             {

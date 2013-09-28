@@ -73,6 +73,14 @@
         @Html.ValidationMessageFor(model => model.DestinationUrl)
       </dd>
 
+      <dt>
+        @Html.LabelFor(model => model.TargetCountries)
+      </dt>
+      <dd>
+        @Html.TextBoxFor(model => model.TargetCountries)
+        @Html.ValidationMessageFor(model => model.TargetCountries)
+      </dd>
+
     </dl>
     <div class="form-actions">
       <button class="btn btn-primary" type="submit">Save</button>
