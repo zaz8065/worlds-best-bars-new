@@ -17,19 +17,21 @@ namespace WorldsBestBars.Services.Bars
 from 
     Bar
 where
-    LocationId = @location";
+    LocationId = @location
+    and ((@activeOnly and IsActive = 1) or not @activeOnly)";
 
         #endregion
 
         #region Public Methods
 
-        public IEnumerable<BarSummary> Execute(Guid location)
+        public IEnumerable<BarSummary> Execute(Guid location, bool activeOnly = false)
         {
             using (var connection = GetConnection())
             {
                 return connection.Query<BarSummary>(Sql, new
                 {
-                    location = location
+                    location = location,
+                    activeOnly = activeOnly
                 });
             }
         }

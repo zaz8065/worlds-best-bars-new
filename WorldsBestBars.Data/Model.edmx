@@ -53,6 +53,10 @@
       [UrlMap].[IsActive] AS [IsActive]
       FROM [dbo].[UrlMap] AS [UrlMap]</DefiningQuery>
           </EntitySet>
+          <AssociationSet Name="FK__BarOpenin__BarId__38996AB5" Association="local.worldsbestbarsModel.Store.FK__BarOpenin__BarId__38996AB5">
+            <End Role="Bar" EntitySet="Bar" />
+            <End Role="BarOpening" EntitySet="BarOpening" />
+          </AssociationSet>
           <AssociationSet Name="FK_AdvertStats_AdvertStats" Association="local.worldsbestbarsModel.Store.FK_AdvertStats_AdvertStats">
             <End Role="Advert" EntitySet="Advert" />
             <End Role="AdvertStats" EntitySet="AdvertStats" />
@@ -68,10 +72,6 @@
           <AssociationSet Name="FK_BarCategory_Category" Association="local.worldsbestbarsModel.Store.FK_BarCategory_Category">
             <End Role="Category" EntitySet="Category" />
             <End Role="BarCategory" EntitySet="BarCategory" />
-          </AssociationSet>
-          <AssociationSet Name="FK_BarOpening_Bar" Association="local.worldsbestbarsModel.Store.FK_BarOpening_Bar">
-            <End Role="Bar" EntitySet="Bar" />
-            <End Role="BarOpening" EntitySet="BarOpening" />
           </AssociationSet>
           <AssociationSet Name="FK_Document_ParentDocument" Association="local.worldsbestbarsModel.Store.FK_Document_ParentDocument">
             <End Role="Document" EntitySet="Document" />
@@ -142,6 +142,7 @@
           <Property Name="Weight" Type="tinyint" Nullable="false" />
           <Property Name="Type" Type="varchar" Nullable="false" MaxLength="32" />
           <Property Name="DestinationUrl" Type="nvarchar" MaxLength="256" />
+          <Property Name="TargetCountries" Type="nvarchar" MaxLength="512" />
         </EntityType>
         <EntityType Name="AdvertStats">
           <Key>
@@ -412,6 +413,18 @@
           <Property Name="Url" Type="varchar(max)" />
           <Property Name="IsActive" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK__BarOpenin__BarId__38996AB5">
+          <End Role="Bar" Type="local.worldsbestbarsModel.Store.Bar" Multiplicity="1" />
+          <End Role="BarOpening" Type="local.worldsbestbarsModel.Store.BarOpening" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bar">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="BarOpening">
+              <PropertyRef Name="BarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_AdvertStats_AdvertStats">
           <End Role="Advert" Type="local.worldsbestbarsModel.Store.Advert" Multiplicity="1" />
           <End Role="AdvertStats" Type="local.worldsbestbarsModel.Store.AdvertStats" Multiplicity="*" />
@@ -457,18 +470,6 @@
             </Principal>
             <Dependent Role="BarCategory">
               <PropertyRef Name="CategoryId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_BarOpening_Bar">
-          <End Role="Bar" Type="local.worldsbestbarsModel.Store.Bar" Multiplicity="1" />
-          <End Role="BarOpening" Type="local.worldsbestbarsModel.Store.BarOpening" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Bar">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="BarOpening">
-              <PropertyRef Name="BarId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -963,6 +964,7 @@
           <Property Type="String" Name="Type" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="DestinationUrl" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="VideoImageUrl" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TargetCountries" MaxLength="512" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ActiveAdvert">
           <Key>
@@ -1296,6 +1298,7 @@
           <EntitySetMapping Name="Adverts">
             <EntityTypeMapping TypeName="WorldBestBars.Model.Advert">
               <MappingFragment StoreEntitySet="Advert">
+                <ScalarProperty Name="TargetCountries" ColumnName="TargetCountries" />
                 <ScalarProperty Name="VideoImageUrl" ColumnName="VideoImageUrl" />
                 <ScalarProperty Name="DestinationUrl" ColumnName="DestinationUrl" />
                 <ScalarProperty Name="Type" ColumnName="Type" />

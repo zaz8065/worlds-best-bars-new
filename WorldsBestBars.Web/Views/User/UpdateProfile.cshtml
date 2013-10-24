@@ -1,0 +1,137 @@
+﻿@model UpdateProfile
+@{
+    ViewBag.Title = "Update Profile";
+}
+
+<div id="panel-1">
+    <div class="full_width whitebox profile profile_page">
+        <h2>Your Personal Profile</h2>
+        <form action="@Request.Url" method="post" id="profile">
+            <p class="formfield">
+                @Html.LabelFor(m => m.Name, "Name *")
+                @Html.TextBoxFor(m => m.Name)
+                @Html.ValidationMessageFor(m => m.Name)
+            </p>
+
+            <p class="formfield">
+                @Html.LabelFor(m => m.City, "Home City")
+                @Html.TextBoxFor(m => m.City)
+                @Html.ValidationMessageFor(m => m.City)
+            </p>
+
+            <p class="formfield">
+                @Html.LabelFor(m => m.Email, "Email *")
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+            </p>
+
+            <p class="formfield">
+                @Html.LabelFor(m => m.DateOfBirth, "Date of Birth *")
+                @Html.TextBoxFor(m => m.DateOfBirth)
+                @Html.ValidationMessageFor(m => m.DateOfBirth)
+            </p>
+
+            <p class="formfield">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password)
+                @Html.ValidationMessageFor(m => m.Password)
+            </p>
+
+            <p class="formfield">
+                @Html.LabelFor(m => m.PasswordConfirm, "Confirm Password*")
+                @Html.PasswordFor(m => m.PasswordConfirm)
+                @Html.ValidationMessageFor(m => m.PasswordConfirm)
+            </p>
+
+            <h3>Cities you like to go out in/travel to</h3>
+            <p class="formfield">
+                @Html.LabelFor(m => m.FavouriteCities, "My favourite cities")
+                <select name="FavouriteCities" id="FavouriteCities" style="width: 380px" multiple>
+                    @foreach (var city in (IEnumerable<WorldsBestBars.Model.Location>)ViewBag.Cities)
+                    {
+                        <option @if (Model != null && Model.FavouriteCities != null && Model.FavouriteCities.Contains(city.Name))
+                                {<text>selected</text>}>@city.Name</option>
+                    }
+                </select>
+                @Html.ValidationMessageFor(m => m.FavouriteCities)
+            </p>
+
+            <h3>My Favourite...</h3>
+            <p class="formfield">
+                @Html.LabelFor(m => m.FavouriteBars, "Bars")
+                @Html.HiddenFor(m => m.FavouriteBars, new { style = "width:380px" })
+                @Html.ValidationMessageFor(m => m.FavouriteBars)
+            </p>
+            <p class="formfield">
+                @Html.LabelFor(m => m.FavouriteBrands, "Drinks brand")
+                @Html.HiddenFor(m => m.FavouriteBrands, new { style = "width:380px" })
+                @Html.ValidationMessageFor(m => m.FavouriteBrands)
+            </p>
+            <p class="formfield">
+                @Html.LabelFor(m => m.FavouriteCocktails, "Cocktails")
+                @Html.HiddenFor(m => m.FavouriteCocktails, new { style = "width:380px" })
+                @Html.ValidationMessageFor(m => m.FavouriteCocktails)
+            </p>
+
+            <input type="submit" class="submit" value="Confirm" />
+        </form>
+    </div>
+</div>
+
+@section Scripts  {
+    <script>
+        $('#FavouriteCities').select2({
+            tokenSeparators: [',']
+        });
+
+        $('#FavouriteBars').select2({
+            tokenSeparators: [','],
+            multiple: true,
+            minimumInputLength: 3,
+            ajax: {
+                url: '/json/bars',
+                data: function (term, page) {
+                    return {
+                        q: term
+                    }
+                },
+                results: function (data, page) {
+                    return data;
+                }
+            },
+            initSelection: function (element, callback) {
+                var data = [];
+                var bar_id_map = {};
+                @if (Model != null && Model.FavouriteBars != null)
+                {
+                    foreach (var id in Model.FavouriteBars.Split(','))
+                    {
+                        var bar = WorldsBestBars.Model.Bar.GetById(Guid.Parse(id));
+                        if (bar != null)
+                        {
+                        <text>bar_id_map['@id'] = '@bar.Name.Replace("'", "\\'")'</text>
+                        }
+                    }
+                }
+                $(element.val().split(",")).each(function () {
+                    data.push({ id: this, name: bar_id_map[this] });
+                });
+                callback(data);
+            },
+            formatResult: function (bar) {
+                return '<div>' + bar.name + '</div>'
+            },
+            formatSelection: function (bar) {
+                return bar.name
+            }
+        });
+
+        $('#FavouriteBrands').select2({
+            tags: []
+        });
+
+        $('#FavouriteCocktails').select2({
+            tags: []
+        });
+    </script>
+}

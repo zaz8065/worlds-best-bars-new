@@ -34,6 +34,7 @@ namespace WorldsBestBars.Web
             
             routes.MapRoute("User - Lost Password", "lost-password", new { controller = "User", action = "LostPassword" }, new string[] { "WorldsBestBars.Web.Controllers" });
             routes.MapRoute("User - Lost Password - Success", "lost-password/done", new { controller = "User", action = "LostPasswordSuccess" }, new string[] { "WorldsBestBars.Web.Controllers" });
+            routes.MapRoute("User - Profile - Update", "profile", new { controller = "User", action = "UpdateProfile" }, new string[] { "WorldsBestBars.Web.Controllers" });
 
             routes.MapRoute("Process", "process/{action}/{id}", new { controller = "Process", id = UrlParameter.Optional }, new string[] { "WorldsBestBars.Web.Controllers" });
             routes.MapRoute("JSON", "json/{action}/{id}", new { controller = "JSON", id = UrlParameter.Optional }, new string[] { "WorldsBestBars.Web.Controllers" });

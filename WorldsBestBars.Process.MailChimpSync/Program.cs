@@ -202,6 +202,20 @@ namespace WorldsBestBars.Process.MailChimpSync
                 {
                     MergeVars.Add("LNAME", string.Join(" ", name.Skip(1)));
                 }
+
+                var groupings = GetGroupings(user);
+                if (groupings != null)
+                {
+                    MergeVars.Add("groupings", groupings);
+                }
+            }
+
+            static string[] GetGroupings(Services.Models.UserSummary user)
+            {
+                var location = Services.Users.Helper.GetNormalisedCity(user.City);
+                if (location == null) { return null; }
+
+                return new string[] { location };
             }
         }
 

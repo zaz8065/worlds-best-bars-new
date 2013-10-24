@@ -10,7 +10,7 @@ namespace WorldsBestBars.Web
     {
         public static void RegisterBundles(BundleCollection bundles)
         {
-            bundles.Add(new StyleBundle("~/css").Include("~/Content/css/rateit.css", "~/Content/css/global.css"));
+            bundles.Add(new StyleBundle("~/css").Include("~/Content/css/rateit.css", "~/Content/css/select2.css", "~/Content/css/global.css"));
             bundles.Add(new StyleBundle("~/css/ie6").Include("~/Content/css/ie6.css"));
             bundles.Add(new StyleBundle("~/css/ie7").Include("~/Content/css/ie7.css"));
             bundles.Add(new StyleBundle("~/css/ie8").Include("~/Content/css/ie8.css"));

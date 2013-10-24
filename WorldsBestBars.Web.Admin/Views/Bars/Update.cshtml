@@ -206,7 +206,7 @@
   var map, marker;
   var geocoder = new google.maps.Geocoder();
   
-  var markerOptions;
+  var markerOptions = { draggable: true };
 
   var dropMarker = function() {
     markerOptions.map = map;
@@ -232,10 +232,7 @@
     mapOptions.center = new google.maps.LatLng(@Model.Geo.Lat, @Model.Geo.Long);
     mapOptions.zoom = 16;
 
-    markerOptions = {
-      position: mapOptions.center,
-      draggable: true
-    };
+    markerOptions.position = mapOptions.center;
     </text>}
     else
     {<text>
@@ -246,19 +243,14 @@
     map = new google.maps.Map(document.getElementById('map-canvas'),
         mapOptions);
 
-    if (markerOptions) {
-      markerOptions.map = map;
-
+    markerOptions.map = map;
+    if (markerOptions.position) {
       dropMarker();
     }
     else {
       google.maps.event.addListener(map, 'click', function(e) {        
         if (!marker) {
-          var markerOptions = { 
-            map: map,
-            position: e.latLng,
-            draggable: true
-          };
+          markerOptions.position = e.latLng;
 
           dropMarker();
 
@@ -283,11 +275,7 @@
   var selectMarkerHint = function(selection) {
     var ll = selection.getPosition();
     if (!marker) {
-      var markerOptions = { 
-        map: map,
-        position: ll,
-        draggable: true
-      };
+      markerOptions.position = ll;
 
       dropMarker();
     }

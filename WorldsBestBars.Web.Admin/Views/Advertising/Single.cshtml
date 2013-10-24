@@ -77,6 +77,7 @@
     </div>
     <div class="span6">
       <h3>Statistics</h3>
+      <p>Total Clicks: <strong>@Model.TotalClicks.ToString("N0")</strong>, total impressions: <strong>@Model.TotalImpressions.ToString("N0")</strong></p>
       <table class="table table-striped">
         <thead>
           <tr>
@@ -89,7 +90,7 @@
           @foreach (var stat in Model.Stats)
           {
             <tr>
-              <td>@stat.Period.ToString("yyyy-MM-dd HH:mm")</td>
+              <td>@stat.Period.ToString("yyyy-MM-dd")</td>
               <td>@stat.Clicks.ToString("N0")</td>
               <td>@stat.Impressions.ToString("N0")</td>
             </tr>

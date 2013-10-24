@@ -1180,6 +1180,30 @@ namespace WorldsBestBars.Data
         private global::System.String _VideoImageUrl;
         partial void OnVideoImageUrlChanging(global::System.String value);
         partial void OnVideoImageUrlChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String TargetCountries
+        {
+            get
+            {
+                return _TargetCountries;
+            }
+            set
+            {
+                OnTargetCountriesChanging(value);
+                ReportPropertyChanging("TargetCountries");
+                _TargetCountries = StructuralObject.SetValidValue(value, true);
+                ReportPropertyChanged("TargetCountries");
+                OnTargetCountriesChanged();
+            }
+        }
+        private global::System.String _TargetCountries;
+        partial void OnTargetCountriesChanging(global::System.String value);
+        partial void OnTargetCountriesChanged();
 
         #endregion
 

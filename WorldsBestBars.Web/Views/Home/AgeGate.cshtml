@@ -31,31 +31,40 @@
 <body>
     <a id="topofpage"></a>
     <div id="container">
-        <div id="page">
+        <div id="page" class="age-gate">
             <div id="header">
                 <a href="@("/")" title="World's Best Bars&reg;">
                     <div id="logo">
                         World's Best Bars
                     </div>
+                    <hr class="hr" />
                 </a>
             </div>
         </div>
         <div id="age_gate">
             <h2>You need to be of legal drinking age to enter our website.</h2>
-            <h3>Please enter your date of birth or use Facebook or Google+</h3>
-            <p class="facebook-section">
-                <button onclick="facebook_login()">FACEBOOK!</button>
-            </p>
-            <span id="signinButton">
-                <span
-                    class="g-signin"
-                    data-callback="signinCallback"
-                    data-clientid="1062746177315.apps.googleusercontent.com"
-                    data-cookiepolicy="single_host_origin"
-                    data-requestvisibleactions=""
-                    data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.profile"></span>
-            </span>
+            <h3>Please verify your age with Facebook or Google+</h3>
+            <ul class="social-connect">
+                <li class="facebook">
+                    <p class="facebook-section">
+                        <button onclick="facebook_login()">FACEBOOK!</button>
+                    </p>
+                </li>
+                <li class="google">
+                    <span id="signinButton">
+                        <span
+                            class="g-signin"
+                            data-callback="signinCallback"
+                            data-clientid="1062746177315.apps.googleusercontent.com"
+                            data-cookiepolicy="single_host_origin"
+                            data-requestvisibleactions=""
+                            data-scope="https://www.googleapis.com/auth/plus.login https://www.googleapis.com/auth/userinfo.profile"></span>
+                    </span>
+                </li>
+            </ul>
+            <h3>Or enter your date of birth below.</h3>
             <form action="@Url.Action("AgeGate", "Home")" method="post">
+                <input type="hidden" name="source" value="" />
                 <input type="hidden" name="redirect" value="@Model" />
                 <label>
                     day</label>
@@ -82,13 +91,6 @@
                         <option value="@i"@(ViewBag.SelectedYear == i ? " selected" : string.Empty)>@i</option>
                     }
                 </select>
-                <div id="remember_area">
-                    <label>
-                        Remember your details?</label>
-                    <input type="checkbox" id="remember" name="remember" value="yes" />
-                    <span class="remember_label">Remember your details?</span> <span>(Do not tick if it
-              is a shared computer)</span>
-                </div>
                 <div class="location">
                     <label>
                         Where are you?</label>
@@ -100,9 +102,17 @@
                         }
                     </select>
                 </div>
+                <div id="remember_area">
+                    <label>
+                        Remember your details?</label>
+                    <input type="checkbox" id="remember" name="remember" value="yes" />
+                    <span class="remember_label">Remember your details?</span> <span>(Do not tick if it
+              is a shared computer)</span>
+                </div>
                 <input type="submit" class="sub_btn" />
                 <span>Entering this site means you agree to our <a href="@("/terms-and-conditions")">Terms &amp; Conditions</a> and our <a href="@("/privacy-policy")">Privacy Policy</a></span>
             </form>
+            <hr class="hr" />
             @if (ViewBag.Errors != null)
             {
                 <div id="age_errors">
@@ -127,7 +137,6 @@
                 </script>
             }
         </div>
-    </div>
     </div>
   <script type="text/javascript">
       var _gaq = _gaq || [];
@@ -181,6 +190,17 @@
         };
 
         var get_from_facebook = function () {
+            var count = 0;
+
+            var check_and_submit = function () {
+                if (count == 2) {
+                    @if (ViewBag.Source == null)
+                    {
+                        <text>$('[name=source]').val('facebook');
+                    $('[type=submit]').click();</text>
+                    }
+                }
+            };
             FB.api('/me', function (response) {
                 var s = response.birthday;
                 var d = new Date();
@@ -192,6 +212,8 @@
                 $('.month').val(month);
                 $('.day').val(day);
                 $('.year').val(year);
+
+                count++; check_and_submit();
             });
 
             FB.api({
@@ -203,6 +225,8 @@
                     var location = response[0].current_location.country;
 
                     select_country(location);
+
+                    count++; check_and_submit();
                 }
             });
         };
@@ -226,6 +250,17 @@
         };
 
         function signinCallback(authResult) {
+            var count = 0;
+            var check_and_submit = function () {
+                if (count == 2) {
+                    @if (ViewBag.Source == null)
+                    {
+                        <text>$('[name=source]').val('google');
+                    $('[type=submit]').click();</text>
+                    }
+                }
+            };
+
             if (authResult['access_token']) {
                 gapi.client.load('plus', 'v1', function () {
                     var request = gapi.client.plus.people.get({
@@ -235,6 +270,8 @@
                         if (resp.placesLived && resp.placesLived.length) {
                             var l = resp.placesLived[0].value.split(',');
                             select_country(l[l.length - 1]);
+
+                            count++; check_and_submit();
                         }
                     });
                 });
@@ -249,8 +286,10 @@
                         var year = parseInt(p[0]);
 
                         if (month != 0) { $('.month').val(month); }
-                        if (day != 0) { $('.day').val(day); } 
+                        if (day != 0) { $('.day').val(day); }
                         if (year != 0) { $('.year').val(year); }
+
+                        count++; check_and_submit();
                     });
                 });
                 // Successfully authorized

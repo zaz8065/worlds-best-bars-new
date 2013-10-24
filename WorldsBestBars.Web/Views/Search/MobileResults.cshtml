@@ -29,4 +29,8 @@
 <script type="text/javascript" src="@("/content/js/pagination.js")"></script>
 <script type="text/javascript">
     var controller = new SearchPage();
+    @if (ViewBag.SearchQuery != null)
+    {
+<text>_gaq.push(['_trackEvent', 'search', 'query', '@Html.Raw(((string)ViewBag.SearchQuery).Replace("'", "\\'"))']);</text>
+    }
 </script>

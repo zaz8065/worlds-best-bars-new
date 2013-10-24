@@ -36,6 +36,17 @@ namespace WorldsBestBars.Services
             return result;
         }
 
+
+        /// <summary>
+        /// Provides a wrapper around the specified service resolvers GetService method.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        protected static T GetService<T>() where T : new()
+        {
+            return ServiceResolver.GetService<T>();
+        }
+
         #endregion
 
         #region Private Fields

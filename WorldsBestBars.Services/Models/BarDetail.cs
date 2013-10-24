@@ -38,7 +38,7 @@ namespace WorldsBestBars.Services.Models
 
         public class Opening
         {
-            public DayOfWeek Day { get; set; }
+            public byte Day { get; set; }
             public TimeSpan Open { get; set; }
             public TimeSpan Close { get; set; }
         }

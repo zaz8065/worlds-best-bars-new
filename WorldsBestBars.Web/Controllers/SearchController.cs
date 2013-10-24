@@ -27,7 +27,9 @@ namespace WorldsBestBars.Web.Controllers
 
                 try
                 {
-                    return View("Results", Web.Search.Lucene.Search(query, filter: filter == "-" ? null : filter));
+                    var model = Web.Search.Lucene.Search(query, filter: filter == "-" ? null : filter);
+
+                    return View("Results", model);
                 }
                 catch
                 {

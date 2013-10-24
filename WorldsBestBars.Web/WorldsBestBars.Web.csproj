@@ -194,6 +194,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\LostPasswordModel.cs" />
+    <Compile Include="Models\UpdateProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +278,7 @@
     <Content Include="Content\css\mobile.css" />
     <Content Include="Content\css\print.css" />
     <Content Include="Content\css\rateit.css" />
+    <Content Include="Content\css\select2.css" />
     <Content Include="Content\flash\flashloader.swf" />
     <Content Include="Content\gfx\ads\absolutvodka.png" />
     <Content Include="Content\gfx\ads\ballantines.png" />
@@ -432,16 +434,19 @@
     <Content Include="Content\img\elements\exp_header_box_bg.jpg" />
     <Content Include="Content\img\elements\facebook-button.gif" />
     <Content Include="Content\img\elements\fb-but.jpg" />
+    <Content Include="Content\img\elements\fb-follow.jpg" />
     <Content Include="Content\img\elements\gold-dot.jpg" />
     <Content Include="Content\img\elements\gold_bg.jpg" />
     <Content Include="Content\img\elements\green_header_box_bg.jpg" />
     <Content Include="Content\img\elements\image-ex.gif" />
     <Content Include="Content\img\elements\join_us_dn.jpg" />
     <Content Include="Content\img\elements\join_us_up.jpg" />
+    <Content Include="Content\img\elements\login-fb.png" />
     <Content Include="Content\img\elements\login_btn_dn.jpg" />
     <Content Include="Content\img\elements\login_btn_up.jpg" />
     <Content Include="Content\img\elements\logo-facebook.jpg" />
     <Content Include="Content\img\elements\new_window.png" />
+    <Content Include="Content\img\elements\pinterest-follow.jpg" />
     <Content Include="Content\img\elements\red-arrow-right.gif" />
     <Content Include="Content\img\elements\red-dot.png" />
     <Content Include="Content\img\elements\red_header_box_bg.jpg" />
@@ -459,6 +464,7 @@
     <Content Include="Content\img\elements\test-ad.jpg" />
     <Content Include="Content\img\elements\twit-but.jpg" />
     <Content Include="Content\img\elements\twitter-button.gif" />
+    <Content Include="Content\img\elements\twitter-follow.jpg" />
     <Content Include="Content\img\elements\video-ex.jpg" />
     <Content Include="Content\img\for-facebook.jpg" />
     <Content Include="Content\img\logos\wbb-for-ie.jpg" />
@@ -492,6 +498,7 @@
     <Content Include="Content\img\sponsor-headers\Seattle_Headerplustype.jpg" />
     <Content Include="Content\img\sponsor-headers\Shanghai_Headerplustype.jpg" />
     <Content Include="Content\js\global.js" />
+    <Content Include="Content\js\jquery-2.0.0.js" />
     <Content Include="Content\js\jquery.rateit.min.js" />
     <Content Include="Content\js\jquery.scrollTo-1.4.2-min.js" />
     <Content Include="Content\js\mobile.js" />
@@ -506,6 +513,7 @@
     <Content Include="Content\js\pages\search.js" />
     <Content Include="Content\js\pages\top-100.js" />
     <Content Include="Content\js\pagination.js" />
+    <Content Include="Content\js\select2.min.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="google050e1c5fda1d2c01.html" />
@@ -768,6 +776,7 @@
     <Content Include="Views\Content\ClosedBar.cshtml" />
     <Content Include="Views\User\LostPassword.cshtml" />
     <Content Include="Views\User\LostPasswordSuccess.cshtml" />
+    <Content Include="Views\User\UpdateProfile.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
