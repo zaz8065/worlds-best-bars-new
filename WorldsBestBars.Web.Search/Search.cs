@@ -39,8 +39,8 @@ namespace WorldsBestBars.Web.Search
             IsIndexEmpty = true; // System.IO.Directory.GetFiles(Config.Storage).Length == 0;
             if (IsIndexEmpty)
             {
-                var writer = new IndexWriter(indexStore, indexAnalyser, true, IndexWriter.MaxFieldLength.UNLIMITED);
-                writer.Close();
+                using (var writer = new IndexWriter(indexStore, indexAnalyser, true, IndexWriter.MaxFieldLength.UNLIMITED))
+                { }
             }
         }
 
@@ -67,14 +67,14 @@ namespace WorldsBestBars.Web.Search
             var topDocs = indexSearcher.Search(query, null, 50);
             for (var i = 0; i < topDocs.ScoreDocs.Length; i++)
             {
-                var doc = indexSearcher.Doc(topDocs.ScoreDocs[i].doc);
+                var doc = indexSearcher.Doc(topDocs.ScoreDocs[i].Doc);
 
                 result.Add(new Model.SearchResult()
                 {
-                    Id = System.Guid.Parse(doc.GetField("id").StringValue()),
-                    Type = doc.GetField("type").StringValue(),
-                    Score = (double)topDocs.ScoreDocs[i].score,
-                    Name = doc.GetField("name").StringValue()
+                    Id = System.Guid.Parse(doc.GetField("id").StringValue),
+                    Type = doc.GetField("type").StringValue,
+                    Score = (double)topDocs.ScoreDocs[i].Score,
+                    Name = doc.GetField("name").StringValue
                 });
             }
 
@@ -94,14 +94,15 @@ namespace WorldsBestBars.Web.Search
         {
             lock (indexLock)
             {
-                var writer = new IndexWriter(indexStore, indexAnalyser, false, IndexWriter.MaxFieldLength.UNLIMITED);
-                writer.SetWriteLockTimeout(100);
+                using (var writer = new IndexWriter(indexStore, indexAnalyser, false, IndexWriter.MaxFieldLength.UNLIMITED))
+                {
+                    writer.WriteLockTimeout = 100;
 
-                writer.DeleteDocuments(new Term("id", id.ToString()));
+                    writer.DeleteDocuments(new Term("id", id.ToString()));
 
-                writer.Commit();
-                writer.Optimize();
-                writer.Close();
+                    writer.Commit();
+                    writer.Optimize();
+                }
 
                 ResetSearcher();
             }
@@ -111,17 +112,18 @@ namespace WorldsBestBars.Web.Search
         {
             lock (indexLock)
             {
-                var writer = new IndexWriter(indexStore, indexAnalyser, false, IndexWriter.MaxFieldLength.UNLIMITED);
-                writer.SetWriteLockTimeout(100);
-
-                foreach (var entity in entities)
+                using (var writer = new IndexWriter(indexStore, indexAnalyser, false, IndexWriter.MaxFieldLength.UNLIMITED))
                 {
-                    writer.AddToIndex(entity);
-                }
+                    writer.WriteLockTimeout = 100;
 
-                writer.Commit();
-                writer.Optimize();
-                writer.Close();
+                    foreach (var entity in entities)
+                    {
+                        writer.AddToIndex(entity);
+                    }
+
+                    writer.Commit();
+                    writer.Optimize();
+                }
 
                 ResetSearcher();
             }
@@ -131,16 +133,17 @@ namespace WorldsBestBars.Web.Search
         {
             lock (indexLock)
             {
-                var writer = new IndexWriter(indexStore, indexAnalyser, false, IndexWriter.MaxFieldLength.UNLIMITED);
-                writer.SetWriteLockTimeout(100);
+                using (var writer = new IndexWriter(indexStore, indexAnalyser, false, IndexWriter.MaxFieldLength.UNLIMITED))
+                {
+                    writer.WriteLockTimeout = 100;
 
-                writer.DeleteDocuments(new Term("id", entity.Id.ToString()));
+                    writer.DeleteDocuments(new Term("id", entity.Id.ToString()));
 
-                writer.AddToIndex(entity);
+                    writer.AddToIndex(entity);
 
-                writer.Commit();
-                writer.Optimize();
-                writer.Close();
+                    writer.Commit();
+                    writer.Optimize();
+                }
 
                 ResetSearcher();
             }

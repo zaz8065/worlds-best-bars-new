@@ -15,9 +15,6 @@ namespace WorldsBestBars.Model
         [JsonProperty("active")]
         public bool IsActive { get; set; }
 
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
         [JsonProperty("details")]
         public string Details { get; set; }
 
