@@ -1,15 +1,20 @@
 ﻿@model IEnumerable<WorldsBestBars.Model.Location>
 @{
-  ViewBag.Title = "All Cities";
+    ViewBag.Title = "All Cities";
 }
 <div id="generic" class="wb">
-    <div class="lists" >
-    <h2>All Cities</h2>
-    <p>
-      @foreach (var location in Model)
-      {
-        <a href="@("/" + location.Url)">@location.Name</a>
-      }
-    </p>
+    <div class="lists">
+        <h2>All Cities</h2>
+        <p>
+            @foreach (var group in Model.Where(l => l.Parent != null).GroupBy(l => l.Parent))
+            {
+                var parent = WorldsBestBars.Web.Cache.Locations.Instance.GetById(group.Key.Value);
+                <h3>@(parent == null ? "???" : parent.Name)</h3>
+                foreach (var location in group)
+                { 
+                    <a href="@("/" + location.Url)">@location.Name</a>
+                }
+            }
+        </p>
     </div>
 </div>
