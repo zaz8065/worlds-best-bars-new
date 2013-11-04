@@ -272,10 +272,10 @@ namespace WorldsBestBars.Web.Controllers
                     Email = model.Email,
                     City = model.City,
                     DateOfBirth = string.IsNullOrEmpty(model.DateOfBirth) ? null : (DateTime?)DateTime.Parse(model.DateOfBirth),
-                    FavouriteBars = model.FavouriteBars,
-                    FavouriteBrands = model.FavouriteBrands,
-                    FavouriteCocktails = model.FavouriteCocktails,
-                    FavouriteCities = string.Join(", ", model.FavouriteCities),
+                    FavouriteBars = model.FavouriteBars ?? string.Empty,
+                    FavouriteBrands = model.FavouriteBrands ?? string.Empty,
+                    FavouriteCocktails = model.FavouriteCocktails ?? string.Empty,
+                    FavouriteCities = string.Join(", ", model.FavouriteCities ?? new string[0]),
                     Password = string.IsNullOrEmpty(model.Password) ? null : model.Password
                 };
 

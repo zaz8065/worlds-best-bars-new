@@ -102,7 +102,7 @@
             initSelection: function (element, callback) {
                 var data = [];
                 var bar_id_map = {};
-                @if (Model != null && Model.FavouriteBars != null)
+                @if (Model != null && !string.IsNullOrEmpty(Model.FavouriteBars))
                 {
                     foreach (var id in Model.FavouriteBars.Split(','))
                     {
