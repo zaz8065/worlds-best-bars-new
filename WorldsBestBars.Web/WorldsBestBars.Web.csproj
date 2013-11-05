@@ -476,6 +476,9 @@
     <Content Include="Content\img\nav\next.jpg" />
     <Content Include="Content\img\nav\prev.jpg" />
     <Content Include="Content\img\nav\small-but-nav-sprite.png" />
+    <Content Include="Content\img\select2-spinner.gif" />
+    <Content Include="Content\img\select2.png" />
+    <Content Include="Content\img\select2x2.png" />
     <Content Include="Content\img\spinning-globe.gif" />
     <Content Include="Content\img\sponsor-headers\Berlin_headers.jpg" />
     <Content Include="Content\img\sponsor-headers\bg-chicago.jpg" />
