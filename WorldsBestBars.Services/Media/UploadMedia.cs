@@ -37,7 +37,7 @@ namespace WorldsBestBars.Services.Media
             else
             {
                 var files = Directory.GetFiles(destination);
-                while (files.Where(f => f.Contains("x")).Any(f => { var parts = f.Split('.'); return int.Parse(parts[parts.Length - 2]) == index; }))
+                while (files.Where(f => f.EndsWith("jpg")).Any(f => { var parts = f.Split('.'); return int.Parse(parts[parts.Length - 2]) == index; }))
                 {
                     index++;
                 }
