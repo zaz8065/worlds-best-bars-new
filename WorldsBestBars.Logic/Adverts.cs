@@ -39,8 +39,17 @@ namespace WorldsBestBars.Logic
             }
         }
 
-        public static Model.Advert GetRandomAdvert(System.Web.HttpSessionStateBase session, bool recordImpression = true)
+        public static Model.Advert GetRandomAdvert(System.Web.HttpSessionStateBase session, bool recordImpression = true, string key = null)
         {
+            if (key != null)
+            {
+                var _advert = Web.Cache.Adverts.Instance.GetAll().FirstOrDefault(a => a.Id.ToString() == key);
+                if (_advert != null)
+                {
+                    return _advert;
+                }
+            }
+
             var issued = session == null ? DateTime.Now.AddMinutes(-2) : (DateTime?)session["advert.issued"] ?? DateTime.MinValue;
             if (issued < DateTime.Now.AddMinutes(-1))
             {

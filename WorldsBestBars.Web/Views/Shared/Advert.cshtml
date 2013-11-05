@@ -1,5 +1,5 @@
 ﻿@{
-  var advert = WorldsBestBars.Logic.Adverts.GetRandomAdvert(Session);
+  var advert = WorldsBestBars.Logic.Adverts.GetRandomAdvert(Session, key: Request.QueryString["advert"]);
 }
 @if (advert != null)
 {
