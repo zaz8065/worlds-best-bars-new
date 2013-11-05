@@ -235,6 +235,7 @@
             try {
                 FB.login(function (response) {
                     if (response.authResponse) {
+                        _gaq.push(['_trackEvent', 'socialLogin', 'ageGate', 'facebook']);
                         facebook_user_id = response.authResponse.userID;
                         get_from_facebook();
                     } else {
@@ -294,6 +295,9 @@
                 });
                 // Successfully authorized
                 // Hide the sign-in button now that the user is authorized, for example:
+
+                _gaq.push(['_trackEvent', 'socialLogin', 'ageGate', 'google']);
+
                 document.getElementById('signinButton').setAttribute('style', 'display: none');
             } else if (authResult['error']) {
                 // There was an error.
