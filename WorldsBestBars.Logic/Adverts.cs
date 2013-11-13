@@ -50,49 +50,45 @@ namespace WorldsBestBars.Logic
                 }
             }
 
-            var issued = session == null ? DateTime.Now.AddMinutes(-2) : (DateTime?)session["advert.issued"] ?? DateTime.MinValue;
-            if (issued < DateTime.Now.AddMinutes(-1))
+            var currentAdvert = Guid.Empty;
+            if (session != null && session["advert"] != null)
             {
-                var currentAdvert = Guid.Empty;
-                if (session != null && session["advert"] != null)
-                {
-                    currentAdvert = ((Model.Advert)session["advert"]).Id;
-                }
+                currentAdvert = ((Model.Advert)session["advert"]).Id;
+            }
 
-                var _advert = GetRandomAdvert(session["user:country"] as string);
+            var advert = GetRandomAdvert(session["user:country"] as string);
 
-                if (_advert == null)
-                {
-                    return null;
-                }
+            if (advert == null)
+            {
+                return null;
+            }
 
-                if (_advert.Id == currentAdvert)
+            if (advert.Id == currentAdvert)
+            {
+                for (var i = 0; i < 10; i++)
                 {
-                    for (var i = 0; i < 10; i++)
+                    advert = GetRandomAdvert(session["user:country"] as string);
+                    if (advert.Id != currentAdvert)
                     {
-                        _advert = GetRandomAdvert(session["user:country"] as string);
-                        if (_advert.Id != currentAdvert)
-                        {
-                            break;
-                        }
+                        break;
                     }
                 }
-
-                if (recordImpression)
-                {
-                    RecordImpression(_advert.Id);
-                }
-
-                if (session != null)
-                {
-                    session["advert"] = _advert;
-                    session["advert.issued"] = DateTime.Now;
-                }
-                else
-                {
-                    return _advert;
-                }
             }
+
+            if (recordImpression)
+            {
+                RecordImpression(advert.Id);
+            }
+
+            if (session != null)
+            {
+                session["advert"] = advert;
+            }
+            else
+            {
+                return advert;
+            }
+
 
             return (Model.Advert)session["advert"];
         }
@@ -100,9 +96,9 @@ namespace WorldsBestBars.Logic
         public static Model.Advert GetRandomAdvert(string targetCountry)
         {
             var original = Web.Cache.Adverts.Instance.GetAll()
-                .Where(a => 
-                    a.IsActive && 
-                    (a.Start == null || a.Start < DateTime.Now) && (a.Finish == null || a.Finish > DateTime.Now) && 
+                .Where(a =>
+                    a.IsActive &&
+                    (a.Start == null || a.Start < DateTime.Now) && (a.Finish == null || a.Finish > DateTime.Now) &&
                     (a.TargetCountries == null || targetCountry == null || a.TargetCountries.Split(',').Contains(targetCountry)));
 
             if (!original.Any())
