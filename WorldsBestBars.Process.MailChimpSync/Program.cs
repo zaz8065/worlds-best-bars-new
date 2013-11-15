@@ -5,9 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace WorldsBestBars.Process.MailChimpSync
 {
@@ -19,6 +21,7 @@ namespace WorldsBestBars.Process.MailChimpSync
         {
             _log.Info("www.worldsbestbars.com - MailChimp Synchronisation");
             _log.Debug("Mailchimp API Base: {0}", GetUri("helpers/ping"));
+            _log.Debug("Mailchimp API Key: {0}", ApiKey);
 
             _log.Info("Getting a list of users subscribed in database.");
 
@@ -93,7 +96,10 @@ namespace WorldsBestBars.Process.MailChimpSync
                 var values = new NameValueCollection();
                 values.Add("apikey", ApiKey);
                 values.Add("id", ListId);
-                var data = JsonConvert.DeserializeObject<MailChimpMemberListsResponse>(Encoding.UTF8.GetString(client.UploadValues(url, values)));
+
+                var resp = Encoding.UTF8.GetString(client.UploadValues(url, values));
+
+                var data = JsonConvert.DeserializeObject<MailChimpMemberListsResponse>(resp);
 
                 return data.Users;
             }
@@ -109,25 +115,35 @@ namespace WorldsBestBars.Process.MailChimpSync
             {
                 var url = GetUri("lists/batch-subscribe");
 
-                var values = new NameValueCollection();
-                values.Add("apikey", ApiKey);
-                values.Add("id", ListId);
-                values.Add("double_optin", "false");
-                values.Add("update_existing", "true");
-                values.Add("replace_interests", "false");
-                values.Add("batch", JsonConvert.SerializeObject(batch));
+                var reqdata = new
+                {
+                    apikey = ApiKey,
+                    id = ListId,
+                    double_optin = false,
+                    update_existing = true,
+                    replace_interests = false,
+                    batch = batch
+                };
 
-#if TRACE
-                _log.Trace(url);
-                _log.Trace(string.Join("&", values.AllKeys.Select(k => string.Format("{0}={1}", k, values[k]))));
-#else
                 using (var client = new WebClient())
                 {
-                    var response = Encoding.UTF8.GetString(client.UploadValues(url, values));
+                    try
+                    {
+                        var resp = client.UploadString(url, JsonConvert.SerializeObject(reqdata));
 
-                    var data = JsonConvert.DeserializeObject(response);
+                        var data = JsonConvert.DeserializeObject(resp);
+                    }
+                    catch (WebException wex)
+                    {
+                        var content = new System.IO.StreamReader(wex.Response.GetResponseStream()).ReadToEnd();
+
+                        _log.Info("Request data: " + JsonConvert.SerializeObject(reqdata));
+
+                        _log.Error(content);
+
+                        throw;
+                    }
                 }
-#endif
             }
         }
 
@@ -180,10 +196,16 @@ namespace WorldsBestBars.Process.MailChimpSync
             public string Email { get; set; }
         }
 
-        class MailChimpBatchSubscribe
+        class MailChimpEmail
         {
             [JsonProperty("email")]
             public string Email { get; set; }
+        }
+
+        class MailChimpBatchSubscribe
+        {
+            [JsonProperty("email")]
+            public MailChimpEmail Email { get; set; }
 
             [JsonProperty("merge_vars")]
             public Dictionary<string, object> MergeVars { get; set; }
@@ -192,15 +214,15 @@ namespace WorldsBestBars.Process.MailChimpSync
             {
                 MergeVars = new Dictionary<string, object>();
 #if DEBUG
-                Email = string.Format("hello+{0}@brendanmckenzie.com", user.Email.Replace("@", "_at_").Replace("+", "_plus_").Replace(".", "_dot_"));
+                Email = new MailChimpEmail { Email = string.Format("hello+{0}@brendanmckenzie.com", user.Email.Replace("@", "_at_").Replace("+", "_plus_").Replace(".", "_dot_")) };
 #else
-                Email = user.Email;
+                Email = new MailChimpEmail { Email = user.Email };
 #endif
                 var name = user.Name.Split(' ');
-                MergeVars.Add("FNAME", name[0]);
+                MergeVars.Add("FNAME", RemoveDiacritics(name[0]));
                 if (name.Length > 1)
                 {
-                    MergeVars.Add("LNAME", string.Join(" ", name.Skip(1)));
+                    MergeVars.Add("LNAME", RemoveDiacritics(string.Join(" ", name.Skip(1))));
                 }
 
                 var groupings = GetGroupings(user);
@@ -216,6 +238,28 @@ namespace WorldsBestBars.Process.MailChimpSync
                 if (location == null) { return null; }
 
                 return new string[] { location };
+            }
+
+            static string RemoveDiacritics(string text)
+            {
+                var normalizedString = text.Normalize(NormalizationForm.FormD);
+                var stringBuilder = new StringBuilder();
+
+                foreach (var c in normalizedString)
+                {
+                    var unicodeCategory = CharUnicodeInfo.GetUnicodeCategory(c);
+                    if (unicodeCategory != UnicodeCategory.NonSpacingMark)
+                    {
+                        stringBuilder.Append(c);
+                    }
+                }
+
+                var ret = stringBuilder.ToString().Normalize(NormalizationForm.FormC);
+
+                var re = new Regex("[^a-zA-Z0-9 -]");
+                ret = re.Replace(ret, string.Empty);
+
+                return ret;
             }
         }
 
