@@ -38,6 +38,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Process", "Process", "{0334
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldsBestBars.Process.MailChimpSync", "WorldsBestBars.Process.MailChimpSync\WorldsBestBars.Process.MailChimpSync.csproj", "{A8FA943E-B005-4F68-B11A-8B9CBBE43B0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorldsBestBars.Process.RssXmlGen", "WorldsBestBars.Process.RssXmlGen\WorldsBestBars.Process.RssXmlGen.csproj", "{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -158,6 +160,16 @@ Global
 		{A8FA943E-B005-4F68-B11A-8B9CBBE43B0D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{A8FA943E-B005-4F68-B11A-8B9CBBE43B0D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A8FA943E-B005-4F68-B11A-8B9CBBE43B0D}.Release|x86.ActiveCfg = Release|Any CPU
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}.Debug|x86.ActiveCfg = Debug|x86
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}.Debug|x86.Build.0 = Debug|x86
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}.Release|Any CPU.ActiveCfg = Release|x86
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}.Release|Mixed Platforms.Build.0 = Release|x86
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}.Release|x86.ActiveCfg = Release|x86
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -174,5 +186,6 @@ Global
 		{6D90241D-8878-470E-8A1A-D44588EAB2A9} = {E681FE1F-5690-42A0-BE1B-06457308C699}
 		{A637C109-D6B3-4D73-933C-368372292485} = {E681FE1F-5690-42A0-BE1B-06457308C699}
 		{A8FA943E-B005-4F68-B11A-8B9CBBE43B0D} = {0334E99F-27D0-4503-82DD-9C90D551E21C}
+		{972EEE17-8725-4CC9-93D2-2B62B61D6DDB} = {0334E99F-27D0-4503-82DD-9C90D551E21C}
 	EndGlobalSection
 EndGlobal
