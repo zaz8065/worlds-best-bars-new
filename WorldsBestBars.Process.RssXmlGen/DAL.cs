@@ -271,7 +271,7 @@ namespace WorldsBestBars.Process.RssXmlGen
                     obj.legacyId = (int)dr["LegacyId"];
                     obj.urlKey = (string)dr["UrlKey"];
                     obj.isActive = (bool)dr["IsActive"];
-                    obj.geocoordinate = (SqlGeography)dr["Geocoordinate"];
+                  //  obj.geocoordinate = (SqlGeography)dr["Geocoordinate"];
                     obj.geocoordinateString = (string)dr["GeocoordinateString"];
                     obj.created = (DateTime)dr["Created"];
                     obj.modified = (DateTime)dr["Modified"];
